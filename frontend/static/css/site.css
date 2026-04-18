@@ -1133,11 +1133,15 @@ h1 {
 }
 
 @media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+
   .drawer-toggle {
     display: block;
     top: 12px;
-    left: auto;
-    right: 12px;
+    left: 12px;
+    right: auto;
     width: 42px;
     height: 42px;
   }
@@ -1207,11 +1211,23 @@ h1 {
   }
 
   .anchor-title {
-    font-size: 0.96rem;
+    font-size: 0.9rem;
   }
 
   .anchor-desc {
-    font-size: 0.8rem;
+    font-size: 0.76rem;
+  }
+
+  .brand {
+    font-size: 1.12rem;
+  }
+
+  .brand-sub {
+    font-size: 0.86rem;
+  }
+
+  .card h2 {
+    font-size: 1.18rem;
   }
 
   .org-group-item {
@@ -1321,7 +1337,7 @@ h1 {
 
   .subpage-card p,
   .subpage-item p {
-    font-size: 0.9rem;
+    font-size: 0.86rem;
     line-height: 1.6;
   }
 }
