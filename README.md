@@ -31,7 +31,7 @@
 ## 目前功能
 
 - 完整介紹頁（創社、理念、Q&A、支持）
-- 固定左側導覽與手機抽屜選單
+- 固定左側導覽與手機抽屜選單（手機版已調整展開間距，避免文字被按鈕遮擋）
 - 頁內區塊導覽（前言、組織、創社史、理念、Q&A、支持、成員、活動）
 - 創社時間軸、理念卡片、支持行動清單
 - 返回頂部按鈕與全站平滑滾動
@@ -40,6 +40,12 @@
 - 成員介紹卡片（由 API 提供）
 - 活動區塊留白顯示（提供小提示元件）
 - 聯絡與回饋入口（FB、投訴表單、服務信箱）
+
+## 介面現況備註
+
+- 左側導覽列 LOGO 已移除（避免小螢幕視覺壓迫）
+- 主軸分類快捷按鈕（団/鐵/道）已移除
+- 首頁主軸說明卡仍保留，用於表達內容定位
 
 ## 專案結構
 
@@ -52,16 +58,19 @@
 |   |-- __init__.py
 |   `-- app.py
 `-- frontend/
-  |-- static/
-  |   |-- images/
-  |   |   |-- logo.jpg
-  |   |   `-- organization-chart.png
-  |   |-- css/
-  |   |   `-- site.css
-  |   `-- js/
-  |       `-- site.js
-    |-- templates/
-    |   `-- index.html
+    |-- static/
+    |   |-- images/
+    |   |   |-- logo.jpg
+    |   |   `-- organization-chart.png
+    |   |-- css/
+    |   |   `-- site.css
+    |   `-- js/
+    |       `-- site.js
+    `-- templates/
+        |-- index.html
+        |-- activities.html
+        |-- partners.html
+        `-- 404.html
 ```
 
 ## 本機啟動
@@ -89,9 +98,9 @@ http://127.0.0.1:8080/
 - GET /api/episodes
   - 回傳章節清單資訊
 - GET /api/episodes/<slug>
-  - 回傳指定章節完整內容（目前可用: ep1）
+  - 回傳指定章節完整內容
 - GET /api/ep1
-  - 相容舊版的 EP1 端點
+  - 相容舊版端點（建議優先使用 `/api/episodes/<slug>`）
 - GET /api/members
   - 回傳成員卡片資料
 - GET /api/events
@@ -151,7 +160,6 @@ http://127.0.0.1:8080/
   - 實作: 使用 CSS 動畫骨架屏，JS 控制可見性
   - 影響: 降低感知加載時間
 
-
 - [x] **SEO 優化** - 補充 Meta 標籤、Open Graph、結構化數據
   - Meta: description、keywords、author、viewport
   - Open Graph: og:title, og:description, og:image, og:url
@@ -196,6 +204,49 @@ http://127.0.0.1:8080/
 - [x] **無障礙訪問 (A11Y)（第一步）** - 鍵盤與焦點可視化
   - 實作: 新增 skip-link 與 `:focus-visible` 樣式
   - 待補: 完整 WCAG 2.1 AA 檢測
+
+---
+
+## 🔧 下一步優化建議（可直接執行）
+
+### 優先級 A（先做，1-3 天）
+
+1. 活動資料正式上線
+  - 將 `/api/events` 由空陣列改為真實資料
+  - 前端活動卡片補上「報名連結」按鈕與狀態（報名中 / 已截止）
+
+2. 圖片效能優化
+  - 首頁關鍵圖片改 WebP
+  - 非首屏圖片加入 lazy loading 與尺寸屬性
+
+3. 導覽體驗細修
+  - 手機抽屜加入「Esc 關閉」與焦點鎖定
+  - 增加目前所在章節高亮穩定性（滾動時同步）
+
+### 優先級 B（中期，3-7 天）
+
+1. 會員系統 MVP
+  - SQLite + JWT + 基本登入/登出
+  - 先做最小功能：會員資料頁、活動報名紀錄頁
+
+2. 內容管理化
+  - 將 members/events 從硬編碼搬到 JSON 或資料庫
+  - 建立簡單後台表單（新增/編輯/下架）
+
+3. SEO 強化
+  - sitemap 加上 lastmod / changefreq
+  - 補 canonical 與社群分享預設圖尺寸
+
+### 優先級 C（長期）
+
+1. 活動展廊正式版
+  - `/activities` 加入相簿分類、影片嵌入、年度索引
+
+2. 夥伴頁正式版
+  - `/partners` 加入 Logo 牆、贊助等級、點擊追蹤
+
+3. A11Y 完整檢測
+  - 依 WCAG 2.1 AA 逐項修正對比、語意、鍵盤路徑
 
 ---
 

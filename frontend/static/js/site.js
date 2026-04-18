@@ -229,7 +229,7 @@ function parseHashSectionId() {
 }
 
 function resolveInitialSlug() {
-  return parseHashEpisodeSlug() || (episodeIndex.length ? episodeIndex[0].slug : 'ep1');
+  return parseHashEpisodeSlug() || (episodeIndex.length ? episodeIndex[0].slug : '');
 }
 
 function openDrawer() {
