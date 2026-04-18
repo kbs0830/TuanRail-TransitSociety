@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, render_template
+from flask import Flask, Response, jsonify, render_template, request, url_for
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 FRONTEND_DIR = os.path.join(PROJECT_ROOT, "frontend")
@@ -128,13 +128,29 @@ EPISODES = {
 
 @app.after_request
 def add_headers(response):
-    response.headers["Cache-Control"] = "no-store"
+    path = request.path or ""
+    if path.startswith("/static/"):
+        response.headers["Cache-Control"] = "public, max-age=604800, immutable"
+    elif path.startswith("/api/"):
+        response.headers["Cache-Control"] = "no-store"
+    else:
+        response.headers["Cache-Control"] = "no-cache, max-age=0, must-revalidate"
     return response
 
 
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
+@app.route("/activities")
+def activities_page():
+    return render_template("activities.html")
+
+
+@app.route("/partners")
+def partners_page():
+    return render_template("partners.html")
 
 
 @app.route("/api/episodes", methods=["GET"])
@@ -214,6 +230,37 @@ def api_events():
             },
         }
     )
+
+
+@app.route("/robots.txt", methods=["GET"])
+def robots_txt():
+    base = request.host_url.rstrip("/")
+    content = f"User-agent: *\nAllow: /\nSitemap: {base}/sitemap.xml\n"
+    return Response(content, mimetype="text/plain")
+
+
+@app.route("/sitemap.xml", methods=["GET"])
+def sitemap_xml():
+    pages = [
+        url_for("index", _external=True),
+        url_for("activities_page", _external=True),
+        url_for("partners_page", _external=True),
+    ]
+
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>']
+    lines.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+    for page in pages:
+        lines.append("  <url>")
+        lines.append(f"    <loc>{page}</loc>")
+        lines.append("  </url>")
+    lines.append("</urlset>")
+
+    return Response("\n".join(lines), mimetype="application/xml")
+
+
+@app.errorhandler(404)
+def page_not_found(_error):
+    return render_template("404.html"), 404
 
 
 if __name__ == "__main__":

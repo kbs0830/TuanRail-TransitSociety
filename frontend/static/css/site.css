@@ -16,6 +16,27 @@
   box-sizing: border-box;
 }
 
+:focus-visible {
+  outline: 3px solid #bd5b49;
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 10px;
+  top: -44px;
+  background: #2a2119;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  z-index: 999;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
 html,
 body {
   margin: 0;
@@ -962,6 +983,63 @@ h1 {
   transform: translateY(0);
 }
 
+.subpage-body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 18%, #fff 0%, transparent 32%),
+    radial-gradient(circle at 90% 82%, #efe4d2 0%, transparent 30%),
+    linear-gradient(180deg, #fdfcf9 0%, var(--bg) 100%);
+  padding: 22px;
+}
+
+.subpage-main {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.subpage-card {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 12px 26px rgba(92, 81, 70, 0.08);
+}
+
+.subpage-card h1 {
+  margin: 10px 0;
+}
+
+.subpage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.subpage-item {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  background: linear-gradient(180deg, #fff, #f8f1e5);
+}
+
+.subpage-item h2 {
+  margin: 0 0 8px;
+  font-size: 1.02rem;
+}
+
+.subpage-item p,
+.subpage-card p {
+  color: var(--ink-soft);
+}
+
+.subpage-actions {
+  margin-top: 14px;
+}
+
+.error-card {
+  text-align: center;
+}
+
 @keyframes rise {
   to {
     opacity: 1;
@@ -1151,5 +1229,17 @@ h1 {
     bottom: 12px;
     padding: 8px 12px;
     font-size: 0.86rem;
+  }
+
+  .subpage-body {
+    padding: 14px;
+  }
+
+  .subpage-card {
+    padding: 16px;
+  }
+
+  .subpage-grid {
+    grid-template-columns: 1fr;
   }
 }
