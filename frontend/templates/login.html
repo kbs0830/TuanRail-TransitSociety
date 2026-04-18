@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>後台登入 | 团‧鐵道</title>
+  <meta name="description" content="团‧鐵道後台管理登入頁。">
+  <link rel="icon" type="image/jpeg" href="/static/images/logo.jpg">
+  <link rel="stylesheet" href="/static/css/site.css?v=20260419-2">
+</head>
+<body class="subpage-body">
+  <a href="#mainContent" class="skip-link">跳到主要內容</a>
+  <main id="mainContent" class="subpage-main" tabindex="-1">
+    <section class="subpage-card login-card">
+      <div class="login-headline">
+        <p class="hero-kicker">Admin Login</p>
+        <h1>後台登入</h1>
+        <p>進入管理控制台、查看系統與 Render 同步日誌。</p>
+      </div>
+
+      <div class="login-trust-row" aria-hidden="true">
+        <span>安全連線</span>
+        <span>伺服器端驗證</span>
+        <span>日誌稽核</span>
+      </div>
+
+      {% if error_message %}
+      <p class="login-error" role="alert">{{ error_message }}</p>
+      {% endif %}
+
+      <form class="login-form" action="/admin/login" method="post">
+        <label for="loginUsername">帳號</label>
+        <input id="loginUsername" name="username" type="text" placeholder="請輸入帳號" autocomplete="username" required>
+
+        <label for="loginPassword">密碼</label>
+        <input id="loginPassword" name="password" type="password" placeholder="請輸入密碼" autocomplete="current-password" required>
+
+        <button class="fb-link" type="submit">登入後台</button>
+      </form>
+
+      <p class="subpage-actions">
+        <a class="ghost-link" href="/" onclick="if (history.length > 1) { history.back(); return false; }">返回上一頁</a>
+        <a class="fb-link" href="/">返回首頁</a>
+      </p>
+    </section>
+  </main>
+  <footer class="site-footer subpage-footer">
+    <p class="copyright-note">© 2026 網頁工程師 kbs0830. 保留所有權利。</p>
+  </footer>
+</body>
+</html>

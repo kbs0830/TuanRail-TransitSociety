@@ -291,10 +291,10 @@ function bindDrawer() {
 
   overlay.addEventListener('click', closeDrawer);
 
-  sidebar.querySelectorAll('.anchor-link').forEach((link) => {
+  sidebar.querySelectorAll('.anchor-link[href^="#"]').forEach((link) => {
     link.addEventListener('click', (event) => {
-      event.preventDefault();
       const target = link.getAttribute('href') || '';
+      event.preventDefault();
       const sectionId = target.replace('#', '');
       if (SECTION_IDS.includes(sectionId)) {
         setActiveSection(sectionId, true);

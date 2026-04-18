@@ -1,14 +1,245 @@
+import json
 import os
-from flask import Flask, Response, jsonify, render_template, request, url_for
+import re
+import time
+from collections import deque
+from datetime import datetime
+from urllib import error as urllib_error
+from urllib import request as urllib_request
+from urllib.parse import urlencode
+
+from flask import Flask, Response, jsonify, redirect, render_template, request, session, url_for
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 FRONTEND_DIR = os.path.join(PROJECT_ROOT, "frontend")
+
+
+def load_local_env(env_path):
+    if not os.path.exists(env_path):
+        return
+
+    with open(env_path, "r", encoding="utf-8") as env_file:
+        for raw_line in env_file:
+            line = raw_line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+
+            key, value = line.split("=", 1)
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+
+            if key and key not in os.environ:
+                os.environ[key] = value
+
+
+load_local_env(os.path.join(PROJECT_ROOT, ".env"))
 
 app = Flask(
     __name__,
     template_folder=os.path.join(FRONTEND_DIR, "templates"),
     static_folder=os.path.join(FRONTEND_DIR, "static"),
 )
+app.secret_key = os.environ.get("SECRET_KEY", "tuan-rail-admin-secret")
+
+
+ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "admin")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "admin")
+RENDER_DASHBOARD_URL = "https://dashboard.render.com/web/srv-d7hpcrjbc2fs73dkhuk0/logs?r=1h"
+RENDER_API_BASE_URL = os.environ.get("RENDER_API_BASE_URL", "https://api.render.com/v1")
+RENDER_API_KEY = os.environ.get("RENDER_API_KEY", "")
+RENDER_SERVICE_ID = os.environ.get("RENDER_SERVICE_ID", "srv-d7hpcrjbc2fs73dkhuk0")
+RENDER_OWNER_ID = os.environ.get("RENDER_OWNER_ID", "")
+RENDER_LOGS_API_URL = os.environ.get("RENDER_LOGS_API_URL", "")
+
+ANSI_ESCAPE_RE = re.compile(r"\x1B\[[0-?]*[ -/]*[@-~]")
+
+ADMIN_LOGS = deque(maxlen=400)
+
+
+def append_admin_log(level, source, message):
+    ADMIN_LOGS.append(
+        {
+            "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "level": level,
+            "source": source,
+            "message": message,
+        }
+    )
+
+
+def is_admin_logged_in():
+    return bool(session.get("is_admin"))
+
+
+def _to_log_level(message):
+    text = (message or "").lower()
+    if "error" in text or "exception" in text or "fatal" in text:
+        return "ERROR"
+    if "warn" in text:
+        return "WARN"
+    return "INFO"
+
+
+def _strip_ansi(text):
+    return ANSI_ESCAPE_RE.sub("", text or "")
+
+
+def _latest_admin_status(logs, source, prefix):
+    for item in logs:
+        if item.get("source") != source:
+            continue
+        msg = item.get("message", "")
+        if msg.startswith(prefix):
+            return f"{item.get('time')}｜{msg}"
+    return ""
+
+
+def _normalize_render_log_items(payload):
+    if isinstance(payload, list):
+        entries = payload
+    elif isinstance(payload, dict):
+        entries = (
+            payload.get("logs")
+            or payload.get("data")
+            or payload.get("items")
+            or payload.get("results")
+            or []
+        )
+    else:
+        entries = []
+
+    normalized = []
+    for item in entries:
+        if isinstance(item, str):
+            normalized.append({"time": "", "message": item})
+            continue
+
+        if not isinstance(item, dict):
+            continue
+
+        message = (
+            item.get("message")
+            or item.get("msg")
+            or item.get("text")
+            or item.get("log")
+            or item.get("line")
+            or item.get("entry")
+        )
+        timestamp = (
+            item.get("timestamp")
+            or item.get("time")
+            or item.get("createdAt")
+            or item.get("ts")
+            or ""
+        )
+
+        if message:
+            normalized.append({"time": str(timestamp), "message": str(message)})
+
+    return normalized
+
+
+def _render_api_get_json(url):
+    req = urllib_request.Request(
+        url,
+        headers={
+            "Authorization": f"Bearer {RENDER_API_KEY}",
+            "Accept": "application/json",
+            "User-Agent": "TuanRailAdmin/1.0",
+        },
+    )
+    with urllib_request.urlopen(req, timeout=10) as resp:
+        raw = resp.read().decode("utf-8", errors="replace")
+        return json.loads(raw)
+
+
+def _discover_render_owner_id():
+    if RENDER_OWNER_ID:
+        return RENDER_OWNER_ID
+
+    if not RENDER_SERVICE_ID:
+        return ""
+
+    service_url = f"{RENDER_API_BASE_URL}/services/{RENDER_SERVICE_ID}"
+    try:
+        payload = _render_api_get_json(service_url)
+        owner_id = payload.get("ownerId")
+        if not owner_id and isinstance(payload.get("owner"), dict):
+            owner_id = payload["owner"].get("id")
+        return str(owner_id or "")
+    except Exception:
+        return ""
+
+
+def fetch_render_logs(limit=40):
+    if not RENDER_API_KEY:
+        return False, "尚未設定 RENDER_API_KEY，請在專案根目錄 .env 設定後重啟服務。", []
+
+    candidates = []
+    if RENDER_LOGS_API_URL:
+        candidates.append(RENDER_LOGS_API_URL)
+
+    owner_id = _discover_render_owner_id()
+
+    if RENDER_SERVICE_ID:
+        q = urlencode({"limit": int(limit)})
+        candidates.append(f"{RENDER_API_BASE_URL}/services/{RENDER_SERVICE_ID}/logs?{q}")
+        candidates.append(f"{RENDER_API_BASE_URL}/logs?resource={RENDER_SERVICE_ID}&{q}")
+        if owner_id:
+            candidates.append(
+                f"{RENDER_API_BASE_URL}/logs?ownerId={owner_id}&resource={RENDER_SERVICE_ID}&{q}"
+            )
+            candidates.append(
+                f"{RENDER_API_BASE_URL}/logs?ownerId={owner_id}&resourceId={RENDER_SERVICE_ID}&{q}"
+            )
+            candidates.append(
+                f"{RENDER_API_BASE_URL}/logs?ownerId={owner_id}&serviceId={RENDER_SERVICE_ID}&{q}"
+            )
+
+    errors = []
+
+    for api_url in candidates:
+        req = urllib_request.Request(
+            api_url,
+            headers={
+                "Authorization": f"Bearer {RENDER_API_KEY}",
+                "Accept": "application/json",
+                "User-Agent": "TuanRailAdmin/1.0",
+            },
+        )
+        try:
+            with urllib_request.urlopen(req, timeout=10) as resp:
+                raw = resp.read().decode("utf-8", errors="replace")
+                payload = json.loads(raw)
+                logs = _normalize_render_log_items(payload)
+                if logs:
+                    return True, f"成功從 Render API 同步 {len(logs)} 筆。", logs
+                errors.append(f"{api_url} 回應成功但沒有可解析的 logs")
+        except urllib_error.HTTPError as exc:
+            body = ""
+            try:
+                body = exc.read().decode("utf-8", errors="replace")[:240]
+            except Exception:
+                body = ""
+            errors.append(f"{api_url} -> HTTP {exc.code} {body}".strip())
+        except urllib_error.URLError as exc:
+            errors.append(f"{api_url} -> 網路錯誤: {exc.reason}")
+        except Exception as exc:
+            errors.append(f"{api_url} -> 解析失敗: {exc}")
+            continue
+
+    reason = "；".join(errors[:2]) if errors else "未知錯誤"
+    missing = ""
+    if not owner_id:
+        missing = "（補充：尚未取得 ownerId，可在 .env 設定 RENDER_OWNER_ID）"
+    return (
+        False,
+        f"Render logs 同步失敗。請確認 .env 的 RENDER_API_KEY、RENDER_SERVICE_ID、RENDER_LOGS_API_URL。{missing} 診斷: {reason}",
+        [],
+    )
+
+
+append_admin_log("INFO", "system", "後台日誌系統啟動")
 
 
 SITE_INFO = {
@@ -154,6 +385,11 @@ EPISODES = {
 
 @app.after_request
 def add_headers(response):
+    start_time = getattr(request, "_start_time", None)
+    duration_ms = 0.0
+    if start_time is not None:
+        duration_ms = (time.perf_counter() - start_time) * 1000
+
     path = request.path or ""
     if path.startswith("/static/"):
         response.headers["Cache-Control"] = "public, max-age=604800, immutable"
@@ -161,7 +397,19 @@ def add_headers(response):
         response.headers["Cache-Control"] = "no-store"
     else:
         response.headers["Cache-Control"] = "no-cache, max-age=0, must-revalidate"
+
+    if not path.startswith("/static/"):
+        append_admin_log(
+            "INFO",
+            "http",
+            f"{request.method} {path} -> {response.status_code} ({duration_ms:.1f}ms)",
+        )
     return response
+
+
+@app.before_request
+def before_each_request():
+    request._start_time = time.perf_counter()
 
 
 @app.route("/")
@@ -177,6 +425,126 @@ def activities_page():
 @app.route("/partners")
 def partners_page():
     return render_template("partners.html")
+
+
+@app.route("/login")
+def login_page():
+    return redirect(url_for("admin_portal"))
+
+
+@app.route("/admin")
+def admin_portal():
+    if is_admin_logged_in():
+        return redirect(url_for("admin_logs_page"))
+    return render_template("login.html", error_message="")
+
+
+@app.route("/admin/login", methods=["POST"])
+def admin_login():
+    username = (request.form.get("username") or "").strip()
+    password = request.form.get("password") or ""
+
+    if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+        session["is_admin"] = True
+        session["admin_user"] = username
+        append_admin_log("INFO", "auth", f"管理員登入成功: {username}")
+        return redirect(url_for("admin_logs_page"))
+
+    append_admin_log("WARN", "auth", f"管理員登入失敗: {username or 'unknown'}")
+    return render_template("login.html", error_message="帳號或密碼錯誤，請重新輸入。"), 401
+
+
+@app.route("/admin/logout", methods=["POST"])
+def admin_logout():
+    if session.get("admin_user"):
+        append_admin_log("INFO", "auth", f"管理員登出: {session.get('admin_user')}")
+    session.clear()
+    return redirect(url_for("admin_portal"))
+
+
+@app.route("/admin/logs")
+def admin_logs_page():
+    if not is_admin_logged_in():
+        return redirect(url_for("admin_portal"))
+
+    logs = list(ADMIN_LOGS)
+    logs.reverse()
+
+    render_check_status = _latest_admin_status(logs, "render", "Render dashboard 檢查")
+    render_sync_status = _latest_admin_status(logs, "render-sync", "Render logs 已同步")
+
+    return render_template(
+        "admin_logs.html",
+        logs=logs,
+        admin_user=session.get("admin_user", "admin"),
+        render_dashboard_url=RENDER_DASHBOARD_URL,
+        render_sync_ready=bool(RENDER_API_KEY),
+        render_service_id=RENDER_SERVICE_ID,
+        render_check_status=render_check_status,
+        render_sync_status=render_sync_status,
+    )
+
+
+@app.route("/api/admin/render-check", methods=["POST"])
+def admin_render_check():
+    if not is_admin_logged_in():
+        return jsonify({"ok": False, "message": "未授權"}), 401
+
+    req = urllib_request.Request(
+        RENDER_DASHBOARD_URL,
+        headers={"User-Agent": "TuanRailAdmin/1.0"},
+    )
+
+    try:
+        with urllib_request.urlopen(req, timeout=8) as resp:
+            status_code = getattr(resp, "status", 200)
+            append_admin_log(
+                "INFO",
+                "render",
+                f"Render dashboard 檢查成功，HTTP {status_code}",
+            )
+            return jsonify(
+                {
+                    "ok": True,
+                    "data": {
+                        "status": status_code,
+                        "url": RENDER_DASHBOARD_URL,
+                        "note": "此檢查僅驗證連線可達，無法直接讀取已登入後台內容。",
+                    },
+                }
+            )
+    except Exception as exc:
+        append_admin_log("ERROR", "render", f"Render dashboard 檢查失敗: {exc}")
+        return jsonify({"ok": False, "message": f"檢查失敗: {exc}"}), 502
+
+
+@app.route("/api/admin/render-sync", methods=["POST"])
+def admin_render_sync():
+    if not is_admin_logged_in():
+        return jsonify({"ok": False, "message": "未授權"}), 401
+
+    ok, message, items = fetch_render_logs(limit=60)
+    if not ok:
+        append_admin_log("ERROR", "render-sync", message)
+        status = 400 if "RENDER_API_KEY" in message else 502
+        return jsonify({"ok": False, "message": message}), status
+
+    appended = 0
+    for item in items[:50]:
+        level = _to_log_level(item.get("message", ""))
+        ts = item.get("time") or ""
+        text = _strip_ansi(item.get("message") or "")
+        line = f"{ts} {text}".strip()
+        append_admin_log(level, "render", line)
+        appended += 1
+
+    append_admin_log("INFO", "render-sync", f"Render logs 已同步 {appended} 筆")
+    return jsonify({"ok": True, "message": f"Render logs 已同步 {appended} 筆", "count": appended})
+
+
+@app.route("/.well-known/appspecific/com.chrome.devtools.json", methods=["GET"])
+def chrome_devtools_probe():
+    return Response("{}", mimetype="application/json")
 
 
 @app.route("/api/episodes", methods=["GET"])
@@ -277,6 +645,7 @@ def sitemap_xml():
         url_for("index", _external=True),
         url_for("activities_page", _external=True),
         url_for("partners_page", _external=True),
+        url_for("login_page", _external=True),
     ]
 
     lines = ['<?xml version="1.0" encoding="UTF-8"?>']
@@ -292,6 +661,7 @@ def sitemap_xml():
 
 @app.errorhandler(404)
 def page_not_found(_error):
+    append_admin_log("WARN", "http", f"404 Not Found: {request.path}")
     return render_template("404.html"), 404
 
 

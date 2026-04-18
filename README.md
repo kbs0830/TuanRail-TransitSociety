@@ -14,6 +14,7 @@
 
 - 後端: Flask API，提供章節內容與頁面服務
 - 前端: HTML、CSS、JavaScript 靜態資源與抽屜式導覽
+- 後台: 管理員登入、後台日誌、Render logs 同步
 - 視覺風格: 白色簡約、中華復古、歷史檔案感
 
 ## 城市結構（內容資訊架構）
@@ -40,6 +41,10 @@
 - 成員介紹卡片（由 API 提供）
 - 活動區塊留白顯示（提供小提示元件）
 - 聯絡與回饋入口（FB、投訴表單、服務信箱）
+- 後台管理入口（左側導覽最底部）
+- 管理員登入（`/admin`）與後台日誌頁（`/admin/logs`）
+- Render 連線檢查與 Render logs 同步（後端 API 觸發）
+- 後台狀態顯示最近一次同步結果（含時間）
 
 ## 介面現況備註
 
@@ -52,10 +57,17 @@
 ```text
 .
 |-- app.py
+|-- .env.example
+|-- .gitignore
 |-- README.md
 |-- requirements.txt
 |-- backend/
 |   |-- __init__.py
+|   |-- auth/
+|   |   |-- __init__.py
+|   |   |-- models.py
+|   |   |-- routes.py
+|   |   `-- service.py
 |   `-- app.py
 `-- frontend/
     |-- static/
@@ -67,11 +79,31 @@
     |   `-- js/
     |       `-- site.js
     `-- templates/
+      |-- admin_logs.html
+      |-- login.html
         |-- index.html
         |-- activities.html
         |-- partners.html
         `-- 404.html
 ```
+
+    ## 環境變數設定（.env）
+
+    請在專案根目錄建立 `.env`（可參考 `.env.example`）。
+
+    ```env
+    SECRET_KEY=change-this-to-a-random-secret
+    ADMIN_USERNAME=admin
+    ADMIN_PASSWORD=admin
+    RENDER_API_KEY=replace-with-your-render-api-key
+    RENDER_SERVICE_ID=srv-d7hpcrjbc2fs73dkhuk0
+    RENDER_OWNER_ID=replace-with-your-render-owner-id
+    RENDER_API_BASE_URL=https://api.render.com/v1
+    # 選填：若你有固定 logs API 路徑
+    # RENDER_LOGS_API_URL=https://api.render.com/v1/services/<service-id>/logs?limit=60
+    ```
+
+    > 注意：`.env` 已在 `.gitignore`，請勿提交真實金鑰。
 
 ## 本機啟動
 
@@ -105,6 +137,10 @@ http://127.0.0.1:8080/
   - 回傳成員卡片資料
 - GET /api/events
   - 回傳活動資料（目前為空陣列，前端顯示留白提示）
+- POST /api/admin/render-check
+  - 後台 Render 連線可達性檢查（需先登入）
+- POST /api/admin/render-sync
+  - 同步 Render logs 至本地後台日誌（需先登入）
 
 ## 其他路由
 
@@ -112,6 +148,16 @@ http://127.0.0.1:8080/
   - 照片 / 影片展廊頁（第三階段入口頁）
 - GET /partners
   - 贊助商 / 合作夥伴頁（第三階段入口頁）
+- GET /admin
+  - 後台登入頁
+- POST /admin/login
+  - 管理員登入
+- GET /admin/logs
+  - 後台日誌檢視頁
+- POST /admin/logout
+  - 管理員登出
+- GET /login
+  - 轉址至 `/admin`（相容舊入口）
 - GET /sitemap.xml
   - 網站地圖
 - GET /robots.txt
@@ -190,6 +236,10 @@ http://127.0.0.1:8080/
 - [ ] **會員登入系統** - 簡單會員區（未來擴展用）
   - 實作: JWT 認證 + 簡易用戶資料庫（SQLite）
   - 功能: 會員登入、個人檔案、活動報名紀錄
+
+- [x] **後台登入與日誌中心（已完成）**
+  - 實作: `/admin`、`/admin/login`、`/admin/logs`、`/admin/logout`
+  - 功能: 管理員登入、操作稽核、Render logs 同步
 
 - [x] **404 錯誤頁面** - 自訂設計、返回首頁按鈕
   - 實作: 已新增 Flask 404 handler 與自訂頁面
