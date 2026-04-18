@@ -1,6 +1,12 @@
 let episodeIndex = [];
 let currentSlug = '';
-const SECTION_IDS = ['introSection', 'orgSection', 'historySection', 'meaningSection', 'qaSection', 'supportSection'];
+const SECTION_IDS = ['introSection', 'orgSection', 'historySection', 'meaningSection', 'qaSection', 'supportSection', 'membersSection', 'eventsSection'];
+const tinyTips = [
+  '搭乘列車時，先下後上，月台通行會更順暢。',
+  '公車上車前預先準備票卡，可讓停靠更有效率。',
+  '尖峰時段若能錯峰 10 分鐘，通勤體感會明顯改善。',
+  '拍攝鐵道時請站在安全線外，文化熱情也要以安全為先。',
+];
 
 async function loadEpisodeIndex() {
   const res = await fetch('/api/episodes');
@@ -28,6 +34,34 @@ async function loadEpisode(slug) {
   }
 
   return payload.data;
+}
+
+async function loadMembers() {
+  const res = await fetch('/api/members');
+  if (!res.ok) {
+    throw new Error('無法載入成員資料');
+  }
+
+  const payload = await res.json();
+  if (!payload.ok) {
+    throw new Error('成員資料格式錯誤');
+  }
+
+  return payload.data.members || [];
+}
+
+async function loadEvents() {
+  const res = await fetch('/api/events');
+  if (!res.ok) {
+    throw new Error('無法載入活動資料');
+  }
+
+  const payload = await res.json();
+  if (!payload.ok) {
+    throw new Error('活動資料格式錯誤');
+  }
+
+  return payload.data.events || [];
 }
 
 function renderParagraphs(container, lines) {
@@ -106,6 +140,42 @@ function renderSupportActions(container, actions) {
   });
 }
 
+function renderMembers(container, members) {
+  container.innerHTML = '';
+  if (!members || !members.length) {
+    const empty = document.createElement('article');
+    empty.className = 'event-empty';
+    empty.innerHTML = '<p>成員資料準備中，敬請期待。</p>';
+    container.appendChild(empty);
+    return;
+  }
+
+  members.forEach((item) => {
+    const card = document.createElement('article');
+    card.className = 'member-card';
+    card.innerHTML = `<h3>${item.name}</h3><p class="member-role">${item.role}</p><p class="member-bio">${item.bio}</p>`;
+    container.appendChild(card);
+  });
+}
+
+function renderEvents(container, events) {
+  container.innerHTML = '';
+  if (!events || !events.length) {
+    const empty = document.createElement('article');
+    empty.className = 'event-empty';
+    empty.innerHTML = '<p>目前活動時程暫留空白，正式公告後會在此更新。</p>';
+    container.appendChild(empty);
+    return;
+  }
+
+  events.forEach((item) => {
+    const card = document.createElement('article');
+    card.className = 'member-card';
+    card.innerHTML = `<h3>${item.title}</h3><p class="member-role">${item.date}・${item.location}</p><p class="member-bio">${item.desc}</p>`;
+    container.appendChild(card);
+  });
+}
+
 function renderEpisodeNav(episodes, currentSlug) {
   const nav = document.getElementById('episodeNav');
   if (!nav) {
@@ -147,6 +217,42 @@ function resolveInitialSlug() {
 
 function openDrawer() {
   document.body.classList.add('sidebar-open');
+}
+
+function bindBackToTop() {
+  const button = document.getElementById('backToTop');
+  if (!button) {
+    return;
+  }
+
+  const onScroll = () => {
+    button.classList.toggle('show', window.scrollY > 240);
+  };
+
+  button.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+function hideLoader() {
+  const loader = document.getElementById('pageLoader');
+  if (!loader) {
+    return;
+  }
+  loader.classList.add('is-hidden');
+}
+
+function renderTinyTip() {
+  const tip = document.getElementById('tinyTip');
+  if (!tip) {
+    return;
+  }
+
+  const idx = Math.floor(Math.random() * tinyTips.length);
+  tip.textContent = tinyTips[idx];
 }
 
 function closeDrawer() {
@@ -272,10 +378,16 @@ async function selectEpisode(slug, syncHash) {
 async function init() {
   try {
     bindDrawer();
+    bindBackToTop();
     startLiveClock();
+    renderTinyTip();
 
     const meta = await loadEpisodeIndex();
     episodeIndex = meta.episodes;
+
+    const [members, events] = await Promise.all([loadMembers(), loadEvents()]);
+    renderMembers(document.getElementById('membersList'), members);
+    renderEvents(document.getElementById('eventsList'), events);
 
     const slug = resolveInitialSlug();
     await selectEpisode(slug, false);
@@ -294,9 +406,12 @@ async function init() {
         setActiveSection(sectionId, false);
       }
     });
+
+    hideLoader();
   } catch (err) {
     document.getElementById('episodeTitle').textContent = '載入失敗';
     document.getElementById('siteQuote').textContent = '請稍後重新整理頁面。';
+    hideLoader();
   }
 }
 

@@ -19,6 +19,28 @@ SITE_INFO = {
 }
 
 
+MEMBERS = [
+    {
+        "name": "鄭熙",
+        "role": "社長",
+        "bio": "統籌團隊發展、活動方向與對外溝通，推動鐵道文化的公共參與。",
+    },
+    {
+        "name": "顧問團",
+        "role": "顧問群",
+        "bio": "提供活動流程、志工訓練與風險控管建議，協助社團穩定成長。",
+    },
+    {
+        "name": "多媒體科",
+        "role": "網路傳播暨紀錄片製作",
+        "bio": "紀錄社團日常與知識內容，透過影音讓更多人理解運輸文化。",
+    },
+]
+
+
+EVENTS = []
+
+
 EPISODES = {
     "ep1": {
         "slug": "ep1",
@@ -165,6 +187,30 @@ def api_ep1_legacy():
             "data": {
                 "site": SITE_INFO,
                 "episode": EPISODES["ep1"],
+            },
+        }
+    )
+
+
+@app.route("/api/members", methods=["GET"])
+def api_members():
+    return jsonify(
+        {
+            "ok": True,
+            "data": {
+                "members": MEMBERS,
+            },
+        }
+    )
+
+
+@app.route("/api/events", methods=["GET"])
+def api_events():
+    return jsonify(
+        {
+            "ok": True,
+            "data": {
+                "events": EVENTS,
             },
         }
     )
