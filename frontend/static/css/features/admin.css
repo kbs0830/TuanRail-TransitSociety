@@ -1,0 +1,132 @@
+/* 後台日誌卡片 */
+.admin-logs-card {
+  max-width: 980px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #fffefb 0%, #f6eee1 100%);
+  border: 1px solid #cdb79d;
+  border-radius: var(--radius-2xl);
+  padding: 22px;
+}
+
+/* 後台標題 */
+.admin-headline {
+  border-bottom: 1px solid #decebb;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+}
+
+/* 後台面板網格 */
+.admin-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.admin-panel-item {
+  border: 1px solid #d6c4af;
+  border-radius: var(--radius-xl);
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.admin-panel-item h2 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+
+.admin-panel-item p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.admin-panel-ok {
+  color: #2f6a35;
+  font-weight: var(--font-weight-bold);
+}
+
+.admin-panel-warn {
+  color: #8f5524;
+  font-weight: var(--font-weight-bold);
+}
+
+/* 後台工具欄 */
+.admin-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.admin-toolbar form {
+  margin: 0;
+}
+
+.admin-status {
+  margin-top: 10px;
+  border: 1px dashed #cfb89b;
+  border-radius: var(--radius-lg);
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+/* 日誌表格 */
+.log-table-wrap {
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  overflow: auto;
+  background: #fff;
+}
+
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 680px;
+}
+
+.log-table th,
+.log-table td {
+  border-bottom: 1px solid #eadfce;
+  padding: 9px 10px;
+  text-align: left;
+  vertical-align: top;
+  font-size: 0.9rem;
+}
+
+.log-table th {
+  background: #f9f2e7;
+  color: #4f3a2a;
+  font-weight: var(--font-weight-bold);
+  position: sticky;
+  top: 0;
+}
+
+/* 日誌等級標籤 */
+.log-level {
+  display: inline-block;
+  border: 1px solid #ccb59a;
+  border-radius: var(--radius-full);
+  padding: 2px 8px;
+  font-size: 0.74rem;
+  font-weight: var(--font-weight-bold);
+}
+
+.log-info {
+  color: #2d4d75;
+  border-color: #abc2df;
+  background: #eef4fb;
+}
+
+.log-warn {
+  color: #7b5220;
+  border-color: #d8bd93;
+  background: #fff7eb;
+}
+
+.log-error {
+  color: #8c2b2d;
+  border-color: #d8a7a8;
+  background: #fff1f1;
+}

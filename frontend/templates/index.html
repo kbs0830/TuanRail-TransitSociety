@@ -12,16 +12,16 @@
   <meta property="og:site_name" content="团‧鐵道 Tuan Rail & Transit Society">
   <meta property="og:title" content="团‧鐵道｜公共運輸文化社群">
   <meta property="og:description" content="團結、鐵路與公共運輸，一起前進。">
-  <meta property="og:image" content="/static/images/logo.jpg">
+  <meta property="og:image" content="{{ static_url('images/logo.jpg') }}">
   <meta property="og:url" content="http://127.0.0.1:8080/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="团‧鐵道｜公共運輸文化社群">
   <meta name="twitter:description" content="團結、鐵路與公共運輸，一起前進。">
-  <link rel="icon" type="image/jpeg" href="/static/images/logo.jpg">
+  <link rel="icon" type="image/jpeg" href="{{ static_url('images/logo.jpg') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/css/site.css?v=20260419-1">
+  <link rel="stylesheet" href="{{ static_url('css/index.css') }}">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -29,7 +29,7 @@
       "name": "Tuan Rail & Transit Society",
       "alternateName": "团‧鐵道",
       "url": "http://127.0.0.1:8080/",
-      "logo": "/static/images/logo.jpg",
+      "logo": "{{ static_url('images/logo.jpg') }}",
       "email": "mailto:a380.500er@gmail.com"
     }
   </script>
@@ -40,7 +40,7 @@
 
   <div id="pageLoader" class="page-loader" aria-live="polite" aria-label="頁面載入中">
     <div class="loader-card">
-      <img src="/static/images/logo.jpg" alt="团‧鐵道" class="loader-logo">
+      <img src="{{ static_url('images/logo.jpg') }}" alt="团‧鐵道" class="loader-logo">
       <p class="loader-title">团‧鐵道 檔案載入中</p>
       <div class="loader-bar"><span class="loader-progress"></span></div>
     </div>
@@ -95,27 +95,93 @@
   </aside>
 
   <div class="content-wrap">
-    <div class="site-topbar">
-      <div class="site-topbrand">
-        <img src="/static/images/logo.jpg" alt="团‧鐵道 LOGO" class="site-top-logo" loading="eager" decoding="async">
-        <p class="site-top-name">团‧鐵道</p>
+    <section id="topPlainText" class="top-plain-hero" aria-labelledby="topHeroTitle">
+      <div class="top-hero-brandline">
+        <img src="{{ static_url('images/logo.jpg') }}" alt="团‧鐵道 LOGO" width="96" height="96" loading="eager" decoding="async" class="top-hero-logo">
+        <div class="top-hero-brandtext">
+          <h1 id="topHeroTitle" class="top-hero-title">团‧鐵道</h1>
+        </div>
       </div>
-      <p class="site-top-quote">每一條軌道，都是城市的脈絡；每一段公路，都是夢想的延伸。</p>
-    </div>
 
-    <header class="hero">
-      <p class="hero-kicker">Tuan Rail & Transit Society</p>
-      <h1 id="episodeTitle">載入中...</h1>
-      <p id="siteQuote" class="hero-quote"></p>
-      <p class="era-note">創社紀事 · 民國115年 (2026)</p>
-    </header>
+      <div class="top-hero-flipboard" aria-label="復古翻牌時刻表">
+        <p class="flipboard-label">發車看板 / Departure Board</p>
+        <div class="flipboard-head" aria-hidden="true">
+          <span>TIME</span>
+          <span>ROUTE</span>
+          <span>SERVICE</span>
+          <span>PLATFORM</span>
+        </div>
+
+        <div class="flip-row" style="--flip-delay: 0s;">
+          <span class="flip-time">06:30</span>
+          <span class="flip-cell flip-route">
+            <span class="flip-strip">
+              <span>基隆 → 臺北</span>
+              <span>松山 → 臺北</span>
+              <span>南港 → 臺北</span>
+              <span>汐止 → 臺北</span>
+            </span>
+          </span>
+          <span class="flip-cell flip-service">
+            <span class="flip-strip">
+              <span>區間車</span>
+              <span>自強號</span>
+              <span>莒光號</span>
+              <span>區間快</span>
+            </span>
+          </span>
+          <span class="flip-cell flip-platform">
+            <span class="flip-strip">
+              <span>月台 1A</span>
+              <span>月台 2B</span>
+              <span>月台 3A</span>
+              <span>月台 4C</span>
+            </span>
+          </span>
+        </div>
+
+        <div class="flip-row" style="--flip-delay: -2.4s;">
+          <span class="flip-time">14:20</span>
+          <span class="flip-cell flip-route">
+            <span class="flip-strip">
+              <span>臺中 → 彰化</span>
+              <span>彰化 → 員林</span>
+              <span>臺南 → 高雄</span>
+              <span>高雄 → 屏東</span>
+            </span>
+          </span>
+          <span class="flip-cell flip-service">
+            <span class="flip-strip">
+              <span>地方列車</span>
+              <span>區間車</span>
+              <span>莒光號</span>
+              <span>自強號</span>
+            </span>
+          </span>
+          <span class="flip-cell flip-platform">
+            <span class="flip-strip">
+              <span>月台 6A</span>
+              <span>月台 7C</span>
+              <span>月台 8A</span>
+              <span>月台 9B</span>
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="top-hero-schedule" aria-label="鐵道檔案時刻語彙">
+        <p class="schedule-title">行車記錄 / Transit Ledger</p>
+        <div class="schedule-ticker" aria-label="復古行車跑馬燈">
+          <div id="transitLedgerTrack" class="schedule-track"></div>
+        </div>
+      </div>
+    </section>
 
     <main id="mainContent" class="layout" tabindex="-1">
       <section class="card" id="introSection">
-        <h2>首頁</h2>
+        <h2>核心理念</h2>
         <div id="missionContent" class="mission-content">
           <p>团‧鐵道｜連動城市與鐵道的團結。</p>
-          <p>每一條軌道，都是城市的脈絡；每一段公路，都是夢想的延伸。</p>
           <p>我們是一群對公共運輸充滿熱忱的青少年，因為共同的愛好而相聚，致力讓更多人走近鐵道與公共運輸文化。</p>
         </div>
 
@@ -137,55 +203,50 @@
         <p class="mobile-compact-note">手機版已精簡長文顯示。請使用左側導覽閱讀「創社與關鍵字」、「Q&A」、「支持我們」。</p>
 
         <article class="announcement-article">
-          <details class="announcement-collapsible">
-            <summary>
-              <span>【団•鐵道創社介紹】</span>
-              <small>點擊展開 / 收合</small>
-            </summary>
-            <p class="announcement-greeting">嗨大家好，我是 団•鐵道社長 鄭熙！今天想和大家分享我們創社的過程與一路走來的血淚與熱情。</p>
-            <p class="announcement-note">（文長慎入，但如果你願意了解我們，我會非常感謝）</p>
+          <h3>▍創社介紹</h3>
+          <p class="announcement-greeting">嗨大家好，我是 団•鐵道社長 鄭熙！今天想和大家分享我們創社的過程與一路走來的血淚與熱情。</p>
+          <p class="announcement-note">（文長慎入，但如果你願意了解我們，我會非常感謝）</p>
 
-            <section class="announcement-section">
-              <h4>★ 創社史</h4>
-              <p>団•鐵道成立於 2026 年，由「YT 新鐵道知識庫」重組而成。創社初衷很簡單：讓更多人能真正「走近」鐵道與公共運輸。</p>
-              <p class="symbols">🔸 「団」＝團結　　🔸 「鐵」＝鐵路文化　　🔸 「道」＝道路公共汽車與運輸</p>
-              <p>我們以「鐵」與「道」為主題，用知識帶來新視野，用活動帶大家走進鐵道的世界。歡迎加入団•鐵道！</p>
-            </section>
+          <section class="announcement-section">
+            <h4>▍創社史</h4>
+            <p>団•鐵道成立於 2026 年，由「YT 新鐵道知識庫」重組而成。創社初衷很簡單：讓更多人能真正「走近」鐵道與公共運輸。</p>
+            <p class="symbols">🔸 「団」＝團結　　🔸 「鐵」＝鐵路文化　　🔸 「道」＝道路公共汽車與運輸</p>
+            <p>我們以「鐵」與「道」為主題，用知識帶來新視野，用活動帶大家走進鐵道的世界。歡迎加入団•鐵道！</p>
+          </section>
 
-            <section class="announcement-section">
-              <h4>★ 大家的疑問 Q&A</h4>
-            
-              <div class="qa-item">
-                <h5>Q1：『你有什麼能力可以創立社團？』</h5>
-                <p>老實說，我沒有什麼「能力」。但我有勇氣、決心與 400 小時的交通志工經驗。<br>如果因為害怕失敗就停在原地，那永遠不會有開始。跨出第一步，才有成功的可能。</p>
-              </div>
+          <section class="announcement-section">
+            <h4>▍大家的疑問 Q&A</h4>
+          
+            <div class="qa-item">
+              <h5>Q1：『你有什麼能力可以創立社團？』</h5>
+              <p>老實說，我沒有什麼「能力」。但我有勇氣、決心與 400 小時的交通志工經驗。<br>如果因為害怕失敗就停在原地，那永遠不會有開始。跨出第一步，才有成功的可能。</p>
+            </div>
 
-              <div class="qa-item">
-                <h5>Q2：『社團資金怎麼支撐？』</h5>
-                <p>經營社團不只花心力，也真的很花錢。目前我們沒有足夠的資金，因此近期會規劃募資活動，希望能籌到基本經費，支撐初期營運。</p>
-              </div>
+            <div class="qa-item">
+              <h5>Q2：『社團資金怎麼支撐？』</h5>
+              <p>經營社團不只花心力，也真的很花錢。目前我們沒有足夠的資金，因此近期會規劃募資活動，希望能籌到基本經費，支撐初期營運。</p>
+            </div>
 
-              <div class="qa-item">
-                <h5>Q3：『新社團活動品質會不會很差？』</h5>
-                <p>新社團一定會有摸索期，但我們不會讓品質掉下來。我與顧問團隊會在行前給予工作人員充分訓練，確保每一場活動都達到我們心中的標準。</p>
-              </div>
+            <div class="qa-item">
+              <h5>Q3：『新社團活動品質會不會很差？』</h5>
+              <p>新社團一定會有摸索期，但我們不會讓品質掉下來。我與顧問團隊會在行前給予工作人員充分訓練，確保每一場活動都達到我們心中的標準。</p>
+            </div>
 
-              <div class="qa-item">
-                <h5>Q4：『未來社團規劃？』</h5>
-                <p>我們將不定期舉辦與「鐵」、「道」相關的活動，例如：專開列車、專題座談、交通文化推廣、與鐵道更貼近的互動活動。<br>我們希望成為鐵道文化與大眾之間的橋樑。</p>
-              </div>
+            <div class="qa-item">
+              <h5>Q4：『未來社團規劃？』</h5>
+              <p>我們將不定期舉辦與「鐵」、「道」相關的活動，例如：專開列車、專題座談、交通文化推廣、與鐵道更貼近的互動活動。<br>我們希望成為鐵道文化與大眾之間的橋樑。</p>
+            </div>
 
-              <div class="qa-item">
-                <h5>Q5：『近期活動規劃？』</h5>
-                <p>近期除了於暑假期間計畫有相關專題座談外，於 9 月第一週的禮拜六也規劃了一場盛大的活動，歡迎大家持續關注後續消息！</p>
-              </div>
-            </section>
+            <div class="qa-item">
+              <h5>Q5：『近期活動規劃？』</h5>
+              <p>近期除了於暑假期間計畫有相關專題座談外，於 9 月第一週的禮拜六也規劃了一場盛大的活動，歡迎大家持續關注後續消息！</p>
+            </div>
+          </section>
 
-            <section class="announcement-section announcement-cta">
-              <h4>★ 非常重要</h4>
-              <p>如果你願意支持我們，請追蹤我們、按讚貼文、並分享給你的朋友！讓更多人認識 団•鐵道，也希望能在未來的活動中與你相見。</p>
-            </section>
-          </details>
+          <section class="announcement-section announcement-cta">
+            <h4>▍非常重要</h4>
+            <p>如果你願意支持我們，請追蹤我們、按讚貼文、並分享給你的朋友！讓更多人認識 団•鐵道，也希望能在未來的活動中與你相見。</p>
+          </section>
         </article>
       </section>
 
@@ -194,7 +255,7 @@
         <p class="org-caption">以下為目前社團組織運作架構。</p>
         <img
           class="org-chart-image"
-          src="/static/images/organization-chart.png"
+          src="{{ static_url('images/organization-chart.png') }}"
           alt="团‧鐵道社團組織架構圖"
           loading="lazy"
         >
@@ -272,7 +333,7 @@
     </footer>
   </div>
 
-  <script src="/static/js/site.js?v=20260419-1"></script>
+  <script type="module" src="{{ static_url('js/app.js') }}"></script>
   <button id="backToTop" class="back-to-top" type="button" aria-label="返回頂部">回到頂部</button>
 </body>
 </html>

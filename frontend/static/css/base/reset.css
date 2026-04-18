@@ -1,0 +1,94 @@
+/* 全局 Reset */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans-tc);
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 8% 14%, rgba(255, 255, 255, 0.9) 0%, transparent 32%),
+    radial-gradient(circle at 92% 84%, rgba(226, 213, 194, 0.46) 0%, transparent 34%),
+    linear-gradient(180deg, #faf7f0 0%, var(--bg) 100%);
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+body.sidebar-open {
+  overflow: hidden;
+}
+
+/* 無障礙焦點可視化 */
+:focus-visible {
+  outline: 3px solid #bd5b49;
+  outline-offset: 2px;
+}
+
+/* 跳過連結 */
+.skip-link {
+  position: absolute;
+  left: 10px;
+  top: -44px;
+  background: #2a2119;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  z-index: var(--z-base);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
+/* 紋理背景 */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  opacity: 0.02;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.5) 2px,
+    rgba(0, 0, 0, 0.5) 4px
+  ),
+  repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.5) 2px,
+    rgba(0, 0, 0, 0.5) 4px
+  );
+}
+
+/* 標題預設 */
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif-tc);
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  margin: 14px 0;
+  font-size: clamp(1.65rem, 2.25vw, 2.15rem);
+  line-height: 1.32;
+}
+
+/* 隱藏和顯示工具 */
+.hidden-section {
+  display: none;
+}
+
+.visible-section {
+  display: block;
+}

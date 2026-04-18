@@ -1,0 +1,57 @@
+/* 加載器容器 */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-loader);
+  display: grid;
+  place-items: center;
+  background: rgba(247, 243, 235, 0.96);
+  transition: opacity var(--transition-slow) ease, visibility var(--transition-slow) ease;
+}
+
+.page-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* 加載器卡片 */
+.loader-card {
+  width: min(90vw, 360px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-2xl);
+  background: var(--paper);
+  box-shadow: var(--shadow-xl);
+  padding: 18px;
+  text-align: center;
+}
+
+.loader-logo {
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-xl);
+  border: 1px solid #ccb59a;
+  object-fit: cover;
+}
+
+.loader-title {
+  margin: 10px 0;
+  color: var(--ink-soft);
+}
+
+/* 進度條 */
+.loader-bar {
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: rgba(157, 46, 47, 0.14);
+  overflow: hidden;
+}
+
+.loader-progress {
+  display: block;
+  width: 38%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, #9d2e2f 0%, #e1a368 100%);
+  animation: loaderMove 1s ease-in-out infinite;
+}

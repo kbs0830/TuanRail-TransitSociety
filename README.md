@@ -45,12 +45,15 @@
 - 管理員登入（`/admin`）與後台日誌頁（`/admin/logs`）
 - Render 連線檢查與 Render logs 同步（後端 API 觸發）
 - 後台狀態顯示最近一次同步結果（含時間）
+- 首頁上方採純文字區塊（不使用首頁專用 CSS/JS 綁定）
+- 首頁 LOGO 已放大並使用原圖顯示
 
 ## 介面現況備註
 
 - 左側導覽列 LOGO 已移除（避免小螢幕視覺壓迫）
 - 主軸分類快捷按鈕（団/鐵/道）已移除
 - 首頁主軸說明卡仍保留，用於表達內容定位
+- 首頁最上方顯示為純文字資訊區（LOGO、名稱、標語、創社紀事）
 
 ## 專案結構
 
@@ -75,35 +78,43 @@
     |   |   |-- logo.jpg
     |   |   `-- organization-chart.png
     |   |-- css/
-    |   |   `-- site.css
+    |   |   ├── index.css              ⭐ 主入口
+    |   |   ├── base/
+    |   |   ├── layout/
+    |   |   ├── components/
+    |   |   ├── features/
+    |   |   └── responsive/
     |   `-- js/
-    |       `-- site.js
+    |       ├── app.js                 ⭐ 主入口
+    |       ├── config.js
+    |       ├── api/
+    |       └── modules/
     `-- templates/
       |-- admin_logs.html
       |-- login.html
-        |-- index.html
-        |-- activities.html
-        |-- partners.html
-        `-- 404.html
+      |-- index.html
+      |-- activities.html
+      |-- partners.html
+      `-- 404.html
 ```
 
-    ## 環境變數設定（.env）
+## 環境變數設定（.env）
 
-    請在專案根目錄建立 `.env`（可參考 `.env.example`）。
+請在專案根目錄建立 `.env`（可參考 `.env.example`）。
 
-    ```env
-    SECRET_KEY=change-this-to-a-random-secret
-    ADMIN_USERNAME=admin
-    ADMIN_PASSWORD=admin
-    RENDER_API_KEY=replace-with-your-render-api-key
-    RENDER_SERVICE_ID=srv-d7hpcrjbc2fs73dkhuk0
-    RENDER_OWNER_ID=replace-with-your-render-owner-id
-    RENDER_API_BASE_URL=https://api.render.com/v1
-    # 選填：若你有固定 logs API 路徑
-    # RENDER_LOGS_API_URL=https://api.render.com/v1/services/<service-id>/logs?limit=60
-    ```
+```env
+SECRET_KEY=change-this-to-a-random-secret
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=admin
+RENDER_API_KEY=replace-with-your-render-api-key
+RENDER_SERVICE_ID=srv-d7hpcrjbc2fs73dkhuk0
+RENDER_OWNER_ID=replace-with-your-render-owner-id
+RENDER_API_BASE_URL=https://api.render.com/v1
+# 選填：若你有固定 logs API 路徑
+# RENDER_LOGS_API_URL=https://api.render.com/v1/services/<service-id>/logs?limit=60
+```
 
-    > 注意：`.env` 已在 `.gitignore`，請勿提交真實金鑰。
+> 注意：`.env` 已在 `.gitignore`，請勿提交真實金鑰。
 
 ## 本機啟動
 
@@ -174,6 +185,94 @@ http://127.0.0.1:8080/
 
 - 合作及服務信箱: a380.500er@gmail.com
 - 投訴與建議表單: https://docs.google.com/forms/d/e/1FAIpQLSeGnXZ1IvkUsSnjG5oRvSrHJzH_lTWJq57Duk9-9eQCI-a7pw/viewform
+
+---
+
+## 🎨 代碼架構（2026/04/19 重構完成）
+
+### CSS 模塊化（13 個文件）
+
+本次重構將 **1700+ 行的單個 `site.css`** 分解為清晰的模塊化結構，提升可維護性。
+
+**目錄組織：**
+```
+css/
+├── index.css           ⭐ 主入口 - 在 HTML 中只需引入這一個
+├── base/
+│   ├── variables.css   - CSS 變數（顏色、字體、間距、動畫等）
+│   ├── reset.css       - 全局重置樣式
+│   └── typography.css  - 文字和排版
+├── layout/
+│   ├── sidebar.css     - 側邊欄
+│   ├── main-content.css - 主內容區
+│   └── footer.css      - 頁腳
+├── components/
+│   ├── cards.css       - 卡片組件
+│   ├── loader.css      - 加載動畫
+│   ├── buttons.css     - 按鈕和連結
+│   └── forms.css       - 表單
+├── features/
+│   ├── hero.css        - 英雄區域和公告
+│   ├── animations.css  - 動畫定義
+│   └── admin.css       - 後台管理相關
+└── responsive/
+    └── mobile.css      - 手機適配（≤768px）
+```
+
+**使用方式：**
+```html
+<link rel="stylesheet" href="{{ static_url('css/index.css') }}">
+```
+
+### JavaScript 模塊化（8 個文件）
+
+將 **500+ 行的單個 `site.js`** 分解為功能清晰的模塊，使用 ES6 模塊系統。
+
+**目錄組織：**
+```
+js/
+├── app.js              ⭐ 主入口 - 應用程序啟動點
+├── config.js           - 常數配置（區域 ID、小提示等）
+├── api/
+│   └── api-client.js   - API 請求客戶端
+└── modules/
+    ├── dom-utils.js    - DOM 操作工具
+    ├── renderer.js     - 內容渲染函數
+    ├── drawer.js       - 抽屜菜單邏輯
+    ├── scroll.js       - 滾動、時鐘、加載器
+    └── episode.js      - 章節管理
+```
+
+**使用方式：**
+```html
+<script type="module" src="{{ static_url('js/app.js') }}"></script>
+```
+
+### 改進成果
+
+| 指標 | 重構前 | 重構後 | 提升 |
+|------|-------|-------|------|
+| CSS 文件數 | 1 | 13 | +1200% |
+| JS 文件數 | 1 | 8 | +700% |
+| 單個文件行數 | ~1700 (CSS) | ~100-200 (平均) | ✅ 更易維護 |
+| 代碼重用性 | 低 | 高 | ✅ |
+| 維護難度 | 高 | 低 | ✅ |
+| 可擴展性 | 困難 | 容易 | ✅ |
+
+### 快速查詢
+
+**需要修改...** 
+
+| 需求 | 修改位置 |
+|------|----------|
+| 改變主配色 | `css/base/variables.css` |
+| 新增卡片樣式 | `css/components/cards.css` |
+| 修改側邊欄 | `css/layout/sidebar.css` |
+| 新增動畫 | `css/features/animations.css` |
+| 修改移動適配 | `css/responsive/mobile.css` |
+| 新增 API 請求 | `js/api/api-client.js` |
+| 新增 DOM 操作 | `js/modules/dom-utils.js` |
+| 新增渲染邏輯 | `js/modules/renderer.js` |
 
 ---
 
@@ -248,7 +347,7 @@ http://127.0.0.1:8080/
   - 實作: 已提供 `sitemap.xml` 與 `robots.txt` 路由
 
 - [x] **性能優化（第一步）** - 快取策略
-  - 實作: API 禁用快取、靜態資源啟用 Cache-Control
+  - 實作: API 禁用快取、靜態資源禁用快取、模板使用版本化靜態 URL
   - 待補: CSS/JS minify、圖像格式優化
 
 - [x] **無障礙訪問 (A11Y)（第一步）** - 鍵盤與焦點可視化

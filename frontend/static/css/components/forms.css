@@ -1,0 +1,75 @@
+/* 登錄卡片 */
+.login-card {
+  max-width: 560px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #fffdf8 0%, #f5ecde 100%);
+  border: 1px solid #ccb79e;
+  border-radius: var(--radius-2xl);
+  padding: 22px;
+}
+
+/* 登錄表單 */
+.login-form {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.login-headline {
+  border-bottom: 1px solid #d9c8b3;
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+}
+
+.login-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.login-trust-row span {
+  display: inline-block;
+  border: 1px solid #c9b49c;
+  border-radius: var(--radius-full);
+  padding: 3px 10px;
+  font-size: 0.78rem;
+  color: #5e4734;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.login-form label {
+  font-weight: var(--font-weight-bold);
+  color: #4f3a2a;
+}
+
+.login-form input {
+  border: 1px solid #ccb59a;
+  border-radius: var(--radius-lg);
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: border-color var(--transition-fast) ease;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* 登錄錯誤 */
+.login-error {
+  border: 1px solid #d9a5a6;
+  border-radius: var(--radius-lg);
+  padding: 8px 10px;
+  background: #fff0f1;
+  color: #8e2628;
+}
+
+/* 管理員認證提示 */
+.admin-credential-hint {
+  border: 1px dashed #cdb79f;
+  border-radius: var(--radius-lg);
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.78);
+}

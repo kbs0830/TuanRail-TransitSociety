@@ -1,0 +1,202 @@
+/* 抽屜開關按鈕 */
+.drawer-toggle {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  right: auto;
+  z-index: var(--z-drawer-toggle);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--ink);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-lg);
+  font-size: 1.2rem;
+  display: none;
+  transition: opacity var(--transition-normal) ease;
+}
+
+body.sidebar-open .drawer-toggle {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* 抽屜覆蓋層 */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 16, 12, 0.34);
+  z-index: var(--z-drawer-overlay);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast) ease;
+}
+
+body.sidebar-open .drawer-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 側邊欄容器 */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 286px;
+  border-right: 1px solid var(--line);
+  background: linear-gradient(180deg, #fffdf9 0%, #f2e9db 100%);
+  z-index: var(--z-sidebar);
+  padding: 22px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 8px 0 18px rgba(64, 52, 40, 0.06);
+}
+
+.sidebar::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 18px;
+  bottom: 18px;
+  width: 2px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(180deg, rgba(138, 58, 42, 0.7), rgba(138, 58, 42, 0.12));
+  pointer-events: none;
+}
+
+/* 側邊欄頂部 */
+.sidebar-top {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+}
+
+/* 品牌 Logo */
+.brand-logo {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 110px;
+  max-height: 110px;
+  object-fit: contain;
+  image-rendering: auto;
+  border-radius: var(--radius-3xl);
+  border: 2px solid #c8b49a;
+  background: #fff;
+  margin: 0 0 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(70, 56, 42, 0.15), var(--shadow-inner);
+  transition: all 0.28s var(--ease-smooth);
+}
+
+.brand-logo:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 8px 20px rgba(70, 56, 42, 0.25), var(--shadow-inner);
+  border-color: #b8956a;
+}
+
+/* 品牌文本 */
+.brand {
+  margin: 0;
+  font-family: var(--font-serif-tc);
+  font-size: 1.3rem;
+  font-weight: var(--font-weight-bold);
+  color: #2e2016;
+}
+
+.brand-sub {
+  margin: 4px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+}
+
+.taiwan-note {
+  margin: 8px 0 0;
+  display: inline-block;
+  font-size: 0.72rem;
+  color: var(--archive-blue);
+  border: 1px solid #b9c1cb;
+  border-radius: var(--radius-full);
+  padding: 2px 10px;
+  background: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.08em;
+}
+
+/* 側邊欄導航 */
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+/* 導航區段標題 */
+.nav-title {
+  margin: 0 0 8px;
+  letter-spacing: 0.12em;
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+}
+
+/* 導航連結 */
+.anchor-link {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 10px 10px 10px 12px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: var(--radius-md);
+  border-left: 3px solid transparent;
+  transition: background-color var(--transition-fast) ease, border-color var(--transition-fast) ease;
+}
+
+.anchor-link:hover {
+  background: #f8f2e8;
+  border-color: #d0bea8;
+  border-left-color: #9d7348;
+}
+
+.anchor-link.active {
+  background: #efe8dc;
+  border-color: #c7b7a1;
+  border-left-color: var(--archive-blue);
+}
+
+.anchor-title {
+  display: block;
+  font-weight: var(--font-weight-bold);
+}
+
+.anchor-desc {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+/* 管理員入口 */
+.admin-sidebar-entry {
+  margin-top: auto;
+  text-decoration: none;
+  color: #2f2218;
+  border: 1px solid #c8b39a;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-lg);
+  padding: 10px;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+}
+
+.admin-sidebar-entry:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 14px rgba(129, 96, 61, 0.2);
+}
+
+.theme-toggle {
+  display: none;
+}

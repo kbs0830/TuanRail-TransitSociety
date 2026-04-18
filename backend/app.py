@@ -12,6 +12,7 @@ from flask import Flask, Response, jsonify, redirect, render_template, request, 
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 FRONTEND_DIR = os.path.join(PROJECT_ROOT, "frontend")
+STATION_DATA_PATH = os.path.join(PROJECT_ROOT, "backend", "Data", "車站基本資料集.json")
 
 
 def load_local_env(env_path):
@@ -40,6 +41,8 @@ app = Flask(
     static_folder=os.path.join(FRONTEND_DIR, "static"),
 )
 app.secret_key = os.environ.get("SECRET_KEY", "tuan-rail-admin-secret")
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 
 ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "admin")
@@ -54,6 +57,29 @@ RENDER_LOGS_API_URL = os.environ.get("RENDER_LOGS_API_URL", "")
 ANSI_ESCAPE_RE = re.compile(r"\x1B\[[0-?]*[ -/]*[@-~]")
 
 ADMIN_LOGS = deque(maxlen=400)
+
+
+def static_versioned_url(filename):
+    file_path = os.path.join(FRONTEND_DIR, "static", filename)
+    try:
+        version = str(int(os.path.getmtime(file_path)))
+    except OSError:
+        version = str(int(time.time()))
+    return url_for("static", filename=filename, v=version)
+
+
+@app.context_processor
+def inject_static_url_helper():
+    return {"static_url": static_versioned_url}
+
+
+@app.after_request
+def disable_static_cache(response):
+    if request.path.startswith("/static/"):
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+    return response
 
 
 def append_admin_log(level, source, message):
@@ -297,6 +323,39 @@ MEMBERS = [
 EVENTS = []
 
 
+def load_station_data(limit=None):
+    try:
+        with open(STATION_DATA_PATH, "r", encoding="utf-8") as station_file:
+            stations = json.load(station_file)
+    except Exception:
+        return []
+
+    if not isinstance(stations, list):
+        return []
+
+    cleaned = []
+    for item in stations:
+        if not isinstance(item, dict):
+            continue
+
+        station_name = item.get("stationName") or item.get("name") or ""
+        station_ename = item.get("stationEName") or item.get("ename") or ""
+        cleaned.append(
+            {
+                "stationCode": str(item.get("stationCode") or ""),
+                "stationName": str(station_name),
+                "stationEName": str(station_ename),
+                "stationAddrTw": str(item.get("stationAddrTw") or ""),
+                "stationTel": str(item.get("stationTel") or ""),
+                "haveBike": str(item.get("haveBike") or ""),
+            }
+        )
+
+    if limit is not None:
+        return cleaned[:limit]
+    return cleaned
+
+
 EPISODES = {
     "ep1": {
         "slug": "ep1",
@@ -392,7 +451,9 @@ def add_headers(response):
 
     path = request.path or ""
     if path.startswith("/static/"):
-        response.headers["Cache-Control"] = "public, max-age=604800, immutable"
+        response.headers["Cache-Control"] = "no-store, no-cache, max-age=0, must-revalidate"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
     elif path.startswith("/api/"):
         response.headers["Cache-Control"] = "no-store"
     else:
@@ -627,6 +688,24 @@ def api_events():
             "data": {
                 "axes": AXES,
                 "events": EVENTS,
+            },
+        }
+    )
+
+
+@app.route("/api/stations", methods=["GET"])
+def api_stations():
+    try:
+        limit = request.args.get("limit", type=int)
+    except Exception:
+        limit = None
+
+    stations = load_station_data(limit=limit)
+    return jsonify(
+        {
+            "ok": True,
+            "data": {
+                "stations": stations,
             },
         }
     )

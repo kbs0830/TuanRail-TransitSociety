@@ -1,0 +1,52 @@
+/* 動畫定義 */
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loaderMove {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes splitFlap {
+  0%,
+  5% {
+    transform: rotateX(0deg);
+  }
+  45%,
+  55% {
+    transform: rotateX(90deg);
+  }
+  95%,
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes tickerMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 7px));
+  }
+}
+
+@keyframes clockPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,92 @@
+/* 配色系統 */
+:root {
+  /* 主色調 */
+  --bg: #f2efe8;
+  --paper: #fffdfa;
+  --ink: #1f1a16;
+  --ink-soft: #5a5045;
+  --line: #d0c4b3;
+  
+  /* 強調色 */
+  --accent: #7c3b2e;
+  --accent-soft: #ece3d6;
+  
+  /* 特殊色 */
+  --paper-age: #f3ecdf;
+  --sepia-ink: #644a36;
+  --archive-blue: #2f4b5a;
+  --seal-red: #8a3a2a;
+}
+
+/* 字體堆棧 */
+:root {
+  --font-sans-tc: "Noto Sans TC", sans-serif;
+  --font-serif-tc: "Noto Serif TC", serif;
+  --font-garamond: "Cormorant Garamond", serif;
+  
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* 間距系統 */
+:root {
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --spacing-3xl: 28px;
+  --spacing-4xl: 36px;
+  --spacing-5xl: 56px;
+}
+
+/* 圓角系統 */
+:root {
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-2xl: 14px;
+  --radius-3xl: 18px;
+  --radius-full: 999px;
+}
+
+/* 陰影系統 */
+:root {
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 8px 18px rgba(92, 81, 70, 0.05);
+  --shadow-lg: 0 12px 26px rgba(92, 81, 70, 0.08);
+  --shadow-xl: 0 12px 30px rgba(0, 0, 0, 0.12);
+  --shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Z-index 層級 */
+:root {
+  --z-base: 1;
+  --z-fixed: 100;
+  --z-drawer: 110;
+  --z-drawer-overlay: 110;
+  --z-sidebar: 120;
+  --z-drawer-toggle: 130;
+  --z-back-to-top: 140;
+  --z-admin-entry: 141;
+  --z-loader: 200;
+}
+
+/* 動畫時間 */
+:root {
+  --transition-fast: 0.2s;
+  --transition-normal: 0.25s;
+  --transition-slow: 0.4s;
+  --ease-smooth: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 斷點 */
+:root {
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1200px;
+}

@@ -1,0 +1,80 @@
+/* 按鈕樣式 */
+.fb-link {
+  display: inline-block;
+  margin-top: 8px;
+  text-decoration: none;
+  color: #fff;
+  background: var(--accent);
+  padding: 10px 14px;
+  border-radius: var(--radius-lg);
+  font-weight: var(--font-weight-bold);
+  transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+  border: none;
+  cursor: pointer;
+}
+
+.fb-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(157, 46, 47, 0.28);
+}
+
+/* 幽靈按鈕 */
+.ghost-link {
+  display: inline-block;
+  margin-top: 8px;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid #c8b39a;
+  padding: 10px 14px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.74);
+  transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease, background-color var(--transition-fast) ease;
+  cursor: pointer;
+}
+
+.ghost-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(129, 96, 61, 0.2);
+  background: #fff;
+}
+
+/* 章節項目按鈕 */
+.episode-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  margin: 8px 0;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+}
+
+.episode-item:hover {
+  background: #f8f2e8;
+  border-color: #d0bea8;
+}
+
+.episode-item.active {
+  background: #efe8dc;
+  border-color: #c7b7a1;
+  font-weight: var(--font-weight-bold);
+}
+
+.episode-item.draft {
+  opacity: 0.6;
+}
+
+.episode-item strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.episode-item small {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+}

@@ -1,0 +1,47 @@
+/* 頁腳 */
+.site-footer {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 0 20px 36px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-footer p {
+  margin: 0;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: var(--radius-xl);
+  padding: 12px 14px;
+  color: var(--ink-soft);
+  width: min(100%, 720px);
+}
+
+.site-footer p:not(.live-clock)::before {
+  content: "印";
+  display: inline-block;
+  margin-right: 8px;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+  border: 1px solid #9f5b4c;
+  color: var(--seal-red);
+  border-radius: 4px;
+  font-weight: var(--font-weight-bold);
+  background: rgba(255, 248, 241, 0.86);
+}
+
+.site-footer a {
+  color: var(--accent);
+  font-weight: var(--font-weight-bold);
+}
+
+/* 版權備註 */
+.copyright-note {
+  color: #6a5848;
+  letter-spacing: 0.02em;
+}

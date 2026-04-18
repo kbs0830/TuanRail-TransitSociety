@@ -1,0 +1,217 @@
+/* 卡片容器 */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-2xl);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateY(18px);
+  animation: rise 640ms ease forwards;
+  transition: box-shadow var(--transition-normal) ease, border-color var(--transition-normal) ease;
+  position: relative;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(165, 141, 114, 0.28);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.card:hover {
+  box-shadow: 0 12px 22px rgba(92, 81, 70, 0.07);
+  border-color: #c9b69f;
+}
+
+.card:nth-child(2) {
+  animation-delay: 110ms;
+}
+
+.card:nth-child(3) {
+  animation-delay: 190ms;
+}
+
+.card:nth-child(4) {
+  animation-delay: 280ms;
+}
+
+.card:nth-child(5) {
+  animation-delay: 360ms;
+}
+
+/* 成員卡片 */
+.member-card,
+.event-empty {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(180deg, #fff, #f8f1e5);
+  padding: 12px;
+}
+
+.member-card h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+
+.member-role {
+  margin: 0 0 8px;
+  font-size: 0.84rem;
+  color: var(--archive-blue);
+}
+
+.member-bio {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+/* 關鍵字卡片 */
+.keyword-item {
+  border: 1px solid var(--line);
+  padding: 12px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(180deg, #fff, #fcfaf4);
+}
+
+.keyword-item b {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-right: 6px;
+}
+
+/* 原則卡片 */
+.principle-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, #fff, #f8f0e2);
+  padding: 10px;
+}
+
+.principle-item h3 {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.principle-item p {
+  margin: 4px 0 0;
+  color: var(--ink-soft);
+}
+
+/* Q&A 卡片 */
+.qa-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 12px 14px;
+  background: #fff;
+}
+
+.qa-item h3 {
+  margin: 0 0 6px;
+  font-size: 1.08rem;
+}
+
+.qa-item p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+/* Q&A 清單 */
+.qa-list {
+  display: grid;
+  gap: 12px;
+}
+
+/* 子頁卡片 */
+.subpage-card {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: var(--radius-2xl);
+  padding: 22px;
+  box-shadow: 0 12px 26px rgba(92, 81, 70, 0.08);
+}
+
+.subpage-card h1 {
+  margin: 10px 0;
+}
+
+.subpage-card p {
+  color: var(--ink-soft);
+}
+
+/* 子頁網格 */
+.subpage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.subpage-item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  background: linear-gradient(180deg, #fff, #f8f1e5);
+}
+
+.subpage-item h2 {
+  margin: 0 0 8px;
+  font-size: 1.02rem;
+}
+
+.subpage-item p {
+  color: var(--ink-soft);
+}
+
+/* 網格組件 */
+.axis-overview {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.axis-card {
+  border: 1px solid #d8c4ab;
+  border-radius: var(--radius-xl);
+  padding: 16px 14px;
+  background: linear-gradient(180deg, #fff, #f8f2e8);
+}
+
+.axis-card h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.axis-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.axis-tuan {
+  border-color: #cbb28f;
+}
+
+.axis-rail {
+  border-color: #b4c0ce;
+}
+
+.axis-transit {
+  border-color: #cfb697;
+}
+
+/* 成員和活動網格 */
+.member-grid,
+.event-grid {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+/* 錯誤卡片 */
+.error-card {
+  text-align: center;
+}
