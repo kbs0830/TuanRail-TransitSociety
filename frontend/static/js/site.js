@@ -1,5 +1,6 @@
 let episodeIndex = [];
 let currentSlug = '';
+let axisMeta = {};
 const SECTION_IDS = ['introSection', 'orgSection', 'historySection', 'meaningSection', 'qaSection', 'supportSection', 'membersSection', 'eventsSection'];
 const tinyTips = [
   '搭乘列車時，先下後上，月台通行會更順暢。',
@@ -78,7 +79,8 @@ function renderKeywords(container, keywords) {
   keywords.forEach((item) => {
     const card = document.createElement('div');
     card.className = 'keyword-item';
-    card.innerHTML = `<p><b>${item.label}</b>${item.desc}</p>`;
+    const badge = item.category ? `<span class="axis-badge">${resolveAxisLabel(item.category)}</span>` : '';
+    card.innerHTML = `<p><b>${item.label}</b>${badge}${item.desc}</p>`;
     container.appendChild(card);
   });
 }
@@ -153,7 +155,8 @@ function renderMembers(container, members) {
   members.forEach((item) => {
     const card = document.createElement('article');
     card.className = 'member-card';
-    card.innerHTML = `<h3>${item.name}</h3><p class="member-role">${item.role}</p><p class="member-bio">${item.bio}</p>`;
+    const badge = item.category ? `<span class="axis-badge">${resolveAxisLabel(item.category)}</span>` : '';
+    card.innerHTML = `<h3>${item.name}${badge}</h3><p class="member-role">${item.role}</p><p class="member-bio">${item.bio}</p>`;
     container.appendChild(card);
   });
 }
@@ -171,9 +174,23 @@ function renderEvents(container, events) {
   events.forEach((item) => {
     const card = document.createElement('article');
     card.className = 'member-card';
-    card.innerHTML = `<h3>${item.title}</h3><p class="member-role">${item.date}・${item.location}</p><p class="member-bio">${item.desc}</p>`;
+    const badge = item.category ? `<span class="axis-badge">${resolveAxisLabel(item.category)}</span>` : '';
+    card.innerHTML = `<h3>${item.title}${badge}</h3><p class="member-role">${item.date}・${item.location}</p><p class="member-bio">${item.desc}</p>`;
     container.appendChild(card);
   });
+}
+
+function resolveAxisLabel(code) {
+  if (!code) {
+    return '';
+  }
+
+  const axis = axisMeta[code];
+  if (!axis) {
+    return code;
+  }
+
+  return `${axis.label}｜${axis.name}`;
 }
 
 function renderEpisodeNav(episodes, currentSlug) {
@@ -384,6 +401,7 @@ async function init() {
 
     const meta = await loadEpisodeIndex();
     episodeIndex = meta.episodes;
+    axisMeta = meta.axes || {};
 
     const [members, events] = await Promise.all([loadMembers(), loadEvents()]);
     renderMembers(document.getElementById('membersList'), members);

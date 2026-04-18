@@ -19,21 +19,46 @@ SITE_INFO = {
 }
 
 
+AXES = {
+    "tuan": {
+        "code": "tuan",
+        "label": "団",
+        "name": "團結",
+        "desc": "社群、協作與公共參與",
+    },
+    "rail": {
+        "code": "rail",
+        "label": "鐵",
+        "name": "鐵路文化",
+        "desc": "鐵道知識、歷史與文化脈絡",
+    },
+    "transit": {
+        "code": "transit",
+        "label": "道",
+        "name": "道路公共運輸",
+        "desc": "公車、公路與城市運輸行動",
+    },
+}
+
+
 MEMBERS = [
     {
         "name": "鄭熙",
         "role": "社長",
         "bio": "統籌團隊發展、活動方向與對外溝通，推動鐵道文化的公共參與。",
+        "category": "tuan",
     },
     {
         "name": "顧問團",
         "role": "顧問群",
         "bio": "提供活動流程、志工訓練與風險控管建議，協助社團穩定成長。",
+        "category": "tuan",
     },
     {
         "name": "多媒體科",
         "role": "網路傳播暨紀錄片製作",
         "bio": "紀錄社團日常與知識內容，透過影音讓更多人理解運輸文化。",
+        "category": "rail",
     },
 ]
 
@@ -44,6 +69,7 @@ EVENTS = []
 EPISODES = {
     "ep1": {
         "slug": "ep1",
+        "category": "rail",
         "title": "団•鐵道創社介紹 EP1",
         "author": "団•鐵道社長 鄭熙",
         "status": "published",
@@ -64,9 +90,9 @@ EPISODES = {
                 "從線上知識整理到線下活動規劃，我們一步步建立社群、擴大參與，讓公共運輸不只是通勤工具，而是可以被理解、被討論、被熱愛的文化。",
             ],
             "keywords": [
-                {"label": "団", "desc": "代表團結，連結每一位同好"},
-                {"label": "鐵", "desc": "象徵鐵路文化與軌道美學"},
-                {"label": "道", "desc": "涵蓋公路、公車與城市運輸脈動"},
+                {"label": "団", "desc": "代表團結，連結每一位同好", "category": "tuan"},
+                {"label": "鐵", "desc": "象徵鐵路文化與軌道美學", "category": "rail"},
+                {"label": "道", "desc": "涵蓋公路、公車與城市運輸脈動", "category": "transit"},
             ],
             "timeline": [
                 {"phase": "2025", "detail": "以 YT 新鐵道知識庫為基礎，累積鐵道與運輸內容。"},
@@ -160,6 +186,7 @@ def api_episodes():
         episode_list.append(
             {
                 "slug": item["slug"],
+                "category": item.get("category", "rail"),
                 "title": item["title"],
                 "author": item["author"],
                 "status": item["status"],
@@ -172,6 +199,7 @@ def api_episodes():
             "ok": True,
             "data": {
                 "site": SITE_INFO,
+                "axes": AXES,
                 "episodes": episode_list,
             },
         }
@@ -189,6 +217,7 @@ def api_episode_detail(slug):
             "ok": True,
             "data": {
                 "site": SITE_INFO,
+                "axes": AXES,
                 "episode": episode,
             },
         }
@@ -202,6 +231,7 @@ def api_ep1_legacy():
             "ok": True,
             "data": {
                 "site": SITE_INFO,
+                "axes": AXES,
                 "episode": EPISODES["ep1"],
             },
         }
@@ -214,6 +244,7 @@ def api_members():
         {
             "ok": True,
             "data": {
+                "axes": AXES,
                 "members": MEMBERS,
             },
         }
@@ -226,6 +257,7 @@ def api_events():
         {
             "ok": True,
             "data": {
+                "axes": AXES,
                 "events": EVENTS,
             },
         }
