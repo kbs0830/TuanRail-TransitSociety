@@ -326,6 +326,45 @@ body.sidebar-open .drawer-overlay {
   margin-left: 286px;
 }
 
+.site-topbar {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 20px 20px 8px;
+}
+
+.site-topbar-subpage {
+  padding-top: 10px;
+}
+
+.site-topbrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-top-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid #c8b49a;
+  object-fit: cover;
+  background: #fff;
+}
+
+.site-top-name {
+  margin: 0;
+  font-family: "Noto Serif TC", serif;
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: #2e2016;
+}
+
+.site-top-quote {
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
 .hero {
   max-width: 940px;
   margin: 0 auto;
@@ -1448,6 +1487,24 @@ h1 {
 
   .content-wrap {
     margin-left: 0;
+  }
+
+  .site-topbar {
+    padding: 10px 14px 8px;
+  }
+
+  .site-top-logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .site-top-name {
+    font-size: 1.04rem;
+  }
+
+  .site-top-quote {
+    font-size: 0.84rem;
+    line-height: 1.55;
   }
 
   .hero {
