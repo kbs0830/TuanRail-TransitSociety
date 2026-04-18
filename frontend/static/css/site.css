@@ -1147,10 +1147,12 @@ h1 {
     transition: transform 0.25s ease;
     width: min(88vw, 320px);
     padding: 76px 14px 18px;
+    z-index: 150;
   }
 
   body.sidebar-open .drawer-toggle {
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
   }
 
