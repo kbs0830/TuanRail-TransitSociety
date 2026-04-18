@@ -1,4 +1,5 @@
 let episodeIndex = [];
+let currentSlug = '';
 
 async function loadEpisodeIndex() {
   const res = await fetch('/api/episodes');
@@ -57,8 +58,58 @@ function renderQA(container, qa) {
   });
 }
 
+function renderTimeline(container, timeline) {
+  container.innerHTML = '';
+  if (!timeline || !timeline.length) {
+    container.style.display = 'none';
+    return;
+  }
+
+  container.style.display = '';
+  timeline.forEach((item) => {
+    const row = document.createElement('div');
+    row.className = 'timeline-item';
+    row.innerHTML = `<p class="timeline-phase">${item.phase}</p><p class="timeline-detail">${item.detail}</p>`;
+    container.appendChild(row);
+  });
+}
+
+function renderPrinciples(container, principles) {
+  container.innerHTML = '';
+  if (!principles || !principles.length) {
+    container.style.display = 'none';
+    return;
+  }
+
+  container.style.display = 'grid';
+  principles.forEach((item) => {
+    const card = document.createElement('article');
+    card.className = 'principle-item';
+    card.innerHTML = `<h3>${item.title}</h3><p>${item.desc}</p>`;
+    container.appendChild(card);
+  });
+}
+
+function renderSupportActions(container, actions) {
+  container.innerHTML = '';
+  if (!actions || !actions.length) {
+    container.style.display = 'none';
+    return;
+  }
+
+  container.style.display = 'grid';
+  actions.forEach((text) => {
+    const li = document.createElement('li');
+    li.textContent = text;
+    container.appendChild(li);
+  });
+}
+
 function renderEpisodeNav(episodes, currentSlug) {
   const nav = document.getElementById('episodeNav');
+  if (!nav) {
+    return;
+  }
   nav.innerHTML = '';
 
   episodes.forEach((item) => {
@@ -77,13 +128,14 @@ function renderEpisodeNav(episodes, currentSlug) {
   });
 }
 
-function resolveSlug() {
+function parseHashEpisodeSlug() {
   const hash = window.location.hash.replace('#', '').trim().toLowerCase();
-  const exists = episodeIndex.find((item) => item.slug === hash);
-  if (exists) {
-    return hash;
-  }
-  return episodeIndex.length ? episodeIndex[0].slug : 'ep1';
+  const matched = episodeIndex.find((item) => item.slug === hash);
+  return matched ? hash : null;
+}
+
+function resolveInitialSlug() {
+  return parseHashEpisodeSlug() || (episodeIndex.length ? episodeIndex[0].slug : 'ep1');
 }
 
 function openDrawer() {
@@ -117,24 +169,29 @@ function bindDrawer() {
 }
 
 function render(data) {
-  document.getElementById('episodeTitle').textContent = data.episode.title;
+  const ep = data.episode;
+
+  document.getElementById('episodeTitle').textContent = ep.title;
   document.getElementById('siteQuote').textContent = data.site.quote;
   document.getElementById('siteSubtitle').textContent = data.site.subtitle;
-  document.getElementById('author').textContent = `作者：${data.episode.author}`;
+  document.getElementById('author').textContent = `作者：${ep.author}`;
 
-  renderParagraphs(document.getElementById('lead'), data.episode.lead);
+  renderParagraphs(document.getElementById('lead'), ep.lead || []);
 
-  document.getElementById('historyTitle').textContent = data.history.title;
-  renderParagraphs(document.getElementById('historyBody'), data.history.body);
-  renderKeywords(document.getElementById('keywords'), data.history.keywords);
+  document.getElementById('historyTitle').textContent = ep.history.title;
+  renderParagraphs(document.getElementById('historyBody'), ep.history.body || []);
+  renderKeywords(document.getElementById('keywords'), ep.history.keywords || []);
+  renderTimeline(document.getElementById('timeline'), ep.history.timeline || []);
 
-  document.getElementById('meaningTitle').textContent = data.meaning.title;
-  renderParagraphs(document.getElementById('meaningBody'), data.meaning.body);
+  document.getElementById('meaningTitle').textContent = ep.meaning.title;
+  renderParagraphs(document.getElementById('meaningBody'), ep.meaning.body || []);
+  renderPrinciples(document.getElementById('principles'), ep.meaning.principles || []);
 
-  renderQA(document.getElementById('qaList'), data.qa);
+  renderQA(document.getElementById('qaList'), ep.qa || []);
 
-  document.getElementById('ctaTitle').textContent = data.cta.title;
-  document.getElementById('ctaBody').textContent = data.cta.body;
+  document.getElementById('ctaTitle').textContent = ep.cta.title;
+  document.getElementById('ctaBody').textContent = ep.cta.body;
+  renderSupportActions(document.getElementById('supportActions'), ep.cta.actions || []);
 
   const fbLink = document.getElementById('fbLink');
   fbLink.href = data.site.fb;
@@ -145,6 +202,7 @@ async function selectEpisode(slug, syncHash) {
   const data = await loadEpisode(slug);
   render(data);
   renderEpisodeNav(episodeIndex, slug);
+  currentSlug = slug;
 
   if (syncHash) {
     window.location.hash = slug;
@@ -158,12 +216,14 @@ async function init() {
     const meta = await loadEpisodeIndex();
     episodeIndex = meta.episodes;
 
-    const slug = resolveSlug();
+    const slug = resolveInitialSlug();
     await selectEpisode(slug, !window.location.hash);
 
     window.addEventListener('hashchange', async () => {
-      const hashSlug = resolveSlug();
-      await selectEpisode(hashSlug, false);
+      const hashSlug = parseHashEpisodeSlug();
+      if (hashSlug && hashSlug !== currentSlug) {
+        await selectEpisode(hashSlug, false);
+      }
     });
   } catch (err) {
     document.getElementById('episodeTitle').textContent = '載入失敗';

@@ -22,14 +22,27 @@
     </div>
 
     <nav class="drawer-nav">
-      <p class="nav-title">章節導覽</p>
-      <div id="episodeNav" class="episode-nav"></div>
-      <p class="nav-title nav-space">頁內導覽</p>
-      <a href="#introSection" class="anchor-link">前言</a>
-      <a href="#historySection" class="anchor-link">創社與關鍵字</a>
-      <a href="#meaningSection" class="anchor-link">理念與含義</a>
-      <a href="#qaSection" class="anchor-link">Q&A</a>
-      <a href="#supportSection" class="anchor-link">支持我們</a>
+      <p class="nav-title">頁內導覽</p>
+      <a href="#introSection" class="anchor-link">
+        <span class="anchor-title">前言</span>
+        <span class="anchor-desc">創社初衷與想說的話</span>
+      </a>
+      <a href="#historySection" class="anchor-link">
+        <span class="anchor-title">創社與關鍵字</span>
+        <span class="anchor-desc">沿革脈絡與団・鐵・道核心意義</span>
+      </a>
+      <a href="#meaningSection" class="anchor-link">
+        <span class="anchor-title">理念與含義</span>
+        <span class="anchor-desc">團隊價值、行動方向與文化願景</span>
+      </a>
+      <a href="#qaSection" class="anchor-link">
+        <span class="anchor-title">Q&A</span>
+        <span class="anchor-desc">對外最常見疑問與回應</span>
+      </a>
+      <a href="#supportSection" class="anchor-link">
+        <span class="anchor-title">支持我們</span>
+        <span class="anchor-desc">參與方式、投訴回饋與合作管道</span>
+      </a>
     </nav>
   </aside>
 
@@ -38,6 +51,7 @@
       <p class="hero-kicker">团‧鐵道</p>
       <h1 id="episodeTitle">載入中...</h1>
       <p id="siteQuote" class="hero-quote"></p>
+      <p class="era-note">創社紀事 · 2026</p>
     </header>
 
     <main class="layout">
@@ -51,11 +65,13 @@
         <h2 id="historyTitle">創社史</h2>
         <div id="historyBody"></div>
         <div id="keywords" class="keyword-grid"></div>
+        <div id="timeline" class="timeline"></div>
       </section>
 
       <section class="card" id="meaningSection">
         <h2 id="meaningTitle">關於团‧鐵道的含義</h2>
         <div id="meaningBody"></div>
+        <div id="principles" class="principle-grid"></div>
       </section>
 
       <section class="card" id="qaSection">
@@ -66,9 +82,17 @@
       <section class="card cta" id="supportSection">
         <h2 id="ctaTitle">非常重要</h2>
         <p id="ctaBody"></p>
-        <a id="fbLink" class="fb-link" target="_blank" rel="noreferrer">前往 FB 粉絲團</a>
+        <ul id="supportActions" class="support-action-list"></ul>
+        <div class="support-links">
+          <a id="fbLink" class="fb-link" target="_blank" rel="noreferrer">前往 FB 粉絲團</a>
+          <a id="complaintLink" class="ghost-link" target="_blank" rel="noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSeGnXZ1IvkUsSnjG5oRvSrHJzH_lTWJq57Duk9-9eQCI-a7pw/viewform">投訴與建議表單</a>
+        </div>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <p>合作及服務信箱: <a href="mailto:a380.500er@gmail.com">a380.500er@gmail.com</a></p>
+    </footer>
   </div>
 
   <script src="/static/js/site.js"></script>
