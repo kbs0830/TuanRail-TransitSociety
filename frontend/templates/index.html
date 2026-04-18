@@ -17,8 +17,10 @@
 
   <aside id="sidebar" class="sidebar">
     <div class="sidebar-top">
+      <img class="brand-logo" src="/static/images/logo.jpg" alt="团‧鐵道 LOGO" loading="lazy">
       <p class="brand">团‧鐵道</p>
       <p id="siteSubtitle" class="brand-sub"></p>
+      <p class="taiwan-note">台灣公共運輸文化檔案</p>
     </div>
 
     <nav class="drawer-nav">
@@ -26,6 +28,10 @@
       <a href="#introSection" class="anchor-link">
         <span class="anchor-title">前言</span>
         <span class="anchor-desc">創社初衷與想說的話</span>
+      </a>
+      <a href="#orgSection" class="anchor-link">
+        <span class="anchor-title">組織架構圖</span>
+        <span class="anchor-desc">社長、顧問與各科別運作關係</span>
       </a>
       <a href="#historySection" class="anchor-link">
         <span class="anchor-title">創社與關鍵字</span>
@@ -48,17 +54,48 @@
 
   <div class="content-wrap">
     <header class="hero">
+      <img class="hero-logo" src="/static/images/logo.jpg" alt="团‧鐵道 LOGO" loading="lazy">
       <p class="hero-kicker">团‧鐵道</p>
       <h1 id="episodeTitle">載入中...</h1>
       <p id="siteQuote" class="hero-quote"></p>
-      <p class="era-note">創社紀事 · 2026</p>
+      <p class="era-note">創社紀事 · 民國115年 (2026)</p>
     </header>
 
     <main class="layout">
       <section class="card" id="introSection">
-        <h2>前言</h2>
-        <p id="author" class="author"></p>
-        <div id="lead"></div>
+        <h2>宗旨</h2>
+        <div id="missionContent" class="mission-content">
+          <p>团‧鐵道｜連動城市與鐵道的團結。</p>
+          <p>每一條軌道，都是城市的脈絡；每一段公路，都是夢想的延伸。</p>
+          <p>我們是一群對公共運輸充滿熱忱的青少年，因為共同的愛好而相聚，致力讓更多人走近鐵道與公共運輸文化。</p>
+        </div>
+      </section>
+
+      <section class="card" id="orgSection">
+        <h2>組織架構圖</h2>
+        <p class="org-caption">以下為目前社團組織運作架構。</p>
+        <img
+          class="org-chart-image"
+          src="/static/images/organization-chart.png"
+          alt="团‧鐵道社團組織架構圖"
+          loading="lazy"
+        >
+
+        <div class="org-groups">
+          <h3>旗下團體</h3>
+
+          <article class="org-group-item">
+            <h4>Metro GO 捷運模擬器</h4>
+            <p class="org-link-line">傳送門：<a href="https://discord.gg/pFGhNQUhjn" target="_blank" rel="noreferrer">discord.gg/pFGhNQUhjn</a></p>
+            <p>是否想要體驗駕駛捷運？還是想成為捷運站務員？是否想要服務乘客？那 Metro Go 捷運模擬器就是您的選擇。目前遊戲還在開發階段，請等待日後公告。</p>
+          </article>
+
+          <article class="org-group-item">
+            <h4>団‧鐵道 網路傳播暨紀錄片製作多媒體科</h4>
+            <p>這裡記錄著団‧鐵道所有日常等等，當然也包含具有知識含量的影片。</p>
+            <p class="org-link-line">傳送門：<a href="https://www.youtube.com/@tw-d.o.i.c.a.p.d.m-r" target="_blank" rel="noreferrer">YouTube 頻道</a></p>
+          </article>
+        </div>
       </section>
 
       <section class="card" id="historySection">
@@ -91,6 +128,7 @@
     </main>
 
     <footer class="site-footer">
+      <p id="liveClock" class="live-clock" aria-live="polite">--:--:--</p>
       <p>合作及服務信箱: <a href="mailto:a380.500er@gmail.com">a380.500er@gmail.com</a></p>
     </footer>
   </div>

@@ -1,5 +1,6 @@
 let episodeIndex = [];
 let currentSlug = '';
+const SECTION_IDS = ['introSection', 'orgSection', 'historySection', 'meaningSection', 'qaSection', 'supportSection'];
 
 async function loadEpisodeIndex() {
   const res = await fetch('/api/episodes');
@@ -134,6 +135,12 @@ function parseHashEpisodeSlug() {
   return matched ? hash : null;
 }
 
+function parseHashSectionId() {
+  const hash = window.location.hash.replace('#', '').trim();
+  const found = SECTION_IDS.find((id) => id === hash);
+  return found || null;
+}
+
 function resolveInitialSlug() {
   return parseHashEpisodeSlug() || (episodeIndex.length ? episodeIndex[0].slug : 'ep1');
 }
@@ -162,10 +169,67 @@ function bindDrawer() {
   overlay.addEventListener('click', closeDrawer);
 
   sidebar.querySelectorAll('.anchor-link').forEach((link) => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const target = link.getAttribute('href') || '';
+      const sectionId = target.replace('#', '');
+      if (SECTION_IDS.includes(sectionId)) {
+        setActiveSection(sectionId, true);
+      }
       closeDrawer();
     });
   });
+}
+
+function setActiveSection(activeId, syncHash) {
+  SECTION_IDS.forEach((id) => {
+    const section = document.getElementById(id);
+    if (!section) {
+      return;
+    }
+
+    if (id === activeId) {
+      section.classList.remove('hidden-section');
+      section.classList.add('visible-section');
+    } else {
+      section.classList.remove('visible-section');
+      section.classList.add('hidden-section');
+    }
+  });
+
+  document.querySelectorAll('.anchor-link').forEach((link) => {
+    const href = link.getAttribute('href') || '';
+    const targetId = href.replace('#', '');
+    link.classList.toggle('active', targetId === activeId);
+  });
+
+  if (syncHash) {
+    window.location.hash = activeId;
+  }
+}
+
+function startLiveClock() {
+  const clock = document.getElementById('liveClock');
+  if (!clock) {
+    return;
+  }
+
+  const tick = () => {
+    const now = new Date();
+    clock.textContent = now.toLocaleString('zh-TW', {
+      hour12: false,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      timeZone: 'Asia/Taipei',
+    });
+  };
+
+  tick();
+  window.setInterval(tick, 1000);
 }
 
 function render(data) {
@@ -174,10 +238,6 @@ function render(data) {
   document.getElementById('episodeTitle').textContent = ep.title;
   document.getElementById('siteQuote').textContent = data.site.quote;
   document.getElementById('siteSubtitle').textContent = data.site.subtitle;
-  document.getElementById('author').textContent = `作者：${ep.author}`;
-
-  renderParagraphs(document.getElementById('lead'), ep.lead || []);
-
   document.getElementById('historyTitle').textContent = ep.history.title;
   renderParagraphs(document.getElementById('historyBody'), ep.history.body || []);
   renderKeywords(document.getElementById('keywords'), ep.history.keywords || []);
@@ -212,17 +272,26 @@ async function selectEpisode(slug, syncHash) {
 async function init() {
   try {
     bindDrawer();
+    startLiveClock();
 
     const meta = await loadEpisodeIndex();
     episodeIndex = meta.episodes;
 
     const slug = resolveInitialSlug();
-    await selectEpisode(slug, !window.location.hash);
+    await selectEpisode(slug, false);
+
+    const initialSection = parseHashSectionId() || 'introSection';
+    setActiveSection(initialSection, !!window.location.hash);
 
     window.addEventListener('hashchange', async () => {
       const hashSlug = parseHashEpisodeSlug();
       if (hashSlug && hashSlug !== currentSlug) {
         await selectEpisode(hashSlug, false);
+      }
+
+      const sectionId = parseHashSectionId();
+      if (sectionId) {
+        setActiveSection(sectionId, false);
       }
     });
   } catch (err) {

@@ -8,6 +8,8 @@
   --accent-soft: #efe2d1;
   --paper-age: #f3ebdd;
   --sepia-ink: #6b4b30;
+  --archive-blue: #314457;
+  --seal-red: #9a3a2a;
 }
 
 * {
@@ -32,6 +34,13 @@ body {
       rgba(125, 96, 66, 0.04) 1px,
       transparent 1px,
       transparent 24px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(49, 68, 87, 0.02) 0,
+      rgba(49, 68, 87, 0.02) 1px,
+      transparent 1px,
+      transparent 30px
     ),
     linear-gradient(180deg, #fdfcf9 0%, var(--bg) 100%);
   line-height: 1.8;
@@ -109,6 +118,17 @@ body.sidebar-open .drawer-overlay {
   padding-bottom: 12px;
 }
 
+.brand-logo {
+  display: block;
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid #c8b49a;
+  background: #fff;
+  margin: 0 0 10px;
+}
+
 .brand {
   margin: 0;
   font-family: "Noto Serif TC", serif;
@@ -121,6 +141,18 @@ body.sidebar-open .drawer-overlay {
   margin: 4px 0 0;
   color: var(--ink-soft);
   font-size: 0.94rem;
+}
+
+.taiwan-note {
+  margin: 8px 0 0;
+  display: inline-block;
+  font-size: 0.72rem;
+  color: var(--archive-blue);
+  border: 1px solid #b9c1cb;
+  border-radius: 999px;
+  padding: 2px 10px;
+  background: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.08em;
 }
 
 .drawer-nav {
@@ -150,6 +182,11 @@ body.sidebar-open .drawer-overlay {
   background: #f3ece1;
   transform: translateX(2px);
   border-color: #d0c0ad;
+}
+
+.anchor-link.active {
+  background: #efe3d2;
+  border-color: #cab193;
 }
 
 .anchor-title {
@@ -201,12 +238,23 @@ body.sidebar-open .drawer-overlay {
   display: inline-block;
   margin: 0;
   padding: 4px 12px;
-  border: 1px solid var(--line);
+  border: 1px solid #b8a792;
   border-radius: 999px;
   letter-spacing: 0.25em;
   font-size: 0.8rem;
-  color: var(--ink-soft);
+  color: var(--archive-blue);
   background: rgba(255, 255, 255, 0.72);
+}
+
+.hero-logo {
+  display: block;
+  width: 58px;
+  height: 58px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid #c8b49a;
+  background: #fff;
+  margin-bottom: 10px;
 }
 
 h1,
@@ -231,7 +279,7 @@ h1 {
 
 .era-note {
   margin: 10px 0 0;
-  color: var(--sepia-ink);
+  color: var(--archive-blue);
   font-size: 0.86rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -243,6 +291,95 @@ h1 {
   padding: 0 20px 56px;
   display: grid;
   gap: 20px;
+}
+
+.hidden-section {
+  display: none;
+}
+
+.visible-section {
+  display: block;
+}
+
+.mission-content p {
+  margin: 0 0 8px;
+}
+
+.mission-content p:last-child {
+  margin-bottom: 0;
+}
+
+.org-caption {
+  margin: 0 0 10px;
+  color: var(--ink-soft);
+}
+
+.org-chart-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid #cdbca7;
+  background: #fff;
+}
+
+.org-groups {
+  margin-top: 14px;
+}
+
+.org-groups h3 {
+  margin: 0 0 10px;
+  font-size: 1.08rem;
+  color: var(--archive-blue);
+}
+
+.org-group-item {
+  border: 1px solid #d5c4ae;
+  border-radius: 10px;
+  padding: 12px;
+  background: linear-gradient(180deg, #fff, #faf4e8);
+}
+
+.org-group-item + .org-group-item {
+  margin-top: 10px;
+}
+
+.org-group-item h4 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.org-group-item p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.org-link-line {
+  margin-bottom: 6px !important;
+}
+
+.org-link-line a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.org-link-line a:hover {
+  text-decoration: underline;
+}
+
+.live-clock {
+  margin: 0 auto 10px;
+  display: block;
+  width: fit-content;
+  min-width: 248px;
+  text-align: center;
+  border: 1px solid #ccb59a;
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: 10px;
+  padding: 7px 12px;
+  color: var(--archive-blue);
+  font-family: "Noto Serif TC", serif;
+  letter-spacing: 0.08em;
 }
 
 .card {
@@ -305,7 +442,7 @@ h1 {
   width: 8px;
   height: 1.2em;
   border-radius: 10px;
-  background: linear-gradient(180deg, var(--accent), #cb8c5a);
+  background: linear-gradient(180deg, var(--seal-red), #cb8c5a);
 }
 
 #introSection p:first-child::first-letter {
@@ -360,7 +497,7 @@ h1 {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #b47e51;
+  background: #8f6341;
   position: absolute;
   left: -19px;
   top: 0.58em;
@@ -456,7 +593,7 @@ h1 {
   font-weight: 700;
 }
 
-.site-footer p::before {
+.site-footer p:not(.live-clock)::before {
   content: "印";
   display: inline-block;
   margin-right: 8px;
@@ -464,8 +601,8 @@ h1 {
   height: 22px;
   line-height: 22px;
   text-align: center;
-  border: 1px solid #b56e5b;
-  color: #9d2e2f;
+  border: 1px solid #9f5b4c;
+  color: var(--seal-red);
   border-radius: 4px;
   font-weight: 700;
   background: rgba(255, 248, 241, 0.86);
@@ -510,6 +647,11 @@ h1 {
   max-width: 940px;
   margin: 0 auto;
   padding: 0 20px 36px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .site-footer p {
@@ -519,6 +661,7 @@ h1 {
   border-radius: 12px;
   padding: 12px 14px;
   color: var(--ink-soft);
+  width: min(100%, 720px);
 }
 
 .site-footer a {
@@ -533,15 +676,35 @@ h1 {
   }
 }
 
+@keyframes clockPulse {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 0 0 rgba(122, 84, 43, 0.16);
+  }
+  50% {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(122, 84, 43, 0.22);
+  }
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 0 0 rgba(122, 84, 43, 0.16);
+  }
+}
+
 @media (max-width: 768px) {
   .drawer-toggle {
     display: block;
+    top: 12px;
+    left: 12px;
+    width: 42px;
+    height: 42px;
   }
 
   .sidebar {
     transform: translateX(-100%);
     transition: transform 0.25s ease;
-    width: min(82vw, 310px);
+    width: min(88vw, 320px);
+    padding: 18px 14px;
   }
 
   body.sidebar-open .sidebar {
@@ -554,6 +717,16 @@ h1 {
 
   .hero {
     padding-top: 72px;
+  }
+
+  .brand-logo {
+    width: 62px;
+    height: 62px;
+  }
+
+  .hero-logo {
+    width: 52px;
+    height: 52px;
   }
 
   .hero::after {
@@ -569,14 +742,43 @@ h1 {
 
   .layout {
     padding-bottom: 36px;
+    gap: 14px;
   }
 
   .site-footer {
     padding-bottom: 24px;
+    gap: 8px;
   }
 
   .card {
     padding: 18px;
+  }
+
+  .anchor-link {
+    padding: 11px 10px;
+  }
+
+  .anchor-title {
+    font-size: 0.96rem;
+  }
+
+  .anchor-desc {
+    font-size: 0.8rem;
+  }
+
+  .org-group-item {
+    padding: 10px;
+  }
+
+  .live-clock {
+    min-width: 0;
+    width: 100%;
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+  }
+
+  .site-footer p {
+    padding: 10px 12px;
   }
 
   .keyword-grid {
