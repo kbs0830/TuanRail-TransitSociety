@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>团‧鐵道 | Tuan Rail & Transit Society</title>
-  <meta name="description" content="团‧鐵道：團結、鐵路文化與公共運輸的青年社群。">
+{% extends "base.html" %}
+{% block title %}团‧鐵道 | Tuan Rail & Transit Society{% endblock %}
+{% block meta_description %}团‧鐵道：團結、鐵路文化與公共運輸的青年社群。{% endblock %}
+{% block extra_head %}
   <meta property="og:url" content="http://127.0.0.1:8080/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="团‧鐵道｜公共運輸文化社群">
   <meta name="twitter:description" content="團結、鐵路與公共運輸，一起前進。">
-  <link rel="icon" type="image/jpeg" href="{{ static_url('images/logo.jpg') }}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ static_url('css/index.css') }}">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -25,11 +17,9 @@
       "email": "mailto:a380.500er@gmail.com"
     }
   </script>
-</head>
-<body class="home-rebuild">
-  <a href="#mainContent" class="skip-link">跳到主要內容</a>
-  <div class="grain"></div>
-
+{% endblock %}
+{% block body_class %}home-rebuild{% endblock %}
+{% block content %}
   <div id="pageLoader" class="page-loader" aria-live="polite" aria-label="頁面載入中">
     <div class="loader-card">
       <img src="{{ static_url('images/logo.jpg') }}" alt="团‧鐵道" class="loader-logo">
@@ -319,7 +309,8 @@
     </footer>
   </div>
 
-  <script type="module" src="{{ static_url('js/app.js') }}"></script>
   <button id="backToTop" class="back-to-top" type="button" aria-label="返回頂部">回到頂部</button>
-</body>
-</html>
+{% endblock %}
+{% block scripts %}
+  <script type="module" src="{{ static_url('js/app.js') }}"></script>
+{% endblock %}

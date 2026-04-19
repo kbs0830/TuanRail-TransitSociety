@@ -7,8 +7,8 @@
   border: 1px solid var(--line);
   border-radius: var(--radius-3xl);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(245, 241, 235, 0.94)),
-    repeating-linear-gradient(90deg, rgba(29, 36, 40, 0.05) 0, rgba(29, 36, 40, 0.05) 1px, transparent 1px, transparent 18px);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(238, 244, 250, 0.94)),
+    repeating-linear-gradient(90deg, rgba(17, 28, 38, 0.03) 0, rgba(17, 28, 38, 0.03) 1px, transparent 1px, transparent 24px);
   box-shadow: var(--shadow-md);
   overflow: hidden;
 }
@@ -62,7 +62,7 @@
 .top-hero-logo {
   width: 92px;
   height: 92px;
-  border-radius: 16px;
+  border-radius: 18px;
   border: 1px solid var(--line);
   object-fit: cover;
   background: var(--paper-elevated);
@@ -70,7 +70,7 @@
 }
 
 .top-hero-brandtext {
-  border-left: 2px solid rgba(29, 36, 40, 0.16);
+  border-left: 2px solid rgba(17, 28, 38, 0.12);
   padding-left: 14px;
   min-width: 0;
 }
@@ -78,26 +78,26 @@
 .top-hero-title {
   margin: 0;
   font-family: var(--font-serif-tc);
-  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-size: clamp(2.2rem, 3.4vw, 3rem);
   line-height: 1.1;
   color: var(--ink);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
 }
 
 .top-hero-subtitle {
   margin: 6px 0 0;
   color: var(--ink-soft);
   font-family: var(--font-display);
-  font-size: 1rem;
-  letter-spacing: 0.14em;
+  font-size: 1.02rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .top-hero-motto {
   margin: 8px 0 0;
   color: var(--rail);
-  font-size: 0.87rem;
-  letter-spacing: 0.1em;
+  font-size: 0.92rem;
+  letter-spacing: 0.06em;
 }
 
 .top-hero-sealrow {
@@ -115,7 +115,7 @@
   background: rgba(255, 255, 255, 0.9);
   color: var(--rail);
   font-size: 0.78rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   text-align: center;
   font-family: var(--font-display);
 }

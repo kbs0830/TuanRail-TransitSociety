@@ -1,14 +1,9 @@
-/**
- * 渲染函數
- * 處理各種內容的 DOM 渲染
- */
+import { clearElement } from './dom-utils.js';
 
-import { createElement, clearElement } from './dom-utils.js';
-
-/**
- * 渲染段落
- */
 export function renderParagraphs(container, lines) {
+  if (!container) {
+    return;
+  }
   clearElement(container);
   lines.forEach((text) => {
     const p = document.createElement('p');
@@ -17,24 +12,26 @@ export function renderParagraphs(container, lines) {
   });
 }
 
-/**
- * 渲染關鍵字卡片
- */
 export function renderKeywords(container, keywords, resolveAxisLabel) {
+  if (!container) {
+    return;
+  }
   clearElement(container);
   keywords.forEach((item) => {
     const card = document.createElement('div');
     card.className = 'keyword-item';
-    const badge = item.category ? `<span class="axis-badge">${resolveAxisLabel(item.category)}</span>` : '';
+    const badge = item.category
+      ? `<span class="axis-badge">${resolveAxisLabel(item.category)}</span>`
+      : '';
     card.innerHTML = `<p><b>${item.label}</b>${badge}${item.desc}</p>`;
     container.appendChild(card);
   });
 }
 
-/**
- * 渲染 Q&A
- */
 export function renderQA(container, qa) {
+  if (!container) {
+    return;
+  }
   clearElement(container);
   qa.forEach((item) => {
     const node = document.createElement('article');
@@ -44,10 +41,10 @@ export function renderQA(container, qa) {
   });
 }
 
-/**
- * 渲染時間軸
- */
 export function renderTimeline(container, timeline) {
+  if (!container) {
+    return;
+  }
   clearElement(container);
   if (!timeline || !timeline.length) {
     container.style.display = 'none';
@@ -63,10 +60,10 @@ export function renderTimeline(container, timeline) {
   });
 }
 
-/**
- * 渲染原則卡片
- */
 export function renderPrinciples(container, principles) {
+  if (!container) {
+    return;
+  }
   clearElement(container);
   if (!principles || !principles.length) {
     container.style.display = 'none';
@@ -82,10 +79,10 @@ export function renderPrinciples(container, principles) {
   });
 }
 
-/**
- * 渲染支持行動
- */
 export function renderSupportActions(container, actions) {
+  if (!container) {
+    return;
+  }
   clearElement(container);
   if (!actions || !actions.length) {
     container.style.display = 'none';
@@ -100,10 +97,10 @@ export function renderSupportActions(container, actions) {
   });
 }
 
-/**
- * 渲染成員卡片
- */
 export function renderMembers(container, members, resolveAxisLabel) {
+  if (!container) {
+    return;
+  }
   clearElement(container);
   if (!members || !members.length) {
     const empty = document.createElement('article');
@@ -116,16 +113,18 @@ export function renderMembers(container, members, resolveAxisLabel) {
   members.forEach((item) => {
     const card = document.createElement('article');
     card.className = 'member-card';
-    const badge = item.category ? `<span class="axis-badge">${resolveAxisLabel(item.category)}</span>` : '';
+    const badge = item.category
+      ? `<span class="axis-badge">${resolveAxisLabel(item.category)}</span>`
+      : '';
     card.innerHTML = `<h3>${item.name}${badge}</h3><p class="member-role">${item.role}</p><p class="member-bio">${item.bio}</p>`;
     container.appendChild(card);
   });
 }
 
-/**
- * 渲染活動卡片
- */
 export function renderEvents(container, events, resolveAxisLabel) {
+  if (!container) {
+    return;
+  }
   clearElement(container);
   if (!events || !events.length) {
     const empty = document.createElement('article');
@@ -138,45 +137,14 @@ export function renderEvents(container, events, resolveAxisLabel) {
   events.forEach((item) => {
     const card = document.createElement('article');
     card.className = 'member-card';
-    const badge = item.category ? `<span class="axis-badge">${resolveAxisLabel(item.category)}</span>` : '';
+    const badge = item.category
+      ? `<span class="axis-badge">${resolveAxisLabel(item.category)}</span>`
+      : '';
     card.innerHTML = `<h3>${item.title}${badge}</h3><p class="member-role">${item.date}・${item.location}</p><p class="member-bio">${item.desc}</p>`;
     container.appendChild(card);
   });
 }
 
-/**
- * 渲染運輸時間表
- */
-export function renderTransitLedger(track, stationLedger, defaultSchedule) {
-  if (!track) {
-    return;
-  }
-
-  const board = stationLedger.length ? stationLedger : defaultSchedule;
-  const entries = [...board, ...board];
-  track.innerHTML = entries
-    .map((item) => `<span class="schedule-item"><b>${item.time}</b><span>${item.route}</span><small>${item.service}</small></span>`)
-    .join('');
-}
-
-/**
- * 構建車站時間表
- */
-export function buildStationLedger(stations, defaultSchedule) {
-  const stationNames = new Set(stations.map((item) => item.stationName || item.name).filter(Boolean));
-  const pick = (name, fallback) => (stationNames.has(name) ? name : fallback);
-
-  return [
-    { time: '06:30', route: `${pick('基隆', '基隆')} → ${pick('臺北', '臺北')}`, service: '區間快車' },
-    { time: '09:10', route: `${pick('板橋', '板橋')} → ${pick('桃園', '桃園')}`, service: '區間快車' },
-    { time: '14:20', route: `${pick('臺中', '臺中')} → ${pick('彰化', '彰化')}`, service: '區間快車' },
-    { time: '19:40', route: `${pick('高雄', '高雄')} → ${pick('屏東', '屏東')}`, service: '區間快車' },
-  ];
-}
-
-/**
- * 解析軸標籤
- */
 export function resolveAxisLabel(code, axisMeta) {
   if (!code) {
     return '';
@@ -190,9 +158,6 @@ export function resolveAxisLabel(code, axisMeta) {
   return `${axis.label}｜${axis.name}`;
 }
 
-/**
- * 渲染章節導航
- */
 export function renderEpisodeNav(nav, episodes, currentSlug, selectEpisode, closeDrawer) {
   if (!nav) {
     return;
@@ -215,9 +180,6 @@ export function renderEpisodeNav(nav, episodes, currentSlug, selectEpisode, clos
   });
 }
 
-/**
- * 渲染主頁面內容
- */
 export function renderMainContent(data, setTextById, renderFunctions) {
   const ep = data.episode;
 
@@ -225,29 +187,29 @@ export function renderMainContent(data, setTextById, renderFunctions) {
   setTextById('siteQuote', data.site.quote);
   setTextById('siteSubtitle', data.site.subtitle);
   setTextById('historyTitle', ep.history.title);
-  
+
   renderFunctions.renderParagraphs(
     document.getElementById('historyBody'),
     ep.history.body || []
   );
-  
+
   renderFunctions.renderKeywords(
     document.getElementById('keywords'),
     ep.history.keywords || []
   );
-  
+
   renderFunctions.renderTimeline(
     document.getElementById('timeline'),
     ep.history.timeline || []
   );
 
   setTextById('meaningTitle', ep.meaning.title);
-  
+
   renderFunctions.renderParagraphs(
     document.getElementById('meaningBody'),
     ep.meaning.body || []
   );
-  
+
   renderFunctions.renderPrinciples(
     document.getElementById('principles'),
     ep.meaning.principles || []
@@ -260,7 +222,7 @@ export function renderMainContent(data, setTextById, renderFunctions) {
 
   setTextById('ctaTitle', ep.cta.title);
   setTextById('ctaBody', ep.cta.body);
-  
+
   renderFunctions.renderSupportActions(
     document.getElementById('supportActions'),
     ep.cta.actions || []

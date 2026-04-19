@@ -1,17 +1,24 @@
 /* 按鈕樣式 */
 .fb-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   margin-top: 8px;
   text-decoration: none;
   color: var(--paper);
   background: var(--accent-grad);
-  padding: 10px 14px;
-  border-radius: var(--radius-lg);
+  padding: 12px 18px;
+  min-height: var(--tap-min);
+  border-radius: var(--radius-xl);
   font-weight: var(--font-weight-bold);
+  text-align: center;
+  font-size: 0.98rem;
+  letter-spacing: 0.04em;
   transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
   border: none;
   cursor: pointer;
-  box-shadow: 0 12px 24px -16px rgba(185, 123, 31, 0.65);
+  box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
 }
@@ -26,8 +33,8 @@
 }
 
 .fb-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 28px -18px rgba(185, 123, 31, 0.65);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .fb-link:hover::after {
@@ -36,20 +43,28 @@
 
 /* 幽靈按鈕 */
 .ghost-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   margin-top: 8px;
   text-decoration: none;
   color: var(--ink);
   border: 1px solid var(--line);
-  padding: 10px 14px;
-  border-radius: var(--radius-lg);
-  background: var(--surface-elevated-grad);
+  padding: 12px 18px;
+  min-height: var(--tap-min);
+  border-radius: var(--radius-xl);
+  background: var(--surface-glass);
+  text-align: center;
+  font-size: 0.98rem;
+  letter-spacing: 0.03em;
   transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease, background-color var(--transition-fast) ease;
   cursor: pointer;
+  backdrop-filter: blur(10px);
 }
 
 .ghost-link:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
   background: var(--surface-grad);
 }
@@ -59,23 +74,24 @@
   display: block;
   width: 100%;
   text-align: left;
-  padding: 10px 12px;
+  padding: 12px 14px;
+  min-height: var(--tap-min);
   margin: 8px 0;
-  border: 1px solid rgba(29, 36, 40, 0.1);
-  background: var(--surface-elevated-grad);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--surface-glass);
+  border-radius: var(--radius-xl);
   cursor: pointer;
   transition: all var(--transition-fast) ease;
 }
 
 .episode-item:hover {
   background: var(--surface-grad);
-  border-color: rgba(29, 36, 40, 0.2);
+  border-color: rgba(31, 54, 72, 0.18);
 }
 
 .episode-item.active {
   background: var(--surface-grad);
-  border-color: rgba(29, 36, 40, 0.24);
+  border-color: rgba(31, 54, 72, 0.22);
   font-weight: var(--font-weight-bold);
 }
 
@@ -93,4 +109,5 @@
   display: block;
   color: var(--ink-soft);
   font-size: 0.78rem;
+  line-height: 1.4;
 }

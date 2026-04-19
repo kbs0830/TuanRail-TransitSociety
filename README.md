@@ -66,12 +66,20 @@
 |-- requirements.txt
 |-- backend/
 |   |-- __init__.py
-|   |-- auth/
+|   |-- app.py
+|   |-- config.py
+|   |-- content.py
+|   |-- logs.py
+|   |-- render_service.py
+|   |-- stations.py
+|   |-- routes/
 |   |   |-- __init__.py
-|   |   |-- models.py
-|   |   |-- routes.py
-|   |   `-- service.py
-|   `-- app.py
+|   |   |-- admin.py
+|   |   |-- api.py
+|   |   |-- pages.py
+|   |   `-- system.py
+|   `-- Data/
+|       `-- 車站基本資料集.json
 `-- frontend/
     |-- static/
     |   |-- images/
@@ -86,6 +94,7 @@
     |   |   └── responsive/
     |   `-- js/
     |       ├── app.js                 ⭐ 主入口
+    |       ├── admin-logs.js          - 後台日誌頁腳本
     |       ├── config.js
     |       ├── api/
     |       └── modules/
@@ -232,6 +241,7 @@ css/
 ```
 js/
 ├── app.js              ⭐ 主入口 - 應用程序啟動點
+├── admin-logs.js       - 後台日誌頁互動
 ├── config.js           - 常數配置（區域 ID、小提示等）
 ├── api/
 │   └── api-client.js   - API 請求客戶端
@@ -240,7 +250,8 @@ js/
     ├── renderer.js     - 內容渲染函數
     ├── drawer.js       - 抽屜菜單邏輯
     ├── scroll.js       - 滾動、時鐘、加載器
-    └── episode.js      - 章節管理
+  ├── episode.js      - 章節管理
+  └── train-board.js  - 翻牌顯示器
 ```
 
 **使用方式：**

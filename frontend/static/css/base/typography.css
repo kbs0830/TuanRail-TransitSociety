@@ -1,7 +1,7 @@
 /* 標題樣式 */
 h2 {
   font-family: var(--font-serif-tc);
-  font-size: clamp(1.3rem, 2.3vw, 1.8rem);
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
   margin: 0 0 18px;
   display: block;
   position: relative;
@@ -10,8 +10,8 @@ h2 {
   border-radius: 0;
   background: transparent;
   color: var(--ink);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-transform: none;
 }
 
 h2::after {
@@ -19,24 +19,24 @@ h2::after {
   position: absolute;
   left: 0;
   bottom: -1px;
-  width: 52px;
+  width: 40px;
   height: 2px;
   border-radius: var(--radius-full);
   background: linear-gradient(90deg, var(--accent), transparent);
 }
 
 h3 {
-  font-size: 1rem;
+  font-size: 1.08rem;
 }
 
 h4 {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: var(--font-weight-bold);
   color: var(--sepia-ink);
 }
 
 h5 {
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-weight: var(--font-weight-bold);
 }
 
@@ -44,6 +44,7 @@ h5 {
 p {
   margin: 0 0 8px;
   max-width: 70ch;
+  line-height: 1.7;
 }
 
 p:last-child {
@@ -59,11 +60,12 @@ ol {
 
 li {
   margin: 0 0 8px;
+  line-height: 1.6;
 }
 
 /* 連結 */
 a {
-  color: var(--rail);
+  color: var(--archive-blue);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
   text-decoration-thickness: 2px;
@@ -72,7 +74,7 @@ a {
 }
 
 a:hover {
-  opacity: 0.86;
+  opacity: 0.9;
   color: var(--accent-strong);
 }
 
@@ -91,7 +93,7 @@ a:hover {
   padding: 3px 10px;
   border: 1px solid var(--line);
   border-radius: var(--radius-full);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   font-size: 0.74rem;
   color: var(--rail);
   background: var(--fog);

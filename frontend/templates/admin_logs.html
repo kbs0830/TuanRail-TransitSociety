@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>後台日誌 | 团‧鐵道</title>
-  <meta name="description" content="团‧鐵道後台日誌檢視頁。">
-  <link rel="icon" type="image/jpeg" href="{{ static_url('images/logo.jpg') }}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ static_url('css/index.css') }}">
-</head>
-<body class="subpage-body">
-  <a href="#mainContent" class="skip-link">跳到主要內容</a>
+{% extends "base.html" %}
+{% block title %}後台日誌 | 团‧鐵道{% endblock %}
+{% block meta_description %}团‧鐵道後台日誌檢視頁。{% endblock %}
+{% block body_class %}subpage-body{% endblock %}
+{% block content %}
   <main id="mainContent" class="subpage-main" tabindex="-1">
+    <div class="subpage-brandbar">
+      <a class="subpage-brandlink" href="/">
+        <img src="{{ static_url('images/logo.jpg') }}" alt="团‧鐵道" class="subpage-brand-logo" width="38" height="38" loading="eager" decoding="async">
+        <span class="subpage-brand-name">团‧鐵道</span>
+      </a>
+    </div>
+
     <section class="subpage-card admin-logs-card">
       <h1>後台日誌中心</h1>
       <p>登入帳號：{{ admin_user }}</p>
@@ -84,62 +81,7 @@
   <footer class="site-footer subpage-footer">
     <p class="copyright-note">© 2026 網頁工程師 kbs0830. 保留所有權利。</p>
   </footer>
-
-  <script>
-    const renderCheckBtn = document.getElementById('renderCheckBtn');
-    const renderSyncBtn = document.getElementById('renderSyncBtn');
-    const renderCheckStatus = document.getElementById('renderCheckStatus');
-    const renderSyncStatus = document.getElementById('renderSyncStatus');
-
-    if (renderCheckBtn && renderCheckStatus) {
-      renderCheckBtn.addEventListener('click', async () => {
-        renderCheckStatus.textContent = '檢查中...';
-        try {
-          const res = await fetch('/api/admin/render-check', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
-
-          const payload = await res.json();
-          if (!res.ok || !payload.ok) {
-            renderCheckStatus.textContent = payload.message || 'Render 檢查失敗。';
-            return;
-          }
-
-          renderCheckStatus.textContent = `Render 連線成功，HTTP ${payload.data.status}。${payload.data.note}`;
-          window.location.reload();
-        } catch (_err) {
-          renderCheckStatus.textContent = 'Render 檢查失敗，請稍後再試。';
-        }
-      });
-    }
-
-    if (renderSyncBtn && renderSyncStatus) {
-      renderSyncBtn.addEventListener('click', async () => {
-        renderSyncStatus.textContent = '同步中...';
-        try {
-          const res = await fetch('/api/admin/render-sync', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
-
-          const payload = await res.json();
-          if (!res.ok || !payload.ok) {
-            renderSyncStatus.textContent = payload.message || 'Render logs 同步失敗。';
-            return;
-          }
-
-          renderSyncStatus.textContent = payload.message || 'Render logs 同步完成。';
-          window.location.reload();
-        } catch (_err) {
-          renderSyncStatus.textContent = 'Render logs 同步失敗，請稍後再試。';
-        }
-      });
-    }
-  </script>
-</body>
-</html>
+{% endblock %}
+{% block scripts %}
+  <script src="{{ static_url('js/admin-logs.js') }}" defer></script>
+{% endblock %}

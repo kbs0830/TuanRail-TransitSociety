@@ -14,12 +14,15 @@ body {
   font-family: var(--font-sans-tc);
   color: var(--ink);
   background:
-    radial-gradient(circle at 12% 8%, rgba(197, 139, 42, 0.16), transparent 46%),
-    radial-gradient(circle at 86% 2%, rgba(42, 57, 66, 0.16), transparent 45%),
+    radial-gradient(circle at 14% 10%, rgba(79, 111, 142, 0.12), transparent 46%),
+    radial-gradient(circle at 86% 6%, rgba(27, 47, 64, 0.12), transparent 45%),
     var(--bg-grad);
   background-size: auto, auto, auto;
-  line-height: 1.74;
+  font-size: 16px;
+  line-height: 1.7;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 body.sidebar-open {
@@ -54,7 +57,7 @@ body.sidebar-open {
   pointer-events: none;
   position: fixed;
   inset: 0;
-  opacity: 0.03;
+  opacity: 0.015;
   background-image: repeating-linear-gradient(
     0deg,
     transparent,

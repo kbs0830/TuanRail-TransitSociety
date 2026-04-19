@@ -1,13 +1,13 @@
 /* Homepage rebuild (v6): modern retro editorial */
 body.home-rebuild {
   background:
-    radial-gradient(circle at 12% -8%, rgba(197, 139, 42, 0.22), transparent 48%),
-    radial-gradient(circle at 88% 6%, rgba(42, 57, 66, 0.2), transparent 48%),
+    radial-gradient(circle at 12% -8%, rgba(79, 111, 142, 0.2), transparent 52%),
+    radial-gradient(circle at 88% 6%, rgba(27, 47, 64, 0.18), transparent 50%),
     var(--bg-grad);
 }
 
 .home-rebuild .grain {
-  opacity: 0.035;
+  opacity: 0.018;
 }
 
 .home-rebuild .content-wrap {
@@ -15,17 +15,18 @@ body.home-rebuild {
 }
 
 .home-rebuild .layout {
-  max-width: 1160px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 36px 40px 88px;
+  padding: 48px 52px 120px;
   display: grid;
-  gap: 26px;
+  gap: 32px;
 }
 
 .home-rebuild .sidebar {
   background: var(--surface-glass);
-  border-right: 1px solid var(--line);
+  border-right: 1px solid rgba(17, 28, 38, 0.08);
   box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(18px);
 }
 
 .home-rebuild .sidebar::before {
@@ -47,21 +48,18 @@ body.home-rebuild {
 }
 
 .home-rebuild .anchor-link {
-  border: 1px solid var(--line);
-  border-left: 3px solid transparent;
-  background: var(--surface-elevated-grad);
+  border-color: transparent;
+  background: transparent;
 }
 
 .home-rebuild .anchor-link:hover {
-  border-color: rgba(29, 36, 40, 0.2);
-  border-left-color: var(--accent);
-  background: var(--surface-grad);
+  border-color: rgba(31, 54, 72, 0.18);
+  background: var(--surface-glass);
 }
 
 .home-rebuild .anchor-link.active {
-  border-color: rgba(29, 36, 40, 0.24);
-  border-left-color: var(--archive-blue);
-  background: var(--surface-grad);
+  border-color: rgba(31, 54, 72, 0.3);
+  background: var(--surface-glass);
 }
 
 .home-rebuild .admin-sidebar-entry {
@@ -77,15 +75,16 @@ body.home-rebuild {
 .home-rebuild .card {
   position: relative;
   border: 1px solid var(--line);
-  border-left: 0;
-  border-radius: 18px;
-  padding: 36px;
-  background: var(--surface-grad);
+  border-left: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 40px;
+  background: var(--surface-glass);
   box-shadow: var(--shadow-sm);
   opacity: 0;
   transform: translateY(18px);
   animation: fadeUp 0.72s ease forwards;
   animation-delay: var(--card-delay, 0ms);
+  backdrop-filter: blur(18px);
 }
 
 .home-rebuild .card:hover {
@@ -132,7 +131,7 @@ body.home-rebuild {
   right: 0;
   top: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--accent), transparent 65%);
+  background: linear-gradient(90deg, var(--accent), rgba(79, 111, 142, 0.18), transparent 70%);
 }
 
 .home-rebuild .card::after {
@@ -149,14 +148,14 @@ body.home-rebuild {
 .home-rebuild .card h2 {
   margin: 0 0 16px;
   padding: 0 0 10px;
-  border-bottom: 1px solid rgba(29, 36, 40, 0.16);
+  border-bottom: 1px solid rgba(17, 28, 38, 0.12);
   color: var(--ink);
   font-size: clamp(1.3rem, 2.1vw, 1.7rem);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
 }
 
 .home-rebuild .intro-rebuild {
-  background: var(--surface-grad);
+  background: var(--surface-glass);
 }
 
 .home-rebuild .rail-hero {
@@ -165,16 +164,17 @@ body.home-rebuild {
   gap: 14px;
   padding: 22px 22px 24px;
   border: 1px solid var(--line);
-  border-radius: 18px;
-  background: var(--surface-grad);
+  border-radius: 22px;
+  background: var(--surface-glass);
   overflow: hidden;
+  backdrop-filter: blur(18px);
 }
 
 .home-rebuild .rail-hero::before {
   content: "";
   position: absolute;
   inset: 12px;
-  border: 1px solid rgba(29, 36, 40, 0.1);
+  border: 1px solid rgba(29, 36, 40, 0.08);
   border-radius: 14px;
   pointer-events: none;
 }
@@ -185,9 +185,9 @@ body.home-rebuild {
   left: -20%;
   right: -20%;
   bottom: 16px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(29, 36, 40, 0.28), transparent);
-  opacity: 0.6;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(29, 36, 40, 0.22), transparent);
+  opacity: 0.45;
   animation: railSweep 7s ease-in-out infinite;
 }
 
@@ -221,8 +221,8 @@ body.home-rebuild {
   align-items: center;
   gap: 10px;
   font-family: var(--font-display);
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-soft);
 }
@@ -255,8 +255,8 @@ body.home-rebuild {
 .home-rebuild .intro-title {
   margin: 0;
   font-family: var(--font-serif-tc);
-  font-size: clamp(1.6rem, 2.4vw, 2rem);
-  letter-spacing: 0.14em;
+  font-size: clamp(1.9rem, 2.8vw, 2.4rem);
+  letter-spacing: 0.1em;
   color: var(--ink);
 }
 
@@ -264,24 +264,24 @@ body.home-rebuild {
   margin: 4px 0 0;
   font-family: var(--font-display);
   color: var(--ink-soft);
-  letter-spacing: 0.18em;
-  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  font-size: 0.96rem;
   text-transform: uppercase;
 }
 
 .home-rebuild .hero-tagline {
   margin: 0;
   color: var(--rail);
-  font-size: 1rem;
+  font-size: 1.08rem;
   font-weight: var(--font-weight-bold);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.06em;
   font-family: var(--font-display);
 }
 
 .home-rebuild .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 }
 
 .home-rebuild .hero-btn {
@@ -289,29 +289,29 @@ body.home-rebuild {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  min-height: 42px;
-  padding: 10px 18px;
+  min-height: var(--tap-min);
+  padding: 12px 20px;
   border-radius: 999px;
-  border: 1px solid rgba(197, 139, 42, 0.8);
+  border: 1px solid rgba(79, 111, 142, 0.75);
   background: var(--accent-grad);
   color: var(--paper);
   font-weight: var(--font-weight-bold);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   font-family: var(--font-display);
   text-decoration: none;
   transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
 }
 
 .home-rebuild .hero-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 24px -16px rgba(185, 123, 31, 0.55);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
   text-decoration: none;
   opacity: 1;
 }
 
 .home-rebuild .hero-btn.ghost {
   border-color: var(--line);
-  background: var(--surface-elevated-grad);
+  background: var(--surface-glass);
   color: var(--ink);
 }
 
@@ -324,7 +324,7 @@ body.home-rebuild {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   gap: 24px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .home-rebuild .manifesto-text {
@@ -345,6 +345,7 @@ body.home-rebuild {
   background: var(--surface-glass);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(14px);
 }
 
 .home-rebuild .station-sign::before,
@@ -432,8 +433,9 @@ body.home-rebuild {
   padding: 18px 20px;
   border: 1px solid var(--line);
   border-radius: 16px;
-  background: var(--surface-elevated-grad);
+  background: var(--surface-glass);
   box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(14px);
 }
 
 .home-rebuild .mission-quote-text {
@@ -465,6 +467,7 @@ body.home-rebuild {
   background: var(--surface-glass);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
+  backdrop-filter: blur(14px);
 }
 
 .home-rebuild .flip-board::after {
@@ -474,8 +477,8 @@ body.home-rebuild {
   top: -80px;
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, rgba(197, 139, 42, 0.18), transparent 70%);
-  opacity: 0.5;
+  background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+  opacity: 0.35;
   pointer-events: none;
 }
 
@@ -489,7 +492,7 @@ body.home-rebuild {
 .home-rebuild .flip-kicker {
   margin: 0;
   font-size: 0.68rem;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.18em;
   font-family: var(--font-display);
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -498,7 +501,7 @@ body.home-rebuild {
 .home-rebuild .flip-title {
   margin: 0;
   font-size: 0.92rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   font-family: var(--font-display);
   color: var(--rail);
 }
@@ -611,11 +614,12 @@ body.home-rebuild {
   max-width: 560px;
   margin: 0;
   padding: 20px 22px 18px;
-  border: 1px dashed rgba(29, 36, 40, 0.22);
-  border-radius: 16px;
-  background: var(--surface-elevated-grad);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface-glass);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
+  backdrop-filter: blur(14px);
 }
 
 .home-rebuild .ticket-quote::before,
@@ -644,8 +648,8 @@ body.home-rebuild {
   justify-content: space-between;
   align-items: center;
   font-family: var(--font-display);
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-soft);
   margin-bottom: 10px;
@@ -686,15 +690,19 @@ body.home-rebuild {
   gap: 16px;
   padding: 18px 18px 20px;
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: 20px;
   background: var(--surface-glass);
   box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(14px);
+  height: 100%;
+  align-content: stretch;
+  grid-auto-rows: 1fr;
 }
 
 .home-rebuild .pillar-title {
   margin: 0;
   font-size: 0.85rem;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-soft);
   font-family: var(--font-display);
@@ -711,9 +719,10 @@ body.home-rebuild {
   align-items: start;
   padding: 14px 14px;
   border-radius: 14px;
-  border: 1px solid rgba(29, 36, 40, 0.16);
-  background: var(--surface-elevated-grad);
+  border: 1px solid rgba(17, 28, 38, 0.12);
+  background: var(--surface-glass);
   transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease, border-color var(--transition-fast) ease;
+  height: 100%;
 }
 
 .home-rebuild .pillar-badge {
@@ -723,7 +732,7 @@ body.home-rebuild {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  border: 1px solid rgba(29, 36, 40, 0.2);
+  border: 1px solid rgba(17, 28, 38, 0.16);
   color: var(--accent);
   font-family: var(--font-serif-tc);
   font-size: 1.1rem;
@@ -741,6 +750,8 @@ body.home-rebuild {
   margin: 0;
   color: var(--ink-soft);
   line-height: 1.78;
+  text-align: justify;
+  text-justify: inter-ideograph;
 }
 
 .home-rebuild .announcement-article {
@@ -910,14 +921,15 @@ body.home-rebuild {
 }
 
 .home-rebuild .support-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  min-height: var(--tap-min);
+  padding: 12px 18px;
+  gap: 12px;
 }
 
 .home-rebuild .support-links a {
-  min-height: 40px;
-  padding: 10px 16px;
+  backdrop-filter: blur(10px);
+  min-height: var(--tap-min);
+  padding: 12px 18px;
   border-radius: 999px;
   border: 1px solid var(--line);
   text-decoration: none;
@@ -925,14 +937,14 @@ body.home-rebuild {
 }
 
 .home-rebuild .support-links .fb-link {
-  border-color: rgba(197, 139, 42, 0.8);
+  border-color: rgba(79, 111, 142, 0.75);
   color: var(--paper);
   background: var(--accent-grad);
 }
 
 .home-rebuild .support-links .ghost-link {
   color: var(--ink);
-  background: var(--surface-elevated-grad);
+  background: var(--surface-glass);
 }
 
 .home-rebuild .tiny-note-widget {
@@ -941,6 +953,7 @@ body.home-rebuild {
   border-radius: 10px;
   padding: 12px;
   background: var(--surface-glass);
+  backdrop-filter: blur(10px);
 }
 
 .home-rebuild .tiny-note-title {
@@ -949,11 +962,13 @@ body.home-rebuild {
 }
 
 .home-rebuild .site-footer {
-  margin: 0 24px 24px;
+  max-width: 1200px;
+  margin: 0 auto 24px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--surface-glass);
   box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(12px);
 }
 
 .home-rebuild .site-footer p {
@@ -1037,8 +1052,9 @@ body.home-rebuild {
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: 18px;
-  background: var(--surface-elevated-grad);
+  background: var(--surface-glass);
   box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(12px);
 }
 
 .home-rebuild .route-rail-head {
@@ -1078,11 +1094,15 @@ body.home-rebuild {
   .home-rebuild .manifesto-grid {
     grid-template-columns: 1fr;
   }
+
+  .home-rebuild .mission-pillars {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
   .home-rebuild .layout {
-    padding: 76px 18px 52px;
+    padding: 64px 18px 48px;
     gap: 20px;
   }
 
@@ -1098,8 +1118,8 @@ body.home-rebuild {
 
   .home-rebuild .card p,
   .home-rebuild .card li {
-    font-size: 0.98rem;
-    line-height: 1.82;
+    font-size: 1rem;
+    line-height: 1.9;
   }
 
   .home-rebuild .rail-hero {
@@ -1128,6 +1148,8 @@ body.home-rebuild {
 
   .home-rebuild .hero-tagline {
     font-size: 0.96rem;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
   }
 
   .home-rebuild .hero-actions {
@@ -1164,7 +1186,7 @@ body.home-rebuild {
   }
 
   .home-rebuild .flip-board {
-    padding: 14px;
+    padding: 12px;
   }
 
   .home-rebuild .flip-board-head {
@@ -1173,19 +1195,28 @@ body.home-rebuild {
     gap: 4px;
   }
 
+  .home-rebuild .flip-board-rows {
+    gap: 8px;
+  }
+
   .home-rebuild .flip-row {
-    gap: 6px 10px;
-    padding: 10px;
+    gap: 6px 8px;
+    padding: 8px 10px;
   }
 
   .home-rebuild .flip-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.14em;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
   }
 
   .home-rebuild .flip-value {
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
+    font-size: 0.86rem;
+    letter-spacing: 0.05em;
+  }
+
+  .home-rebuild .flip-pair[data-key="via"],
+  .home-rebuild .flip-pair[data-key="type"] {
+    display: none;
   }
 
   .home-rebuild .mission-pillars {
@@ -1197,6 +1228,7 @@ body.home-rebuild {
     display: block;
     color: var(--ink-soft);
     font-size: 0.88rem;
+    line-height: 1.7;
   }
 }
 
@@ -1240,5 +1272,28 @@ body.home-rebuild {
   100% {
     transform: translateX(15%);
     opacity: 0.2;
+  }
+}
+
+@media (min-width: 1440px) {
+  .home-rebuild .layout {
+    max-width: 1360px;
+  }
+
+  .home-rebuild .site-footer {
+    max-width: 1280px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-rebuild .card,
+  .home-rebuild .rail-hero > * {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .home-rebuild .rail-hero::after {
+    animation: none;
   }
 }

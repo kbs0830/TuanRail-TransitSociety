@@ -1,16 +1,36 @@
 /* 移動裝置適配 */
 @media (max-width: 768px) {
   body {
-    font-size: 15px;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  p,
+  li {
+    line-height: 1.75;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
+
+  h2 {
+    letter-spacing: 0.08em;
+  }
+
+  h3 {
+    font-size: 1rem;
   }
 
   .drawer-toggle {
     display: block;
-    top: 12px;
-    left: 12px !important;
+    top: 10px;
+    left: 10px !important;
     right: auto;
-    width: 42px;
-    height: 42px;
+    width: 48px;
+    height: 48px;
+    font-size: 1.35rem;
   }
 
   .sidebar {
@@ -213,37 +233,38 @@
   }
 
   .layout {
-    padding-bottom: 36px;
-    gap: 14px;
+    padding: 24px 18px 36px;
+    gap: 16px;
   }
 
   .site-footer {
-    padding-bottom: 24px;
+    padding: 0 16px 28px;
     gap: 8px;
   }
 
   .card {
-    padding: 18px;
+    padding: 20px;
   }
 
   .anchor-link {
-    padding: 11px 10px;
+    padding: 10px 12px 10px 30px;
   }
 
   .anchor-title {
-    font-size: 0.9rem;
+    font-size: 0.96rem;
   }
 
   .anchor-desc {
-    font-size: 0.76rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
   }
 
   .brand {
-    font-size: 1.12rem;
+    font-size: 1.18rem;
   }
 
   .brand-sub {
-    font-size: 0.86rem;
+    font-size: 0.9rem;
   }
 
   .hero-seal {
@@ -257,13 +278,14 @@
   }
 
   .card h2 {
-    font-size: 1.06rem;
+    font-size: 1.14rem;
+    letter-spacing: 0.08em;
     padding: 4px 0;
     margin-bottom: 16px;
   }
 
   .org-group-item {
-    padding: 10px;
+    padding: 12px;
   }
 
   .anchor-link.active {
@@ -291,6 +313,7 @@
 
   .mobile-compact-note {
     display: block;
+    line-height: 1.7;
   }
 
   .announcement-article h3 {
@@ -347,6 +370,15 @@
 
   .site-footer p {
     padding: 10px 12px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .site-footer p:not(.live-clock)::before {
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    margin-right: 6px;
   }
 
   .keyword-grid {
@@ -364,13 +396,23 @@
   .member-grid,
   .event-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .member-card,
+  .event-empty,
+  .keyword-item,
+  .qa-item,
+  .principle-item {
+    padding: 18px;
   }
 
   .back-to-top {
     right: 12px;
     bottom: 12px;
-    padding: 8px 12px;
-    font-size: 0.86rem;
+    min-height: 44px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
   }
 
   .admin-entry-fixed {
@@ -385,7 +427,13 @@
   }
 
   .subpage-card {
-    padding: 14px;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .subpage-card h1 {
+    font-size: 1.2rem;
+    margin-top: 0;
   }
 
   .subpage-grid {
@@ -393,18 +441,96 @@
     gap: 8px;
   }
 
+  .support-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .support-links .fb-link,
+  .support-links .ghost-link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fb-link,
+  .ghost-link {
+    min-height: 44px;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+
   .admin-panel-grid {
     grid-template-columns: 1fr;
   }
 
+  .admin-logs-card {
+    padding: 16px;
+  }
+
+  .admin-panel-item h2 {
+    font-size: 0.96rem;
+  }
+
+  .admin-panel-item p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .admin-status {
+    line-height: 1.6;
+  }
+
+  .log-table {
+    min-width: 520px;
+  }
+
+  .log-table th,
+  .log-table td {
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
+  .log-table td {
+    word-break: break-word;
+  }
+
+  .login-form label {
+    font-size: 0.95rem;
+  }
+
+  .login-form input {
+    min-height: 44px;
+    font-size: 1rem;
+    padding: 12px 12px;
+  }
+
+  .login-trust-row span {
+    font-size: 0.72rem;
+  }
+
+  .subpage-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .subpage-actions .fb-link,
+  .subpage-actions .ghost-link {
+    width: 100%;
+  }
+
   .subpage-card p,
   .subpage-item p {
-    font-size: 0.86rem;
-    line-height: 1.6;
+    font-size: 0.95rem;
+    line-height: 1.7;
   }
 
   .admin-toolbar {
     flex-direction: column;
     align-items: stretch;
+    gap: 10px;
   }
 }

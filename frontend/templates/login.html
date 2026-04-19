@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>後台登入 | 团‧鐵道</title>
-  <meta name="description" content="团‧鐵道後台管理登入頁。">
-  <link rel="icon" type="image/jpeg" href="{{ static_url('images/logo.jpg') }}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ static_url('css/index.css') }}">
-</head>
-<body class="subpage-body">
-  <a href="#mainContent" class="skip-link">跳到主要內容</a>
+{% extends "base.html" %}
+{% block title %}後台登入 | 团‧鐵道{% endblock %}
+{% block meta_description %}团‧鐵道後台管理登入頁。{% endblock %}
+{% block body_class %}subpage-body{% endblock %}
+{% block content %}
   <main id="mainContent" class="subpage-main" tabindex="-1">
+    <div class="subpage-brandbar">
+      <a class="subpage-brandlink" href="/">
+        <img src="{{ static_url('images/logo.jpg') }}" alt="团‧鐵道" class="subpage-brand-logo" width="38" height="38" loading="eager" decoding="async">
+        <span class="subpage-brand-name">团‧鐵道</span>
+      </a>
+    </div>
+
     <section class="subpage-card login-card">
       <h1>後台登入</h1>
       <p>進入管理控制台、查看系統與 Render 同步日誌。</p>
@@ -47,5 +44,4 @@
   <footer class="site-footer subpage-footer">
     <p class="copyright-note">© 2026 網頁工程師 kbs0830. 保留所有權利。</p>
   </footer>
-</body>
-</html>
+{% endblock %}
