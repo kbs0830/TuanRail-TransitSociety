@@ -31,6 +31,9 @@
 /* 5. Responsive - 響應式層 */
 @import url('./responsive/mobile.css');
 
+/* 6. Homepage Rebuild - 首頁重建覆蓋層 */
+@import url('./features/home-rebuild.css');
+
 /* ============================================
    End of Stylesheet Index
    ============================================ */

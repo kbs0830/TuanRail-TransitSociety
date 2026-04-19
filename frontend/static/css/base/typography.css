@@ -1,26 +1,28 @@
 /* 標題樣式 */
 h2 {
   font-family: var(--font-serif-tc);
-  font-size: 1.16rem;
-  margin-bottom: 18px;
-  display: inline-block;
+  font-size: clamp(1.3rem, 2.3vw, 1.8rem);
+  margin: 0 0 18px;
+  display: block;
   position: relative;
-  padding: 4px 12px 5px;
-  border: 1px solid #c5ad8d;
-  border-radius: var(--radius-sm);
-  background: linear-gradient(180deg, rgba(255, 254, 250, 0.96), rgba(244, 233, 215, 0.92));
-  color: #3d2d1f;
-  letter-spacing: 0.08em;
+  padding: 0 0 12px;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-h2::before {
+h2::after {
   content: "";
   position: absolute;
-  left: 7px;
-  right: 7px;
-  bottom: -6px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(138, 58, 42, 0.52), rgba(138, 58, 42, 0));
+  left: 0;
+  bottom: -1px;
+  width: 52px;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--accent), transparent);
 }
 
 h3 {
@@ -30,7 +32,7 @@ h3 {
 h4 {
   font-size: 0.95rem;
   font-weight: var(--font-weight-bold);
-  color: #523723;
+  color: var(--sepia-ink);
 }
 
 h5 {
@@ -41,7 +43,7 @@ h5 {
 /* 段落樣式 */
 p {
   margin: 0 0 8px;
-  max-width: 68ch;
+  max-width: 70ch;
 }
 
 p:last-child {
@@ -61,23 +63,17 @@ li {
 
 /* 連結 */
 a {
-  color: var(--accent);
-  font-weight: var(--font-weight-bold);
+  color: var(--rail);
+  font-weight: var(--font-weight-semibold);
   text-decoration: none;
-  transition: opacity var(--transition-fast) ease;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: color var(--transition-fast) ease, opacity var(--transition-fast) ease;
 }
 
 a:hover {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-
-/* 特殊排版 */
-#introSection p:first-child::first-letter {
-  font-size: 1.65rem;
-  color: #7d4d31;
-  font-family: var(--font-serif-tc);
-  font-weight: var(--font-weight-bold);
+  opacity: 0.86;
+  color: var(--accent-strong);
 }
 
 .hero-quote {
@@ -85,7 +81,7 @@ a:hover {
   color: var(--ink-soft);
   font-family: var(--font-garamond);
   font-size: clamp(0.9rem, 1.45vw, 1.02rem);
-  line-height: 1.7;
+  line-height: 1.74;
 }
 
 /* 標籤和徽章 */
@@ -93,23 +89,23 @@ a:hover {
   display: inline-block;
   margin: 0;
   padding: 3px 10px;
-  border: 1px solid #bcae9c;
+  border: 1px solid var(--line);
   border-radius: var(--radius-full);
   letter-spacing: 0.14em;
   font-size: 0.74rem;
-  color: var(--archive-blue);
-  background: rgba(255, 255, 255, 0.8);
+  color: var(--rail);
+  background: var(--fog);
 }
 
 .axis-badge {
   display: inline-block;
   margin-left: 8px;
-  border: 1px solid #cfb89d;
+  border: 1px solid var(--line);
   border-radius: var(--radius-full);
   padding: 1px 8px;
   font-size: 0.72rem;
-  color: #5e4734;
-  background: rgba(255, 255, 255, 0.8);
+  color: var(--sepia-ink);
+  background: var(--fog);
 }
 
 /* 小文本 */
@@ -122,5 +118,5 @@ small {
 .symbols {
   font-size: 0.9rem;
   letter-spacing: 0.05em;
-  color: #5a4a3a;
+  color: var(--sepia-ink);
 }

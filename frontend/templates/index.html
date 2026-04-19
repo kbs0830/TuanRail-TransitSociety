@@ -5,14 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>团‧鐵道 | Tuan Rail & Transit Society</title>
   <meta name="description" content="团‧鐵道：團結、鐵路文化與公共運輸的青年社群。">
-  <meta name="keywords" content="团鐵道, Tuan Rail, 鐵道, 公共運輸, 交通文化, 社團, 創社故事">
-  <meta name="author" content="Tuan Rail & Transit Society">
-  <meta name="robots" content="index,follow">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="团‧鐵道 Tuan Rail & Transit Society">
-  <meta property="og:title" content="团‧鐵道｜公共運輸文化社群">
-  <meta property="og:description" content="團結、鐵路與公共運輸，一起前進。">
-  <meta property="og:image" content="{{ static_url('images/logo.jpg') }}">
   <meta property="og:url" content="http://127.0.0.1:8080/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="团‧鐵道｜公共運輸文化社群">
@@ -20,7 +12,7 @@
   <link rel="icon" type="image/jpeg" href="{{ static_url('images/logo.jpg') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ static_url('css/index.css') }}">
   <script type="application/ld+json">
     {
@@ -34,7 +26,7 @@
     }
   </script>
 </head>
-<body>
+<body class="home-rebuild">
   <a href="#mainContent" class="skip-link">跳到主要內容</a>
   <div class="grain"></div>
 
@@ -95,109 +87,82 @@
   </aside>
 
   <div class="content-wrap">
-    <section id="topPlainText" class="top-plain-hero" aria-labelledby="topHeroTitle">
-      <div class="top-hero-brandline">
-        <img src="{{ static_url('images/logo.jpg') }}" alt="团‧鐵道 LOGO" width="96" height="96" loading="eager" decoding="async" class="top-hero-logo">
-        <div class="top-hero-brandtext">
-          <h1 id="topHeroTitle" class="top-hero-title">团‧鐵道</h1>
-        </div>
-      </div>
-
-      <div class="top-hero-flipboard" aria-label="復古翻牌時刻表">
-        <p class="flipboard-label">發車看板 / Departure Board</p>
-        <div class="flipboard-head" aria-hidden="true">
-          <span>TIME</span>
-          <span>ROUTE</span>
-          <span>SERVICE</span>
-          <span>PLATFORM</span>
-        </div>
-
-        <div class="flip-row" style="--flip-delay: 0s;">
-          <span class="flip-time">06:30</span>
-          <span class="flip-cell flip-route">
-            <span class="flip-strip">
-              <span>基隆 → 臺北</span>
-              <span>松山 → 臺北</span>
-              <span>南港 → 臺北</span>
-              <span>汐止 → 臺北</span>
-            </span>
-          </span>
-          <span class="flip-cell flip-service">
-            <span class="flip-strip">
-              <span>區間車</span>
-              <span>自強號</span>
-              <span>莒光號</span>
-              <span>區間快</span>
-            </span>
-          </span>
-          <span class="flip-cell flip-platform">
-            <span class="flip-strip">
-              <span>月台 1A</span>
-              <span>月台 2B</span>
-              <span>月台 3A</span>
-              <span>月台 4C</span>
-            </span>
-          </span>
-        </div>
-
-        <div class="flip-row" style="--flip-delay: -2.4s;">
-          <span class="flip-time">14:20</span>
-          <span class="flip-cell flip-route">
-            <span class="flip-strip">
-              <span>臺中 → 彰化</span>
-              <span>彰化 → 員林</span>
-              <span>臺南 → 高雄</span>
-              <span>高雄 → 屏東</span>
-            </span>
-          </span>
-          <span class="flip-cell flip-service">
-            <span class="flip-strip">
-              <span>地方列車</span>
-              <span>區間車</span>
-              <span>莒光號</span>
-              <span>自強號</span>
-            </span>
-          </span>
-          <span class="flip-cell flip-platform">
-            <span class="flip-strip">
-              <span>月台 6A</span>
-              <span>月台 7C</span>
-              <span>月台 8A</span>
-              <span>月台 9B</span>
-            </span>
-          </span>
-        </div>
-      </div>
-
-      <div class="top-hero-schedule" aria-label="鐵道檔案時刻語彙">
-        <p class="schedule-title">行車記錄 / Transit Ledger</p>
-        <div class="schedule-ticker" aria-label="復古行車跑馬燈">
-          <div id="transitLedgerTrack" class="schedule-track"></div>
-        </div>
-      </div>
-    </section>
-
     <main id="mainContent" class="layout" tabindex="-1">
-      <section class="card" id="introSection">
-        <h2>核心理念</h2>
-        <div id="missionContent" class="mission-content">
-          <p>团‧鐵道｜連動城市與鐵道的團結。</p>
-          <p>我們是一群對公共運輸充滿熱忱的青少年，因為共同的愛好而相聚，致力讓更多人走近鐵道與公共運輸文化。</p>
+      <section class="card intro-rebuild" id="introSection">
+        <div class="rail-hero">
+          <div class="hero-stamp">
+            <span class="stamp-label">台灣公共運輸文化檔案</span>
+            <span class="stamp-line">Rail &amp; Transit Archive</span>
+          </div>
+
+          <div class="intro-head" aria-label="首頁識別區塊">
+            <img src="{{ static_url('images/logo.jpg') }}" alt="团‧鐵道 LOGO" width="78" height="78" loading="eager" decoding="async" class="intro-logo">
+            <div class="intro-identity-text">
+              <p class="intro-title">团‧鐵道</p>
+              <p class="intro-subtitle">Tuan Rail &amp; Transit Society</p>
+            </div>
+          </div>
+
+          <p class="hero-tagline">团‧鐵道｜連動城市與鐵道的團結</p>
+
+          <div class="hero-actions">
+            <a class="hero-btn" href="#historySection">探索創社史</a>
+            <a class="hero-btn ghost" href="#supportSection">加入支持</a>
+          </div>
         </div>
 
-        <div class="axis-overview" aria-label="団鐵道三主軸">
-          <article class="axis-card axis-tuan">
-            <h3>団｜團結</h3>
-            <p>以社群協作、志工實作與夥伴串連，建立能長期運作的交通文化社群。</p>
-          </article>
-          <article class="axis-card axis-rail">
-            <h3>鐵｜鐵路文化</h3>
-            <p>以創社歷程、時間軸與知識整理，深化鐵道文化的理解與討論。</p>
-          </article>
-          <article class="axis-card axis-transit">
-            <h3>道｜公共運輸</h3>
-            <p>以道路運輸與活動規劃，連結日常通勤、城市脈絡與公共參與。</p>
-          </article>
+        <div class="manifesto">
+          <div class="station-sign" aria-label="核心理念站牌">
+            <h2>核心理念</h2>
+          </div>
+
+          <div class="manifesto-grid">
+            <div class="manifesto-text">
+              <div id="missionContent" class="mission-content">
+                <div class="intro-copy">
+                  <p class="intro-welcome">哈囉大家好，歡迎來到団‧鐵道</p>
+                  <p class="intro-kicker">团‧鐵道｜連動城市與鐵道的團結</p>
+                  <p>歡迎來到「团‧鐵道」！</p>
+                  <p>我們是一群對公共運輸充滿熱忱的青少年，因為共同的愛好而相聚。</p>
+                  <p>關於「团‧鐵道」的含義，我們的名字拆解開來，代表了我們的靈魂與堅持：</p>
+                </div>
+
+                <p class="mission-lead">團結、鐵路與公路，不只是文字拆解，而是我們想把公共運輸文化，重新整理成一張可以看見方向的路網圖。</p>
+              </div>
+
+              <div class="mission-quote" aria-label="核心理念語錄">
+                <p class="mission-quote-text">每一條軌道，都是城市的脈絡；每一段公路，都是夢想的延伸。</p>
+                <div class="mission-quote-meta">
+                  <span>起點：城市脈絡</span>
+                  <span>終點：夢想延伸</span>
+                </div>
+              </div>
+
+              <div class="flip-board" aria-label="鐵道機械翻牌顯示器">
+                <div class="flip-board-head">
+                  <p class="flip-kicker">NEXT TRAIN</p>
+                  <p class="flip-title">下一班列車</p>
+                </div>
+                <div id="nextTrainBoard" class="flip-board-rows" aria-live="polite"></div>
+              </div>
+            </div>
+
+            <div class="mission-pillars" aria-label="团鐵道核心字義">
+              <p class="pillar-title">团・鐵・道</p>
+              <article class="pillar-item">
+                <span class="pillar-badge" aria-hidden="true">团</span>
+                <p>代表團結。在公共運輸的世界裡，沒有一個零件或一條路線能獨自運作。我們以團結為名，連結每一位同好。</p>
+              </article>
+              <article class="pillar-item">
+                <span class="pillar-badge" aria-hidden="true">鐵</span>
+                <p>象徵鐵路。從鋼軌的鏗鏘聲到複雜的調度，我們鑽研軌道運輸的工藝與美學。</p>
+              </article>
+              <article class="pillar-item">
+                <span class="pillar-badge" aria-hidden="true">道</span>
+                <p>涵蓋公路。無論是穿梭大街小巷的公車，還是跨城客運、捷運接駁與通勤轉乘，我們都重視每一段旅程背後的運輸價值。</p>
+              </article>
+            </div>
+          </div>
         </div>
 
         <p class="mobile-compact-note">手機版已精簡長文顯示。請使用左側導覽閱讀「創社與關鍵字」、「Q&A」、「支持我們」。</p>
@@ -278,10 +243,31 @@
       </section>
 
       <section class="card" id="historySection">
-        <h2 id="historyTitle">創社史</h2>
-        <div id="historyBody"></div>
-        <div id="keywords" class="keyword-grid"></div>
-        <div id="timeline" class="timeline"></div>
+        <div class="route-map-head">
+          <div>
+            <p class="route-kicker">Route Map</p>
+            <h2 id="historyTitle">創社史</h2>
+          </div>
+          <div class="route-legend" aria-label="路線圖圖例">
+            <span class="legend-item"><span class="legend-dot"></span>發展節點</span>
+            <span class="legend-item"><span class="legend-line"></span>沿革路徑</span>
+          </div>
+        </div>
+
+        <div class="route-map-grid">
+          <div class="route-map-story">
+            <div id="historyBody"></div>
+            <div id="keywords" class="keyword-grid route-keywords"></div>
+          </div>
+
+          <aside class="route-map-rail" aria-label="沿革路線">
+            <div class="route-rail-head">
+              <p class="route-rail-title">沿革路線</p>
+              <p class="route-rail-note">把創社故事整理成一條可以閱讀的路徑。</p>
+            </div>
+            <div id="timeline" class="timeline route-timeline"></div>
+          </aside>
+        </div>
       </section>
 
       <section class="card" id="meaningSection">

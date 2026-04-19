@@ -6,7 +6,7 @@
  */
 
 import apiClient from './api/api-client.js';
-import { SECTION_IDS, TINY_TIPS, DEFAULT_SCHEDULE } from './config.js';
+import { SECTION_IDS, TINY_TIPS } from './config.js';
 import * as domUtils from './modules/dom-utils.js';
 import * as renderer from './modules/renderer.js';
 import * as drawer from './modules/drawer.js';
@@ -20,7 +20,12 @@ import * as episode from './modules/episode.js';
 let episodeIndex = [];
 let currentSlug = '';
 let axisMeta = {};
-let stationLedger = [];
+let stationCache = [];
+let trainBoardIntervalId = null;
+
+const TRAIN_VIA_OPTIONS = ['南迴', '北迴', '山線', '海線'];
+const TRAIN_TYPES = ['區間', '自強'];
+const FALLBACK_STATIONS = ['臺北', '臺中', '高雄', '花蓮', '屏東'];
 
 // ============================================
 // 初始化函數
@@ -39,33 +44,32 @@ async function init() {
     episodeIndex = meta.episodes;
     axisMeta = meta.axes || {};
 
-    // 3. 並行載入成員、活動和車站數據
+    // 3. 並行載入成員和活動數據
     const [members, events, stations] = await Promise.all([
       loadMembers(),
       loadEvents(),
       loadStations(),
     ]);
 
-    // 4. 構建車站時間表
-    stationLedger = renderer.buildStationLedger(stations, DEFAULT_SCHEDULE);
-    renderSchedule();
-
-    // 5. 渲染成員和活動卡片
+    // 4. 渲染成員和活動卡片
     renderMembers(members);
     renderEvents(events);
+    stationCache = stations;
+    renderNextTrainBoard(stationCache, false);
+    startTrainBoardRefresh();
 
-    // 6. 載入初始章節
+    // 5. 載入初始章節
     const slug = episode.resolveInitialSlug(episodeIndex);
     await loadAndRenderEpisode(slug, false);
 
-    // 7. 設置初始區域
+    // 6. 設置初始區域
     const initialSection = episode.parseHashSectionId(SECTION_IDS) || 'introSection';
     drawer.setActiveSection(SECTION_IDS, initialSection, !!window.location.hash);
 
-    // 8. 監聽哈希變化
+    // 7. 監聽哈希變化
     setupHashListener();
 
-    // 9. 隱藏加載器
+    // 8. 隱藏加載器
     scroll.hideLoader();
   } catch (err) {
     console.error('應用程序初始化錯誤:', err);
@@ -154,7 +158,7 @@ async function loadEvents() {
 }
 
 /**
- * 載入車站
+ * 載入車站資料
  */
 async function loadStations() {
   try {
@@ -227,11 +231,117 @@ function renderEvents(events) {
 }
 
 /**
- * 渲染時間表
+ * 渲染翻牌顯示器
  */
-function renderSchedule() {
-  const track = domUtils.getElement('#transitLedgerTrack');
-  renderer.renderTransitLedger(track, stationLedger, DEFAULT_SCHEDULE);
+function renderNextTrainBoard(stations, animate) {
+  const container = domUtils.getElement('#nextTrainBoard');
+  if (!container) {
+    return;
+  }
+
+  domUtils.clearElement(container);
+  const rows = buildNextTrainRows(stations, 2);
+  rows.forEach((row, index) => {
+    const item = document.createElement('div');
+    item.className = 'flip-row';
+    item.setAttribute('data-row', String(index + 1));
+    item.appendChild(createFlipPair('開往', row.destination));
+    item.appendChild(createFlipPair('車次', row.trainNo));
+    item.appendChild(createFlipPair('經由', row.via));
+    item.appendChild(createFlipPair('車種', row.type));
+    item.appendChild(createFlipPair('開車時刻', row.time));
+    container.appendChild(item);
+  });
+
+  if (animate) {
+    triggerFlipAnimation(container);
+  }
+}
+
+function startTrainBoardRefresh() {
+  if (trainBoardIntervalId) {
+    window.clearInterval(trainBoardIntervalId);
+  }
+
+  trainBoardIntervalId = window.setInterval(() => {
+    renderNextTrainBoard(stationCache, true);
+  }, 3000);
+}
+
+function triggerFlipAnimation(container) {
+  const rows = container.querySelectorAll('.flip-row');
+  if (!rows.length) {
+    return;
+  }
+
+  window.requestAnimationFrame(() => {
+    rows.forEach((row) => row.classList.add('is-flipping'));
+    window.setTimeout(() => {
+      rows.forEach((row) => row.classList.remove('is-flipping'));
+    }, 650);
+  });
+}
+
+function createFlipPair(label, value) {
+  const pair = document.createElement('span');
+  pair.className = 'flip-pair';
+
+  const labelNode = document.createElement('span');
+  labelNode.className = 'flip-label';
+  labelNode.textContent = label;
+
+  const valueNode = document.createElement('span');
+  valueNode.className = 'flip-value';
+  valueNode.textContent = value;
+
+  pair.append(labelNode, valueNode);
+  return pair;
+}
+
+function buildNextTrainRows(stations, count) {
+  const names = Array.from(
+    new Set((stations || []).map((item) => item.stationName || item.name).filter(Boolean))
+  );
+  const pool = names.length ? names : FALLBACK_STATIONS;
+  const picks = [];
+
+  while (picks.length < count && picks.length < pool.length) {
+    const candidate = pool[Math.floor(Math.random() * pool.length)];
+    if (!picks.includes(candidate)) {
+      picks.push(candidate);
+    }
+  }
+
+  while (picks.length < count) {
+    picks.push(pool[Math.floor(Math.random() * pool.length)]);
+  }
+
+  return picks.map((destination, index) =>
+    buildTrainRow(destination, 10 + index * 12)
+  );
+}
+
+function buildTrainRow(destination, offsetMinutes) {
+  const via = TRAIN_VIA_OPTIONS[Math.floor(Math.random() * TRAIN_VIA_OPTIONS.length)];
+  const type = TRAIN_TYPES[Math.floor(Math.random() * TRAIN_TYPES.length)];
+  const trainNo = String(Math.floor(100 + Math.random() * 900));
+  const time = formatTime(new Date(Date.now() + offsetMinutes * 60000));
+
+  return {
+    destination,
+    trainNo,
+    via,
+    type,
+    time,
+  };
+}
+
+function formatTime(date) {
+  return date.toLocaleTimeString('zh-TW', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
 }
 
 // ============================================

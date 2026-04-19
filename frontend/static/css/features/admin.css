@@ -2,15 +2,15 @@
 .admin-logs-card {
   max-width: 980px;
   margin: 0 auto;
-  background: linear-gradient(180deg, #fffefb 0%, #f6eee1 100%);
-  border: 1px solid #cdb79d;
+  background: var(--surface-grad);
+  border: 1px solid var(--line);
   border-radius: var(--radius-2xl);
   padding: 22px;
 }
 
 /* 後台標題 */
 .admin-headline {
-  border-bottom: 1px solid #decebb;
+  border-bottom: 1px solid var(--line);
   margin-bottom: 12px;
   padding-bottom: 10px;
 }
@@ -24,10 +24,10 @@
 }
 
 .admin-panel-item {
-  border: 1px solid #d6c4af;
+  border: 1px solid var(--line);
   border-radius: var(--radius-xl);
   padding: 10px;
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--surface-elevated-grad);
 }
 
 .admin-panel-item h2 {
@@ -65,10 +65,10 @@
 
 .admin-status {
   margin-top: 10px;
-  border: 1px dashed #cfb89b;
+  border: 1px dashed rgba(29, 36, 40, 0.2);
   border-radius: var(--radius-lg);
   padding: 8px 10px;
-  background: rgba(255, 255, 255, 0.74);
+  background: var(--surface-glass);
 }
 
 /* 日誌表格 */
@@ -77,7 +77,7 @@
   border: 1px solid var(--line);
   border-radius: var(--radius-xl);
   overflow: auto;
-  background: #fff;
+  background: var(--paper-elevated);
 }
 
 .log-table {
@@ -88,7 +88,7 @@
 
 .log-table th,
 .log-table td {
-  border-bottom: 1px solid #eadfce;
+  border-bottom: 1px solid rgba(29, 36, 40, 0.1);
   padding: 9px 10px;
   text-align: left;
   vertical-align: top;
@@ -96,8 +96,8 @@
 }
 
 .log-table th {
-  background: #f9f2e7;
-  color: #4f3a2a;
+  background: var(--surface-elevated-grad);
+  color: var(--rail);
   font-weight: var(--font-weight-bold);
   position: sticky;
   top: 0;
@@ -106,7 +106,7 @@
 /* 日誌等級標籤 */
 .log-level {
   display: inline-block;
-  border: 1px solid #ccb59a;
+  border: 1px solid var(--line);
   border-radius: var(--radius-full);
   padding: 2px 8px;
   font-size: 0.74rem;

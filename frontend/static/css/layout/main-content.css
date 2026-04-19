@@ -1,22 +1,22 @@
 /* 主要內容區包裝 */
 .content-wrap {
-  margin-left: 286px;
+  margin-left: 280px;
 }
 
 /* 頁面佈局 */
 .layout {
-  max-width: 940px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 0 20px 56px;
+  padding: 32px 36px 80px;
   display: grid;
-  gap: 20px;
+  gap: 24px;
 }
 
 /* 頂部欄 */
 .site-topbar {
-  max-width: 940px;
+  max-width: 1020px;
   margin: 0 auto;
-  padding: 8px 20px 4px;
+  padding: 12px 24px 6px;
 }
 
 .site-topbar-subpage {
@@ -34,9 +34,9 @@
   width: 44px;
   height: 44px;
   border-radius: var(--radius-lg);
-  border: 1px solid #c8b49a;
+  border: 1px solid var(--line);
   object-fit: cover;
-  background: #fff;
+  background: var(--paper-elevated);
 }
 
 .site-top-name {
@@ -44,7 +44,7 @@
   font-family: var(--font-serif-tc);
   font-size: 1.2rem;
   font-weight: var(--font-weight-bold);
-  color: #2e2016;
+  color: var(--ink);
 }
 
 .site-top-quote {
@@ -73,10 +73,10 @@
   width: 38px;
   height: 38px;
   border-radius: var(--radius-lg);
-  border: 1px solid #c8b49a;
-  background: #fff;
+  border: 1px solid var(--line);
+  background: var(--paper);
   object-fit: cover;
-  box-shadow: 0 6px 12px rgba(70, 56, 42, 0.12);
+  box-shadow: var(--shadow-sm);
 }
 
 .subpage-brand-name {
@@ -84,14 +84,14 @@
   font-size: 1.12rem;
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.04em;
-  color: #2e2016;
+  color: var(--ink);
 }
 
 /* 子頁面主內容 */
 .subpage-body {
   min-height: 100vh;
-  background: linear-gradient(180deg, #fdfcf9 0%, var(--bg) 100%);
-  padding: 22px;
+  background: var(--bg-grad);
+  padding: 28px;
 }
 
 .subpage-main {
@@ -105,18 +105,17 @@
   right: 16px;
   bottom: 18px;
   z-index: var(--z-back-to-top);
-  border: 1px solid #c2af97;
+  border: 1px solid var(--line);
   border-radius: var(--radius-full);
   padding: 8px 14px;
-  background: rgba(255, 255, 255, 0.92);
-  color: #3f2d1f;
+  background: var(--surface-glass);
+  color: var(--ink);
   font-weight: var(--font-weight-bold);
   opacity: 0;
   pointer-events: none;
   transform: translateY(10px);
   transition: opacity var(--transition-normal) ease, transform var(--transition-normal) ease;
   cursor: pointer;
-  border: none;
 }
 
 .back-to-top.show {
@@ -126,7 +125,7 @@
 }
 
 .back-to-top:hover {
-  background: rgba(255, 255, 255, 1);
+  background: var(--surface-grad);
 }
 
 /* 固定管理員入口 */
@@ -136,20 +135,20 @@
   bottom: 14px;
   z-index: var(--z-admin-entry);
   text-decoration: none;
-  color: #2f2218;
-  border: 1px solid #c8b39a;
-  background: rgba(255, 255, 255, 0.94);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  background: var(--surface-glass);
   border-radius: var(--radius-full);
   padding: 8px 12px;
   font-size: 0.86rem;
   font-weight: var(--font-weight-bold);
-  box-shadow: 0 8px 16px rgba(129, 96, 61, 0.2);
+  box-shadow: var(--shadow-sm);
   transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
 }
 
 .admin-entry-fixed:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 20px rgba(129, 96, 61, 0.26);
+  box-shadow: var(--shadow-md);
 }
 
 /* 實時時鐘 */
@@ -159,8 +158,8 @@
   width: fit-content;
   min-width: 248px;
   text-align: center;
-  border: 1px solid #ccb59a;
-  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--line);
+  background: var(--surface-glass);
   border-radius: var(--radius-lg);
   padding: 7px 12px;
   color: var(--archive-blue);

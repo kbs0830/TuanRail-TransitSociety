@@ -40,8 +40,17 @@
 
   .top-plain-hero {
     margin: 62px 14px 12px;
-    padding: 18px 12px 14px;
+    padding: 14px;
     border-radius: 14px;
+  }
+
+  .top-hero-frame {
+    padding: 12px;
+  }
+
+  .hero-era {
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
   }
 
   .top-hero-brandline {
@@ -56,52 +65,39 @@
   }
 
   .top-hero-title {
-    font-size: clamp(1.45rem, 8vw, 1.9rem);
+    font-size: clamp(1.5rem, 8vw, 2rem);
   }
 
-  .top-hero-flipboard {
+  .top-hero-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .top-hero-motto {
+    font-size: 0.8rem;
+  }
+
+  .top-hero-sealrow {
+    margin-top: 10px;
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .seal-chip {
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    padding: 5px 8px;
+  }
+
+  .top-hero-ledger {
     margin-top: 10px;
     padding: 8px;
   }
 
-  .flipboard-label {
-    font-size: 0.68rem;
-  }
-
-  .flipboard-head,
-  .flip-row {
-    grid-template-columns: 64px 1.2fr 0.92fr 86px;
+  .ledger-head {
+    grid-template-columns: 66px 1.4fr 0.9fr;
     gap: 6px;
-  }
-
-  .flipboard-head {
-    font-size: 0.58rem;
-  }
-
-  .flip-time {
-    font-size: 0.7rem;
-    padding: 5px 4px;
-  }
-
-  .flip-cell {
-    --flip-step: 1.95em;
-    font-size: 0.68rem;
-    padding: 0 7px;
-    height: var(--flip-step);
-    line-height: var(--flip-step);
-  }
-
-  .flip-strip span {
-    height: var(--flip-step);
-  }
-
-  .top-hero-schedule {
-    margin-top: 10px;
-    padding: 8px 9px 6px;
-  }
-
-  .schedule-title {
-    font-size: 0.72rem;
+    font-size: 0.56rem;
+    letter-spacing: 0.11em;
   }
 
   .schedule-ticker {
@@ -114,7 +110,48 @@
   }
 
   .schedule-item {
-    font-size: 0.74rem;
+    grid-template-columns: 66px 1.4fr 0.9fr;
+    min-width: 288px;
+    gap: 6px;
+    font-size: 0.67rem;
+    padding-right: 8px;
+  }
+
+  .schedule-item small {
+    font-size: 0.62rem;
+  }
+
+  .intro-identity {
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+  }
+
+  .intro-logo {
+    width: 58px;
+    height: 58px;
+    border-radius: 10px;
+  }
+
+  .intro-title {
+    font-size: 1.22rem;
+  }
+
+  .intro-subtitle {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+
+  .top-hero-ledger {
+    padding: 6px;
+    margin-bottom: 12px;
+  }
+
+  .ledger-head {
+    grid-template-columns: 66px 1.4fr 0.9fr;
+    gap: 6px;
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
   }
 
   .subpage-brandbar {
@@ -220,9 +257,9 @@
   }
 
   .card h2 {
-    font-size: 1rem;
-    padding: 4px 10px;
-    margin-bottom: 14px;
+    font-size: 1.06rem;
+    padding: 4px 0;
+    margin-bottom: 16px;
   }
 
   .org-group-item {
@@ -230,8 +267,8 @@
   }
 
   .anchor-link.active {
-    background: #eef2f5;
-    border-color: #c2ced9;
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(29, 36, 40, 0.24);
   }
 
   .announcement-article h3 {
@@ -239,13 +276,13 @@
   }
 
   .qa-item {
-    border-left-color: #9fb2c3;
+    border-left-color: rgba(29, 36, 40, 0.32);
   }
 
   .qa-item h5,
   .announcement-cta p,
   .symbols {
-    color: #4e5c67;
+    color: var(--ink-soft);
   }
 
   .announcement-article {

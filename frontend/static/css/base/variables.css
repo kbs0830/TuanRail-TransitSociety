@@ -1,21 +1,36 @@
 /* 配色系統 */
 :root {
   /* 主色調 */
-  --bg: #f2efe8;
-  --paper: #fffdfa;
-  --ink: #1f1a16;
-  --ink-soft: #5a5045;
-  --line: #d0c4b3;
+  --bg: #f3f1ec;
+  --paper: #fbfaf7;
+  --paper-elevated: #ffffff;
+  --ink: #1d2428;
+  --ink-soft: #4d5963;
+  --line: rgba(29, 36, 40, 0.12);
+  --bg-grad: linear-gradient(135deg, #f9f7f2 0%, #f2ede6 45%, #e9e3db 100%);
+  --surface-grad: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 241, 235, 0.96) 100%);
+  --surface-elevated-grad: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 245, 240, 0.95) 100%);
+  --surface-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(245, 242, 237, 0.72) 100%);
   
   /* 強調色 */
-  --accent: #7c3b2e;
-  --accent-soft: #ece3d6;
+  --accent: #c58b2a;
+  --accent-strong: #b6781f;
+  --accent-soft: #f2e6c7;
+  --accent-grad: linear-gradient(135deg, #e3b45a 0%, #c58b2a 45%, #b6781f 100%);
+  --accent-grad-soft: linear-gradient(135deg, #f1d9a3 0%, #d39a3a 100%);
   
   /* 特殊色 */
-  --paper-age: #f3ecdf;
-  --sepia-ink: #644a36;
-  --archive-blue: #2f4b5a;
-  --seal-red: #8a3a2a;
+  --paper-age: #efe8db;
+  --sepia-ink: #5b4b42;
+  --archive-blue: #2a4656;
+  --seal-red: #a3533d;
+  --rail: #2a3942;
+  --rail-grad: linear-gradient(135deg, #2a4656 0%, #1f2d36 100%);
+  --rail-soft: rgba(42, 57, 66, 0.24);
+  --track: rgba(29, 36, 40, 0.18);
+  --fog: rgba(245, 242, 237, 0.78);
+  --glow: rgba(197, 139, 42, 0.22);
+  --accent-glow: rgba(197, 139, 42, 0.28);
 }
 
 /* 字體堆棧 */
@@ -23,6 +38,7 @@
   --font-sans-tc: "Noto Sans TC", sans-serif;
   --font-serif-tc: "Noto Serif TC", serif;
   --font-garamond: "Cormorant Garamond", serif;
+  --font-display: "Space Grotesk", "Noto Sans TC", sans-serif;
   
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -56,11 +72,11 @@
 
 /* 陰影系統 */
 :root {
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 8px 18px rgba(92, 81, 70, 0.05);
-  --shadow-lg: 0 12px 26px rgba(92, 81, 70, 0.08);
-  --shadow-xl: 0 12px 30px rgba(0, 0, 0, 0.12);
-  --shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --shadow-sm: 0 10px 24px -18px rgba(29, 36, 40, 0.2);
+  --shadow-md: 0 18px 36px -22px rgba(29, 36, 40, 0.22);
+  --shadow-lg: 0 24px 56px -28px rgba(29, 36, 40, 0.25);
+  --shadow-xl: 0 30px 70px -32px rgba(29, 36, 40, 0.3);
+  --shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 /* Z-index 層級 */

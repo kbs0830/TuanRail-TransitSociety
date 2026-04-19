@@ -14,10 +14,11 @@ body {
   font-family: var(--font-sans-tc);
   color: var(--ink);
   background:
-    radial-gradient(circle at 8% 14%, rgba(255, 255, 255, 0.9) 0%, transparent 32%),
-    radial-gradient(circle at 92% 84%, rgba(226, 213, 194, 0.46) 0%, transparent 34%),
-    linear-gradient(180deg, #faf7f0 0%, var(--bg) 100%);
-  line-height: 1.8;
+    radial-gradient(circle at 12% 8%, rgba(197, 139, 42, 0.16), transparent 46%),
+    radial-gradient(circle at 86% 2%, rgba(42, 57, 66, 0.16), transparent 45%),
+    var(--bg-grad);
+  background-size: auto, auto, auto;
+  line-height: 1.74;
   overflow-x: hidden;
 }
 
@@ -27,7 +28,7 @@ body.sidebar-open {
 
 /* 無障礙焦點可視化 */
 :focus-visible {
-  outline: 3px solid #bd5b49;
+  outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -36,8 +37,8 @@ body.sidebar-open {
   position: absolute;
   left: 10px;
   top: -44px;
-  background: #2a2119;
-  color: #fff;
+  background: var(--ink);
+  color: var(--paper);
   padding: 8px 12px;
   border-radius: 8px;
   z-index: var(--z-base);
@@ -53,20 +54,20 @@ body.sidebar-open {
   pointer-events: none;
   position: fixed;
   inset: 0;
-  opacity: 0.02;
+  opacity: 0.03;
   background-image: repeating-linear-gradient(
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.5) 2px,
-    rgba(0, 0, 0, 0.5) 4px
+    rgba(29, 36, 40, 0.12) 2px,
+    rgba(29, 36, 40, 0.12) 4px
   ),
   repeating-linear-gradient(
     90deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.5) 2px,
-    rgba(0, 0, 0, 0.5) 4px
+    rgba(29, 36, 40, 0.12) 2px,
+    rgba(29, 36, 40, 0.12) 4px
   );
 }
 

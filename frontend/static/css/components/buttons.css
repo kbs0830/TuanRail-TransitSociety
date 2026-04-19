@@ -3,19 +3,35 @@
   display: inline-block;
   margin-top: 8px;
   text-decoration: none;
-  color: #fff;
-  background: var(--accent);
+  color: var(--paper);
+  background: var(--accent-grad);
   padding: 10px 14px;
   border-radius: var(--radius-lg);
   font-weight: var(--font-weight-bold);
   transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
   border: none;
   cursor: pointer;
+  box-shadow: 0 12px 24px -16px rgba(185, 123, 31, 0.65);
+  position: relative;
+  overflow: hidden;
+}
+
+.fb-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.35), transparent 60%);
+  opacity: 0;
+  transition: opacity var(--transition-fast) ease;
 }
 
 .fb-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(157, 46, 47, 0.28);
+  box-shadow: 0 18px 28px -18px rgba(185, 123, 31, 0.65);
+}
+
+.fb-link:hover::after {
+  opacity: 1;
 }
 
 /* 幽靈按鈕 */
@@ -24,18 +40,18 @@
   margin-top: 8px;
   text-decoration: none;
   color: var(--ink);
-  border: 1px solid #c8b39a;
+  border: 1px solid var(--line);
   padding: 10px 14px;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.74);
+  background: var(--surface-elevated-grad);
   transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease, background-color var(--transition-fast) ease;
   cursor: pointer;
 }
 
 .ghost-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(129, 96, 61, 0.2);
-  background: #fff;
+  box-shadow: var(--shadow-sm);
+  background: var(--surface-grad);
 }
 
 /* 章節項目按鈕 */
@@ -45,21 +61,21 @@
   text-align: left;
   padding: 10px 12px;
   margin: 8px 0;
-  border: 1px solid transparent;
-  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(29, 36, 40, 0.1);
+  background: var(--surface-elevated-grad);
   border-radius: var(--radius-lg);
   cursor: pointer;
   transition: all var(--transition-fast) ease;
 }
 
 .episode-item:hover {
-  background: #f8f2e8;
-  border-color: #d0bea8;
+  background: var(--surface-grad);
+  border-color: rgba(29, 36, 40, 0.2);
 }
 
 .episode-item.active {
-  background: #efe8dc;
-  border-color: #c7b7a1;
+  background: var(--surface-grad);
+  border-color: rgba(29, 36, 40, 0.24);
   font-weight: var(--font-weight-bold);
 }
 

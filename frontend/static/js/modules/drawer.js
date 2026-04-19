@@ -37,6 +37,12 @@ export function bindDrawer(sectionIds, setActiveSection, closeDrawer) {
       closeDrawer();
     });
   });
+
+  addEventListener(window, 'keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeDrawer();
+    }
+  });
 }
 
 /**
