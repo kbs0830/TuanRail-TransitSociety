@@ -1,0 +1,114 @@
+﻿/* ??璅?? */
+.fb-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  text-decoration: none;
+  color: var(--paper);
+  background: var(--accent-grad);
+  padding: 12px 18px;
+  min-height: var(--tap-min);
+  border-radius: var(--radius-xl);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  font-size: 0.98rem;
+  letter-spacing: 0.04em;
+  transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.fb-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.35), transparent 60%);
+  opacity: 0;
+  transition: opacity var(--transition-fast) ease;
+}
+
+.fb-link:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.fb-link:hover::after {
+  opacity: 1;
+}
+
+/* 撟賡??? */
+.ghost-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  padding: 12px 18px;
+  min-height: var(--tap-min);
+  border-radius: var(--radius-xl);
+  background: var(--surface-glass);
+  text-align: center;
+  font-size: 0.98rem;
+  letter-spacing: 0.03em;
+  transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease, background-color var(--transition-fast) ease;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.ghost-link:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+  background: var(--surface-grad);
+}
+
+/* 蝡???? */
+.episode-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  min-height: var(--tap-min);
+  margin: 8px 0;
+  border: 1px solid var(--line);
+  background: var(--surface-glass);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+}
+
+.episode-item:hover {
+  background: var(--surface-grad);
+  border-color: rgba(31, 54, 72, 0.18);
+}
+
+.episode-item.active {
+  background: var(--surface-grad);
+  border-color: rgba(31, 54, 72, 0.22);
+  font-weight: var(--font-weight-bold);
+}
+
+.episode-item.draft {
+  opacity: 0.6;
+}
+
+.episode-item strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.episode-item small {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}

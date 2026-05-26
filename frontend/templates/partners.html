@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}合作夥伴 | 团‧鐵道{% endblock %}
+{% block meta_description %}团‧鐵道贊助商與合作夥伴資訊頁。{% endblock %}
+{% block body_class %}subpage-body{% endblock %}
+{% block content %}
+  <main id="mainContent" class="subpage-main" tabindex="-1">
+    <div class="subpage-brandbar">
+      <a class="subpage-brandlink" href="/">
+        <img src="{{ static_url('images/logo.jpg') }}" alt="团‧鐵道" class="subpage-brand-logo" width="38" height="38" loading="eager" decoding="async">
+        <span class="subpage-brand-name">团‧鐵道</span>
+      </a>
+    </div>
+
+    <section class="subpage-card">
+      <h1>合作夥伴</h1>
+      <p>此頁已建立為第三階段入口，將展示合作單位與支持夥伴。</p>
+      <div class="subpage-grid">
+        <article class="subpage-item">
+          <h2>合作單位區（預留）</h2>
+          <p>顯示單位名稱、連結與合作類型。</p>
+        </article>
+        <article class="subpage-item">
+          <h2>贊助等級區（預留）</h2>
+          <p>顯示 Logo、支持方案與致謝資訊。</p>
+        </article>
+      </div>
+      <p class="subpage-actions">
+        <a class="ghost-link" href="/" onclick="if (history.length > 1) { history.back(); return false; }">返回上一頁</a>
+        <a class="fb-link" href="/">返回首頁</a>
+      </p>
+    </section>
+  </main>
+  <footer class="site-footer subpage-footer">
+    <p class="copyright-note">© 2026 網頁工程師 kbs0830. 保留所有權利。</p>
+  </footer>
+{% endblock %}

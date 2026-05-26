@@ -1,0 +1,124 @@
+/* 標題樣式 */
+h2 {
+  font-family: var(--font-serif-tc);
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  margin: 0 0 18px;
+  display: block;
+  position: relative;
+  padding: 0 0 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  letter-spacing: 0.06em;
+  text-transform: none;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 40px;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+h3 {
+  font-size: 1.08rem;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--sepia-ink);
+}
+
+h5 {
+  font-size: 0.98rem;
+  font-weight: var(--font-weight-bold);
+}
+
+/* 段落樣式 */
+p {
+  margin: 0 0 8px;
+  max-width: 70ch;
+  line-height: 1.7;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* 列表 */
+ul,
+ol {
+  margin: 0;
+  padding: 0 0 0 1.5em;
+}
+
+li {
+  margin: 0 0 8px;
+  line-height: 1.6;
+}
+
+/* 連結 */
+a {
+  color: var(--archive-blue);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: color var(--transition-fast) ease, opacity var(--transition-fast) ease;
+}
+
+a:hover {
+  opacity: 0.9;
+  color: var(--accent-strong);
+}
+
+.hero-quote {
+  margin: 0;
+  color: var(--ink-soft);
+  font-family: var(--font-garamond);
+  font-size: clamp(0.9rem, 1.45vw, 1.02rem);
+  line-height: 1.74;
+}
+
+/* 標籤和徽章 */
+.hero-kicker {
+  display: inline-block;
+  margin: 0;
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  letter-spacing: 0.1em;
+  font-size: 0.74rem;
+  color: var(--rail);
+  background: var(--fog);
+}
+
+.axis-badge {
+  display: inline-block;
+  margin-left: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  padding: 1px 8px;
+  font-size: 0.72rem;
+  color: var(--sepia-ink);
+  background: var(--fog);
+}
+
+/* 小文本 */
+small {
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+}
+
+/* 符號 */
+.symbols {
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  color: var(--sepia-ink);
+}

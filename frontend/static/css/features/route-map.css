@@ -1,0 +1,107 @@
+﻿/* Homepage rebuild v6: Route map section */
+
+.home-rebuild .route-map-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.home-rebuild .route-kicker {
+  margin: 0 0 6px;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+}
+
+.home-rebuild .route-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+
+.home-rebuild .legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-elevated-grad);
+}
+
+.home-rebuild .legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.home-rebuild .legend-line {
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(29, 36, 40, 0.4);
+}
+
+.home-rebuild .route-map-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.6fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.home-rebuild .route-map-story {
+  display: grid;
+  gap: 20px;
+}
+
+.home-rebuild .route-map-rail {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  background: var(--surface-glass);
+  box-shadow: var(--shadow-sm);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.home-rebuild .route-rail-head {
+  margin-bottom: 12px;
+}
+
+.home-rebuild .route-rail-title {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-family: var(--font-display);
+}
+
+.home-rebuild .route-rail-note {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.home-rebuild .route-timeline {
+  margin-top: 10px;
+}
+
+.home-rebuild .route-keywords .keyword-item {
+  padding: 18px;
+}
+
+@media (max-width: 1024px) {
+  .home-rebuild .route-map-grid {
+    grid-template-columns: 1fr;
+  }
+}

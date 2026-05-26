@@ -1,0 +1,692 @@
+/* Homepage rebuild v8: Hero section & manifesto — 暗夜鐵道 */
+
+.home-rebuild .rail-hero {
+  position: relative;
+  display: grid;
+  gap: 26px;
+  padding: 40px 44px;
+  border: 1px solid rgba(61, 130, 255, 0.26);
+  border-radius: 20px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0px, transparent 3px, rgba(61,130,255,0.014) 3px, rgba(61,130,255,0.014) 4px),
+    radial-gradient(ellipse at 100% 0%, rgba(61, 130, 255, 0.22), transparent 52%),
+    radial-gradient(ellipse at 0% 100%, rgba(255, 122, 42, 0.12), transparent 44%),
+    radial-gradient(ellipse at 50% 50%, rgba(0, 212, 255, 0.03), transparent 65%),
+    linear-gradient(135deg, rgba(14, 18, 30, 0.98) 0%, rgba(10, 14, 22, 0.97) 100%);
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 0 1px rgba(61, 130, 255, 0.1),
+    0 24px 80px rgba(0, 0, 0, 0.6),
+    inset 0 0 100px rgba(61, 130, 255, 0.03);
+}
+
+.home-rebuild .rail-hero::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.home-rebuild .rail-hero::after {
+  content: "";
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  bottom: 20px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(61, 130, 255, 0.3), transparent);
+  opacity: 0.5;
+  animation: railSweep 8s ease-in-out infinite;
+}
+
+.home-rebuild .rail-hero > * {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: fadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.home-rebuild .rail-hero > *:nth-child(1) { animation-delay: 0.05s; }
+.home-rebuild .rail-hero > *:nth-child(2) { animation-delay: 0.13s; }
+.home-rebuild .rail-hero > *:nth-child(3) { animation-delay: 0.22s; }
+.home-rebuild .rail-hero > *:nth-child(4) { animation-delay: 0.31s; }
+
+/* ── Stamp ──────────────────────────────────── */
+.home-rebuild .hero-stamp {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 0.73rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.home-rebuild .stamp-type {
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: rgba(61, 130, 255, 0.5);
+  text-transform: uppercase;
+}
+
+.home-rebuild .stamp-label {
+  border: 1px solid rgba(61, 130, 255, 0.3);
+  border-radius: 999px;
+  padding: 4px 14px;
+  background: rgba(61, 130, 255, 0.1);
+  color: var(--archive-blue);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.12em;
+}
+
+/* ── Identity ───────────────────────────────── */
+.home-rebuild .intro-head {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.home-rebuild .intro-logo {
+  width: 108px;
+  height: 108px;
+  border-radius: 20px;
+  border: 1px solid rgba(61, 130, 255, 0.25);
+  object-fit: cover;
+  background: var(--paper-elevated);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    0 0 0 4px rgba(61, 130, 255, 0.12),
+    0 0 40px rgba(61, 130, 255, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.home-rebuild .intro-logo:hover {
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    0 0 0 6px rgba(61, 130, 255, 0.22),
+    0 0 60px rgba(61, 130, 255, 0.18);
+  transform: translateY(-4px) scale(1.03);
+}
+
+.home-rebuild .intro-title {
+  margin: 0;
+  font-family: var(--font-serif-tc);
+  font-size: clamp(4rem, 7.5vw, 9rem);
+  letter-spacing: 0.1em;
+  line-height: 1.0;
+  background: linear-gradient(135deg, #ffffff 0%, #5ab5ff 35%, var(--amber) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--ink);
+  filter: drop-shadow(0 0 28px rgba(90, 181, 255, 0.52));
+}
+
+.home-rebuild .intro-subtitle {
+  margin: 10px 0 0;
+  font-family: var(--font-display);
+  color: var(--archive-blue);
+  letter-spacing: 0.24em;
+  font-size: 1.02rem;
+  text-transform: uppercase;
+}
+
+.home-rebuild .hero-station-code {
+  margin: 6px 0 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.34em;
+  color: rgba(61, 130, 255, 0.5);
+  text-transform: uppercase;
+}
+
+/* ── Tagline & Actions ──────────────────────── */
+.home-rebuild .hero-tagline {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.07em;
+  font-family: var(--font-display);
+  text-shadow: 0 0 30px rgba(232, 236, 247, 0.2);
+}
+
+.home-rebuild .hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.home-rebuild .hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: var(--tap-min);
+  padding: 16px 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(61, 130, 255, 0.6);
+  background: var(--accent-grad);
+  color: #fff;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+  font-family: var(--font-display);
+  font-size: 1.06rem;
+  text-decoration: none;
+  box-shadow: 0 4px 24px rgba(61, 130, 255, 0.45), 0 0 0 1px rgba(61, 130, 255, 0.22), 0 0 50px rgba(61, 130, 255, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-rebuild .hero-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 44px rgba(61, 130, 255, 0.55), 0 0 0 1px rgba(61, 130, 255, 0.35), 0 0 80px rgba(61, 130, 255, 0.2);
+  text-decoration: none;
+  opacity: 1;
+}
+
+.home-rebuild .hero-btn.ghost {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.home-rebuild .hero-btn.ghost:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Manifesto ──────────────────────────────── */
+.home-rebuild .manifesto {
+  display: grid;
+  gap: 28px;
+}
+
+.home-rebuild .manifesto-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.home-rebuild .manifesto-text {
+  display: grid;
+  gap: 22px;
+}
+
+/* ── Station Sign ───────────────────────────── */
+.home-rebuild .station-sign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 20px 32px;
+  border: 1px solid rgba(240, 168, 48, 0.22);
+  border-radius: 18px;
+  background: var(--solari-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-rebuild .station-sign::before,
+.home-rebuild .station-sign::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: var(--amber-dim);
+  box-shadow: 0 0 0 2px rgba(240, 168, 48, 0.2);
+}
+
+.home-rebuild .station-sign::before { left: 14px; }
+.home-rebuild .station-sign::after  { right: 14px; }
+
+.home-rebuild .station-sign h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-align: center;
+  font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+  letter-spacing: 0.2em;
+  font-family: var(--font-serif-tc);
+  color: var(--amber);
+  text-shadow: 0 0 24px var(--amber-glow);
+}
+
+.home-rebuild .station-sign h2::after {
+  display: none;
+}
+
+/* ── Mission content ────────────────────────── */
+.home-rebuild .mission-content {
+  max-width: 66ch;
+}
+
+.home-rebuild .mission-content p {
+  margin: 0 0 14px;
+  line-height: 1.86;
+  color: var(--ink-soft);
+}
+
+.home-rebuild .intro-copy {
+  display: grid;
+  gap: 8px;
+}
+
+.home-rebuild .intro-welcome {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.14rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.08em;
+}
+
+.home-rebuild .intro-kicker {
+  margin: 0;
+  color: var(--archive-blue);
+  font-size: 0.88rem;
+  letter-spacing: 0.18em;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+}
+
+.home-rebuild .mission-lead {
+  margin: 4px 0 0;
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  line-height: 1.9;
+}
+
+/* ── Mission quote ──────────────────────────── */
+.home-rebuild .mission-quote {
+  display: grid;
+  gap: 10px;
+  padding: 22px 24px 22px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 3px solid var(--accent);
+  border-radius: 2px 18px 18px 2px;
+  background: rgba(14, 18, 30, 0.8);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(61, 130, 255, 0.05);
+}
+
+.home-rebuild .mission-quote-text {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-serif-tc);
+  font-size: clamp(1.06rem, 1.6vw, 1.3rem);
+  line-height: 1.98;
+}
+
+.home-rebuild .mission-quote-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.77rem;
+  letter-spacing: 0.14em;
+  font-family: var(--font-display);
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+
+/* ── Flip board ─────────────────────────────── */
+.home-rebuild .flip-board {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  background: rgba(10, 14, 22, 0.9);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.home-rebuild .flip-board::after {
+  content: "";
+  position: absolute;
+  right: -80px;
+  top: -80px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(61, 130, 255, 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.home-rebuild .flip-board-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.home-rebuild .flip-kicker {
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.home-rebuild .flip-title {
+  margin: 0;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  font-family: var(--font-display);
+  color: var(--archive-blue);
+}
+
+.home-rebuild .flip-board-rows {
+  display: grid;
+  gap: 10px;
+  perspective: 800px;
+}
+
+.home-rebuild .flip-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #131824, #0f1320);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-rebuild .flip-row::before {
+  content: "";
+  position: absolute;
+  left: -120%;
+  top: 50%;
+  width: 120%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transform: translateY(-50%);
+}
+
+.home-rebuild .flip-row::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 0;
+}
+
+.home-rebuild .flip-row.is-flipping {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 20px rgba(240, 168, 48, 0.18);
+}
+
+.home-rebuild .flip-row.is-flipping::before { animation: flipSweep 0.5s linear; }
+.home-rebuild .flip-row.is-flipping::after  { animation: flipTick 0.5s steps(2, end); }
+
+.home-rebuild .flip-pair {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.home-rebuild .flip-label {
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.home-rebuild .flip-value {
+  position: relative;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  color: #fdf9f2;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: inline-block;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.home-rebuild .flip-row.is-flipping .flip-value {
+  animation: mechanicalFlip 0.5s steps(2, end);
+  transform-origin: center 55%;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.home-rebuild .flip-value::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 50%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-50%);
+}
+
+/* ── Ticket quote ───────────────────────────── */
+.home-rebuild .ticket-card {
+  position: relative;
+  max-width: 100%;
+  margin: 0;
+  padding: 24px 28px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: rgba(14, 18, 30, 0.85);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.home-rebuild .ticket-quote {
+  position: relative;
+  max-width: 560px;
+  margin: 0;
+  padding: 22px 24px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  background: rgba(12, 16, 28, 0.88);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.home-rebuild .ticket-quote::before,
+.home-rebuild .ticket-quote::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: var(--bg);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.home-rebuild .ticket-quote::before { left: -11px; }
+.home-rebuild .ticket-quote::after  { right: -11px; }
+
+.home-rebuild .ticket-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+
+.home-rebuild .ticket-label {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 3px 10px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.home-rebuild .ticket-code {
+  font-weight: var(--font-weight-semibold);
+}
+
+.home-rebuild .ticket-text {
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-family: var(--font-serif-tc);
+  font-size: clamp(1.1rem, 1.6vw, 1.36rem);
+  font-style: italic;
+  line-height: 1.95;
+}
+
+.home-rebuild .ticket-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.08em;
+}
+
+/* ── Responsive ─────────────────────────────── */
+@media (max-width: 1024px) {
+  .home-rebuild .manifesto-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-rebuild .rail-hero {
+    padding: 26px 22px 30px;
+  }
+
+  .home-rebuild .intro-head {
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .home-rebuild .intro-logo {
+    width: 78px;
+    height: 78px;
+    border-radius: 16px;
+  }
+
+  .home-rebuild .intro-title {
+    font-size: clamp(2.6rem, 9vw, 3.6rem);
+    letter-spacing: 0.08em;
+  }
+
+  .home-rebuild .intro-subtitle {
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+  }
+
+  .home-rebuild .hero-tagline {
+    font-size: 1.04rem;
+    line-height: 1.55;
+  }
+
+  .home-rebuild .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .home-rebuild .station-sign {
+    padding: 14px 18px;
+  }
+
+  .home-rebuild .mission-content p {
+    font-size: 0.98rem;
+  }
+
+  .home-rebuild .mission-quote {
+    padding: 16px 18px 16px 22px;
+  }
+
+  .home-rebuild .mission-quote-text {
+    font-size: 1.02rem;
+  }
+
+  .home-rebuild .mission-quote-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    letter-spacing: 0.1em;
+  }
+
+  .home-rebuild .flip-board {
+    padding: 14px;
+  }
+
+  .home-rebuild .flip-board-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .home-rebuild .flip-board-rows {
+    gap: 8px;
+  }
+
+  .home-rebuild .flip-row {
+    gap: 6px 8px;
+    padding: 9px 12px;
+  }
+
+  .home-rebuild .flip-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+  }
+
+  .home-rebuild .flip-value {
+    font-size: 0.86rem;
+    letter-spacing: 0.05em;
+  }
+
+  .home-rebuild .flip-pair[data-key="via"],
+  .home-rebuild .flip-pair[data-key="type"] {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-rebuild .rail-hero > * {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .home-rebuild .rail-hero::after {
+    animation: none;
+  }
+
+  .home-rebuild .flip-row.is-flipping .flip-value,
+  .home-rebuild .flip-row.is-flipping::before,
+  .home-rebuild .flip-row.is-flipping::after {
+    animation: none;
+  }
+}

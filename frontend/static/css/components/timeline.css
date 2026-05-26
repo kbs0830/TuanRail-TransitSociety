@@ -1,0 +1,36 @@
+/* Timeline component styles */
+
+.timeline {
+  margin-top: 16px;
+  border-left: 2px solid rgba(29, 36, 40, 0.3);
+  padding-left: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 8px;
+}
+
+.timeline-item::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: absolute;
+  left: -19px;
+  top: 0.58em;
+}
+
+.timeline-phase {
+  margin: 0;
+  font-weight: var(--font-weight-bold);
+  color: var(--rail);
+}
+
+.timeline-detail {
+  margin: 2px 0 0;
+  color: var(--ink-soft);
+}

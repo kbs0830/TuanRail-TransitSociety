@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}後台日誌 | 团‧鐵道{% endblock %}
+{% block meta_description %}团‧鐵道後台日誌檢視頁。{% endblock %}
+{% block body_class %}subpage-body{% endblock %}
+{% block content %}
+  <main id="mainContent" class="subpage-main" tabindex="-1">
+    <div class="subpage-brandbar">
+      <a class="subpage-brandlink" href="/">
+        <img src="{{ static_url('images/logo.jpg') }}" alt="团‧鐵道" class="subpage-brand-logo" width="38" height="38" loading="eager" decoding="async">
+        <span class="subpage-brand-name">团‧鐵道</span>
+      </a>
+    </div>
+
+    <section class="subpage-card admin-logs-card">
+      <h1>後台日誌中心</h1>
+      <p>登入帳號：{{ admin_user }}</p>
+
+      <div class="admin-panel-grid">
+        <article class="admin-panel-item">
+          <h2>Render 監控</h2>
+          <p>服務 ID：{{ render_service_id or '未設定' }}</p>
+          {% if render_sync_ready %}
+          <p class="admin-panel-ok">已設定 API 金鑰，可直接同步 Render logs。</p>
+          {% else %}
+          <p class="admin-panel-warn">尚未設定 RENDER_API_KEY，目前僅可開啟 Render Dashboard。</p>
+          {% endif %}
+        </article>
+        <article class="admin-panel-item">
+          <h2>同步操作</h2>
+          <p>可先做連線檢查，再同步 Render logs 進本頁清單。</p>
+        </article>
+      </div>
+
+      <div class="admin-toolbar">
+        <a class="ghost-link" href="{{ render_dashboard_url }}" target="_blank" rel="noreferrer">前往 Render Logs</a>
+        <button id="renderCheckBtn" class="fb-link" type="button">檢查 Render 連線</button>
+        <button id="renderSyncBtn" class="fb-link" type="button">同步 Render Logs</button>
+        <form action="/admin/logout" method="post">
+          <button class="ghost-link" type="submit">登出</button>
+        </form>
+      </div>
+
+      <p id="renderCheckStatus" class="admin-status" aria-live="polite">{{ render_check_status or '尚未執行 Render 連線檢查。' }}</p>
+      <p id="renderSyncStatus" class="admin-status" aria-live="polite">{{ render_sync_status or '尚未執行 Render logs 同步。' }}</p>
+
+      <div class="log-table-wrap">
+        <table class="log-table" aria-label="後台日誌清單">
+          <thead>
+            <tr>
+              <th>時間</th>
+              <th>等級</th>
+              <th>來源</th>
+              <th>內容</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if logs %}
+              {% for item in logs %}
+              <tr>
+                <td>{{ item.time }}</td>
+                <td><span class="log-level log-{{ item.level|lower }}">{{ item.level }}</span></td>
+                <td>{{ item.source }}</td>
+                <td>{{ item.message }}</td>
+              </tr>
+              {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="4">目前尚無可顯示的日誌。</td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="subpage-actions">
+        <a class="fb-link" href="/">返回首頁</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer subpage-footer">
+    <p class="copyright-note">© 2026 網頁工程師 kbs0830. 保留所有權利。</p>
+  </footer>
+{% endblock %}
+{% block scripts %}
+  <script src="{{ static_url('js/admin-logs.js') }}" defer></script>
+{% endblock %}

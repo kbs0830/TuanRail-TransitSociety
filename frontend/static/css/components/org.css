@@ -1,0 +1,57 @@
+/* Organization/Group component styles */
+
+.org-caption {
+  margin: 0 0 10px;
+  color: var(--ink-soft);
+}
+
+.org-chart-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--surface-elevated-grad);
+}
+
+.org-groups {
+  margin-top: 14px;
+}
+
+.org-groups h3 {
+  margin: 0 0 10px;
+  font-size: 1.08rem;
+  color: var(--archive-blue);
+}
+
+.org-group-item {
+  border: 1px solid rgba(17, 28, 38, 0.09);
+  border-radius: var(--radius-xl);
+  padding: 16px 18px;
+  background: linear-gradient(135deg, rgba(248, 250, 253, 0.95), rgba(238, 244, 251, 0.85));
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.org-group-item:hover {
+  border-color: rgba(79, 111, 142, 0.2);
+  box-shadow: 0 4px 16px rgba(29, 36, 40, 0.06);
+}
+
+.org-group-item + .org-group-item {
+  margin-top: 12px;
+}
+
+.org-group-item h4 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.org-group-item p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.org-link-line {
+  margin-bottom: 6px !important;
+}

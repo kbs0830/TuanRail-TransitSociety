@@ -1,0 +1,556 @@
+/* ============================================
+   Rail Elements — 鐵道視覺元素
+   翻牌時鐘、站板看板、月台號碼、軌道裝飾
+   ============================================ */
+
+/* ── 月台號碼 ───────────────────────────── */
+.home-rebuild .card[data-platform]::after {
+  content: "月台 " attr(data-platform);
+  position: absolute;
+  /* Reset inherited zeros from base card::after */
+  width: auto;
+  height: auto;
+  left: auto;
+  opacity: 1;
+  top: 14px;
+  right: 18px;
+  font-size: 0.62rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber);
+  background: rgba(240, 168, 48, 0.12);
+  border: 1px solid rgba(240, 168, 48, 0.35);
+  border-radius: 999px;
+  padding: 3px 10px;
+  pointer-events: none;
+  text-shadow: 0 0 12px rgba(240, 168, 48, 0.4);
+}
+
+/* 首頁 card 上方已有 ::before 做漸層線，::after 要調整層疊 */
+.home-rebuild .card[data-platform] {
+  overflow: visible;
+}
+
+/* ── 鐵道軌道裝飾線 ─────────────────────── */
+.sb-track-rule {
+  position: relative;
+  height: 14px;
+  margin: 6px 0;
+  overflow: hidden;
+}
+
+/* 兩條鋼軌 */
+.sb-track-rule::before,
+.sb-track-rule::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(240, 168, 48, 0.5);
+  border-radius: 1px;
+}
+.sb-track-rule::before { top: 3px; }
+.sb-track-rule::after  { top: 9px; }
+
+/* 枕木：repeating-linear-gradient */
+.sb-track-rule {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 18px,
+    rgba(240, 168, 48, 0.18) 18px,
+    rgba(240, 168, 48, 0.18) 22px
+  );
+}
+
+/* ── 站板看板（Station Board）─────────────── */
+.home-rebuild .station-board {
+  position: relative;
+  border-radius: 16px;
+  background: var(--solari-bg);
+  border: 1px solid var(--solari-border);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 1px rgba(240, 168, 48, 0.08);
+  overflow: hidden;
+  padding: 16px;
+  gap: 10px;
+  display: grid;
+}
+
+/* 頂部琥珀色光暈 */
+.home-rebuild .station-board::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  opacity: 0.6;
+}
+
+.home-rebuild .station-board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.home-rebuild .sb-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.home-rebuild .sb-badge {
+  font-size: 0.6rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--solari-bg);
+  background: var(--amber);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-weight: 700;
+}
+
+.home-rebuild .sb-title-tc {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: rgba(240, 168, 48, 0.7);
+  font-family: var(--font-display);
+}
+
+/* 翻牌板排數 */
+.home-rebuild .station-board .flip-board-rows {
+  gap: 8px;
+}
+
+.home-rebuild .station-board .flip-row {
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 9px 14px;
+}
+
+.home-rebuild .station-board .flip-label {
+  font-size: 0.58rem;
+  color: rgba(240, 168, 48, 0.5);
+  letter-spacing: 0.2em;
+}
+
+.home-rebuild .station-board .flip-value {
+  font-size: 0.92rem;
+  color: var(--amber);
+  background: rgba(240, 168, 48, 0.07);
+  box-shadow: none;
+  text-shadow: 0 0 10px var(--amber-glow);
+}
+
+.home-rebuild .station-board .flip-row.is-flipping .flip-value {
+  text-shadow: 0 0 18px rgba(240, 168, 48, 0.8);
+}
+
+/* ── 翻牌時鐘（Split-flap Clock）──────────── */
+#stationClock {
+  flex-shrink: 0;
+}
+
+.sc-board {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #0d0d0d;
+  border-radius: 10px;
+  border: 1px solid rgba(240, 168, 48, 0.15);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.sc-header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.sc-label-en {
+  font-size: 0.5rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240, 168, 48, 0.45);
+  font-family: var(--font-display);
+}
+
+.sc-label-tc {
+  font-size: 0.5rem;
+  letter-spacing: 0.14em;
+  color: rgba(240, 168, 48, 0.3);
+  font-family: var(--font-display);
+}
+
+.sc-digits {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.sc-segment {
+  display: flex;
+  gap: 2px;
+}
+
+.sc-colon {
+  color: var(--amber);
+  font-size: 1.5rem;
+  font-family: 'Courier New', monospace;
+  line-height: 1;
+  padding: 0 1px;
+  margin-bottom: 2px;
+  opacity: 0.9;
+  animation: scColonBlink 1s steps(1, end) infinite;
+}
+
+/* 單格翻牌方塊 */
+.sc-tile {
+  position: relative;
+  width: 36px;
+  height: 48px;
+  background: #1c1c1c;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', monospace;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-shadow: 0 0 12px var(--amber-glow);
+  transform-origin: center 60%;
+  overflow: hidden;
+  perspective: 200px;
+}
+
+/* 中間分割線（split 的 split） */
+.sc-tile::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 3;
+}
+
+/* 下半段略暗 */
+.sc-tile::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50%;
+  background: rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 翻牌動畫 */
+.sc-tile.sc-flipping {
+  animation: scTileFlip 360ms ease-in-out;
+}
+
+@keyframes scTileFlip {
+  0%   { transform: rotateX(0deg);   background: #1c1c1c; }
+  40%  { transform: rotateX(88deg);  background: #111; }
+  50%  { transform: rotateX(92deg);  background: #111; }
+  60%  { transform: rotateX(88deg);  background: #161616; }
+  100% { transform: rotateX(0deg);   background: #1c1c1c; }
+}
+
+@keyframes scColonBlink {
+  0%, 49% { opacity: 0.9; }
+  50%, 100% { opacity: 0.3; }
+}
+
+/* ── 軌道線段裝飾（各 section 底部）──────── */
+.home-rebuild .card[data-platform]::before {
+  /* 覆蓋原本的漸層線，改成雙軌線 */
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background:
+    linear-gradient(90deg, var(--accent) 0%, rgba(79, 111, 142, 0.0) 70%);
+  border-radius: 22px 22px 0 0;
+}
+
+/* ── 鐵軌風格側邊欄軌道線 ──────────────── */
+.home-rebuild .sidebar::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 8%;
+  bottom: 8%;
+  width: 2px;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(61, 130, 255, 0.5) 0px,
+    rgba(61, 130, 255, 0.5) 6px,
+    transparent 6px,
+    transparent 10px
+  );
+  pointer-events: none;
+}
+
+/* ── 站名牌強化（station-sign）─────────── */
+.home-rebuild .station-sign {
+  background: var(--solari-bg);
+  border: 1px solid rgba(240, 168, 48, 0.2);
+  color: var(--amber);
+}
+
+.home-rebuild .station-sign::before,
+.home-rebuild .station-sign::after {
+  background: var(--amber-dim);
+  box-shadow: 0 0 0 2px rgba(240, 168, 48, 0.2);
+}
+
+.home-rebuild .station-sign h2 {
+  color: var(--amber);
+  text-shadow: 0 0 20px var(--amber-glow);
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+/* ── 列車翻牌增強（原 flip-board 區塊廢棄，沿用 station-board） */
+/* flipSweep 改為琥珀色 */
+.home-rebuild .station-board .flip-row.is-flipping::before {
+  background: rgba(240, 168, 48, 0.4);
+}
+
+/* ── 頁尾時鐘美化 ──────────────────────── */
+.home-rebuild .live-clock {
+  font-family: 'Courier New', var(--font-display), monospace;
+  font-size: 0.88rem;
+  letter-spacing: 0.16em;
+  color: var(--amber);
+  background: rgba(240, 168, 48, 0.08);
+  border: 1px solid rgba(240, 168, 48, 0.28);
+  border-radius: 6px;
+  padding: 5px 14px;
+  display: inline-block;
+  text-shadow: 0 0 10px rgba(240, 168, 48, 0.4);
+}
+
+/* ── 路線圖節點強化 ────────────────────── */
+.home-rebuild .timeline-item::before {
+  background: var(--amber-dim);
+  box-shadow: 0 0 0 3px rgba(197, 136, 42, 0.2);
+}
+
+.home-rebuild .timeline {
+  border-left-color: rgba(197, 136, 42, 0.35);
+}
+
+/* ── 鐵軌分隔裝飾（用於 section 之間）──── */
+.rail-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+  opacity: 0.4;
+}
+.rail-divider::before,
+.rail-divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--track), transparent);
+}
+.rail-divider-icon {
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.1em;
+}
+
+/* ── 翻牌動畫（原有 flipSweep / flipTick 補充）──── */
+@keyframes flipSweep {
+  0%   { left: -120%; opacity: 0; }
+  50%  { opacity: 1; }
+  100% { left: 120%; opacity: 0; }
+}
+
+@keyframes flipTick {
+  0%, 49% { opacity: 0; }
+  50%      { opacity: 1; }
+  100%     { opacity: 0; }
+}
+
+@keyframes mechanicalFlip {
+  0%   { transform: rotateX(0deg); }
+  45%  { transform: rotateX(90deg); }
+  55%  { transform: rotateX(90deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+/* ── 側邊欄路線圖（捷運／台鐵風格）─────────── */
+
+/* 移除 border-left 指示器，改用路線圖圓點 */
+.home-rebuild .sidebar.rail-minimal .anchor-link,
+.home-rebuild .sidebar.rail-minimal .anchor-link:hover,
+.home-rebuild .sidebar.rail-minimal .anchor-link.active {
+  border-left: none;
+}
+
+/* 垂直路線線容器 */
+.home-rebuild .sidebar.rail-minimal .drawer-nav {
+  position: relative;
+}
+
+/* 漸層路線線：台鐵藍 → 捷運綠 → 琥珀 → 捷運紅 */
+.home-rebuild .sidebar.rail-minimal .drawer-nav::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 14px;
+  bottom: 14px;
+  width: 3px;
+  background: linear-gradient(
+    180deg,
+    var(--tra-blue)  0%,
+    var(--mrt-green) 38%,
+    var(--amber)     68%,
+    var(--mrt-red)   100%
+  );
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+/* 站點：各 nav-link 前加站牌圓點 */
+.home-rebuild .sidebar.rail-minimal .anchor-link {
+  position: relative;
+  padding-left: 34px;
+}
+
+.home-rebuild .sidebar.rail-minimal .anchor-link::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--paper-elevated);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition:
+    background var(--transition-fast) ease,
+    border-color var(--transition-fast) ease,
+    box-shadow var(--transition-fast) ease;
+  z-index: 1;
+}
+
+.home-rebuild .sidebar.rail-minimal .anchor-link:hover::before {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(61, 130, 255, 0.15);
+}
+
+.home-rebuild .sidebar.rail-minimal .anchor-link.active::before {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(61, 130, 255, 0.2), 0 0 10px rgba(61, 130, 255, 0.4);
+}
+
+/* ── 各站（Section）路線色頂部標識 ─────────── */
+/* 每節 card 頂部漸層條對應台灣/日本路線標準色，加入呼吸脈衝 */
+@keyframes topBarPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+.home-rebuild .card[data-platform]::before {
+  animation: topBarPulse 4s ease-in-out infinite;
+}
+
+.home-rebuild .card[data-platform="1"]::before {
+  background: linear-gradient(90deg, var(--tra-blue), rgba(0, 95, 175, 0.1) 55%, transparent 100%);
+}
+.home-rebuild .card[data-platform="2"]::before {
+  background: linear-gradient(90deg, var(--thsr-orange), rgba(224, 82, 6, 0.1) 55%, transparent 100%);
+}
+.home-rebuild .card[data-platform="3"]::before {
+  background: linear-gradient(90deg, var(--mrt-green), rgba(0, 134, 89, 0.1) 55%, transparent 100%);
+}
+.home-rebuild .card[data-platform="4"]::before {
+  background: linear-gradient(90deg, var(--mrt-red), rgba(227, 0, 44, 0.1) 55%, transparent 100%);
+}
+.home-rebuild .card[data-platform="5"]::before {
+  background: linear-gradient(90deg, var(--mrt-orange), rgba(245, 166, 35, 0.1) 55%, transparent 100%);
+}
+.home-rebuild .card[data-platform="6"]::before {
+  background: linear-gradient(90deg, var(--amber), rgba(240, 168, 48, 0.1) 55%, transparent 100%);
+}
+.home-rebuild .card[data-platform="7"]::before {
+  background: linear-gradient(90deg, var(--jr-green), rgba(0, 178, 97, 0.1) 55%, transparent 100%);
+}
+.home-rebuild .card[data-platform="8"]::before {
+  background: linear-gradient(90deg, var(--jr-blue), rgba(0, 104, 183, 0.1) 55%, transparent 100%);
+}
+
+/* ── RWD 響應式調整 ────────────────────── */
+@media (max-width: 768px) {
+  .home-rebuild .station-board-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .sc-tile {
+    width: 28px;
+    height: 38px;
+    font-size: 1.3rem;
+    border-radius: 4px;
+  }
+
+  .sc-colon {
+    font-size: 1.2rem;
+  }
+
+  .sc-board {
+    padding: 8px 10px;
+  }
+
+  .home-rebuild .card[data-platform]::after {
+    font-size: 0.54rem;
+    padding: 2px 7px;
+    top: 10px;
+    right: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-tile.sc-flipping {
+    animation: none;
+  }
+  .sc-colon {
+    animation: none;
+    opacity: 0.9;
+  }
+}

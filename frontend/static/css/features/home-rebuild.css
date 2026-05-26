@@ -1,0 +1,237 @@
+/* Homepage rebuild (v8): 暗夜鐵道 — dark base layout & card structure */
+
+body.home-rebuild {
+  background:
+    repeating-linear-gradient(0deg, transparent 0, transparent 79px, rgba(61,130,255,0.038) 79px, rgba(61,130,255,0.038) 80px),
+    repeating-linear-gradient(90deg, transparent 0, transparent 79px, rgba(61,130,255,0.038) 79px, rgba(61,130,255,0.038) 80px),
+    radial-gradient(ellipse at 8% -5%, rgba(26, 143, 255, 0.32) 0%, transparent 48%),
+    radial-gradient(ellipse at 92% 2%, rgba(255, 122, 42, 0.18) 0%, transparent 44%),
+    radial-gradient(ellipse at 52% 108%, rgba(61, 130, 255, 0.12) 0%, transparent 48%),
+    radial-gradient(ellipse at 20% 70%, rgba(0, 200, 128, 0.07) 0%, transparent 38%),
+    var(--bg-grad);
+}
+
+.home-rebuild .grain {
+  opacity: 0.035;
+}
+
+.home-rebuild .content-wrap {
+  margin-left: 280px;
+}
+
+.home-rebuild .layout {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 56px 56px 140px;
+  display: grid;
+  gap: 28px;
+}
+
+/* ── Sidebar overrides ──────────────────────── */
+.home-rebuild .sidebar {
+  background: rgba(9, 12, 20, 0.94);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 4px 0 40px rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+.home-rebuild .sidebar::before {
+  width: 2px;
+  left: 10px;
+  background: linear-gradient(180deg, rgba(240, 168, 48, 0.9), rgba(240, 168, 48, 0.1));
+}
+
+.home-rebuild .brand-sub,
+.home-rebuild .nav-title,
+.home-rebuild .anchor-desc {
+  color: var(--ink-soft);
+}
+
+.home-rebuild .taiwan-note {
+  color: var(--archive-blue);
+  border-color: rgba(127, 179, 255, 0.2);
+  background: rgba(61, 130, 255, 0.08);
+}
+
+.home-rebuild .anchor-link {
+  color: var(--ink-soft);
+  border-color: transparent;
+  background: transparent;
+}
+
+.home-rebuild .anchor-link:hover {
+  color: var(--ink);
+  border-color: rgba(61, 130, 255, 0.25);
+  background: rgba(61, 130, 255, 0.08);
+}
+
+.home-rebuild .anchor-link.active {
+  color: var(--ink);
+  border-color: rgba(61, 130, 255, 0.35);
+  background: rgba(61, 130, 255, 0.13);
+}
+
+.home-rebuild .admin-sidebar-entry {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--ink-soft);
+}
+
+.home-rebuild .admin-sidebar-entry:hover {
+  border-color: rgba(240, 168, 48, 0.5);
+  color: var(--ink);
+}
+
+/* ── Card ───────────────────────────────────── */
+.home-rebuild .card {
+  position: relative;
+  border: 1px solid rgba(61, 130, 255, 0.16);
+  border-radius: 22px;
+  padding: 46px 52px;
+  background: rgba(18, 22, 36, 0.88);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.5),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 32px 72px -16px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(61, 130, 255, 0.08),
+    0 0 30px rgba(61, 130, 255, 0.05);
+  opacity: 0;
+  transform: translateY(22px);
+  animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--card-delay, 0ms);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+}
+
+.home-rebuild .card:hover {
+  border-color: rgba(61, 130, 255, 0.38);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.5),
+    0 16px 48px rgba(0, 0, 0, 0.45),
+    0 48px 96px -20px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(61, 130, 255, 0.22),
+    0 0 70px rgba(61, 130, 255, 0.14);
+  transform: translateY(-9px);
+}
+
+.home-rebuild .layout > .card:nth-of-type(1)  { --card-delay: 0ms; }
+.home-rebuild .layout > .card:nth-of-type(2)  { --card-delay: 80ms; }
+.home-rebuild .layout > .card:nth-of-type(3)  { --card-delay: 150ms; }
+.home-rebuild .layout > .card:nth-of-type(4)  { --card-delay: 210ms; }
+.home-rebuild .layout > .card:nth-of-type(5)  { --card-delay: 270ms; }
+.home-rebuild .layout > .card:nth-of-type(6)  { --card-delay: 330ms; }
+.home-rebuild .layout > .card:nth-of-type(7)  { --card-delay: 390ms; }
+.home-rebuild .layout > .card:nth-of-type(8)  { --card-delay: 450ms; }
+
+/* Top gradient bar — overridden per-platform by rail-elements.css */
+.home-rebuild .card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent) 0%, rgba(61, 130, 255, 0.18) 65%, transparent 100%);
+  border-radius: 22px 22px 0 0;
+}
+
+/* Clear the left strip — rail-elements.css uses ::after for the platform badge */
+.home-rebuild .card::after {
+  content: "";
+  position: absolute;
+  top: auto;
+  left: auto;
+  width: 0;
+  height: 0;
+  background: none;
+  opacity: 0;
+}
+
+/* ── Card heading ───────────────────────────── */
+.home-rebuild .card h2 {
+  margin: 0 0 24px;
+  padding: 0 0 16px;
+  border-bottom: 1px solid rgba(61, 130, 255, 0.14);
+  color: var(--ink);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  font-weight: var(--font-weight-bold);
+}
+
+.home-rebuild .card h2::after {
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+.home-rebuild .intro-rebuild {
+  background: rgba(14, 18, 30, 0.9);
+}
+
+/* ── Responsive ─────────────────────────────── */
+@media (max-width: 1024px) {
+  .home-rebuild .content-wrap {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-rebuild .layout {
+    padding: 64px 16px 56px;
+    gap: 18px;
+  }
+
+  .home-rebuild .card {
+    padding: 28px 24px;
+    border-radius: 18px;
+  }
+
+  .home-rebuild .card h2 {
+    margin-bottom: 16px;
+    font-size: 1.24rem;
+  }
+
+  .home-rebuild .card p,
+  .home-rebuild .card li {
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-rebuild .card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .home-rebuild .card:hover {
+    transform: none;
+  }
+}
+
+/* ── Keyframes ──────────────────────────────── */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes railSweep {
+  0%   { transform: translateX(-15%); opacity: 0.15; }
+  50%  { opacity: 0.6; }
+  100% { transform: translateX(15%);  opacity: 0.15; }
+}
+
+@media (min-width: 1440px) {
+  .home-rebuild .layout {
+    max-width: 1380px;
+  }
+
+  .home-rebuild .site-footer {
+    max-width: 1300px;
+  }
+}

@@ -1,0 +1,20 @@
+/* Widget components (tips, notes, etc.) */
+
+.tiny-note-widget {
+  margin-top: 12px;
+  border: 1px dashed rgba(29, 36, 40, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 10px;
+  background: var(--surface-glass);
+}
+
+.tiny-note-title {
+  margin: 0 0 4px;
+  color: var(--archive-blue);
+  font-weight: var(--font-weight-bold);
+}
+
+#tinyTip {
+  margin: 0;
+  color: var(--ink-soft);
+}

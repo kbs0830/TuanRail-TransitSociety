@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+{% block title %}团‧鐵道 | Tuan Rail & Transit Society{% endblock %}
+{% block meta_description %}团‧鐵道：團結、鐵路文化與公共運輸的青年社群。{% endblock %}
+{% block extra_head %}
+  <link rel="canonical" href="{{ site_url }}/">
+  <meta property="og:url" content="{{ site_url }}/">
+  <meta property="og:image" content="{{ site_url }}/{{ static_url('images/logo.jpg') }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="团‧鐵道｜公共運輸文化社群">
+  <meta name="twitter:description" content="團結、鐵路與公共運輸，一起前進。">
+  <meta name="twitter:image" content="{{ site_url }}/{{ static_url('images/logo.jpg') }}">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Tuan Rail & Transit Society",
+      "alternateName": "团‧鐵道",
+      "url": "{{ site_url }}/",
+      "logo": "{{ site_url }}/{{ static_url('images/logo.jpg') }}",
+      "email": "mailto:a380.500er@gmail.com"
+    }
+  </script>
+{% endblock %}
+{% block body_class %}home-rebuild{% endblock %}
+{% block content %}
+  <div id="pageLoader" class="page-loader" aria-live="polite" aria-label="頁面載入中">
+    <div class="loader-card">
+      <img src="{{ static_url('images/logo.jpg') }}" alt="团‧鐵道" class="loader-logo">
+      <p class="loader-title">团‧鐵道 檔案載入中</p>
+      <div class="loader-bar"><span class="loader-progress"></span></div>
+    </div>
+  </div>
+
+  <button id="drawerToggle" class="drawer-toggle" type="button" aria-label="切換選單">☰</button>
+  <div id="drawerOverlay" class="drawer-overlay"></div>
+
+  <aside id="sidebar" class="sidebar rail-minimal rail-wide">
+    <div class="sidebar-top rail-minimal-top">
+      <img src="{{ static_url('images/logo.jpg') }}" alt="团‧鐵道 LOGO" class="brand-logo" width="60" height="60">
+      <p class="brand">团‧鐵道</p>
+      <p class="brand-sub">Tuan Rail &amp; Transit Society</p>
+      <p class="taiwan-note">台灣公共運輸文化檔案</p>
+    </div>
+    <nav class="drawer-nav">
+      <a href="#introSection" class="anchor-link">首頁</a>
+      <a href="#orgSection" class="anchor-link">組織架構</a>
+      <a href="#historySection" class="anchor-link">創社沿革</a>
+      <a href="#meaningSection" class="anchor-link">理念</a>
+      <a href="#qaSection" class="anchor-link">Q&A</a>
+      <a href="#supportSection" class="anchor-link">支持</a>
+      <a href="#membersSection" class="anchor-link">成員</a>
+      <a href="#eventsSection" class="anchor-link">活動</a>
+    </nav>
+    <a href="/admin" class="admin-sidebar-entry" aria-label="後台登入入口">後台登入</a>
+  </aside>
+
+  <div class="content-wrap">
+    <main id="mainContent" class="layout" tabindex="-1">
+      <section class="card intro-rebuild" id="introSection" data-platform="1">
+        <div class="rail-hero">
+          <div class="hero-stamp">
+            <span class="stamp-type">TYP.TR-2026</span>
+            <span class="stamp-label">台灣公共運輸文化檔案</span>
+            <span class="stamp-line">Rail &amp; Transit Archive</span>
+          </div>
+
+          <div class="intro-head" aria-label="首頁識別區塊">
+            <img src="{{ static_url('images/logo.jpg') }}" alt="团‧鐵道 LOGO" width="78" height="78" loading="eager" decoding="async" class="intro-logo">
+            <div class="intro-identity-text">
+              <p class="intro-title">团‧鐵道</p>
+              <p class="intro-subtitle">Tuan Rail &amp; Transit Society</p>
+              <p class="hero-station-code">STATION · TW · 2026</p>
+            </div>
+          </div>
+
+          <p class="hero-tagline">团‧鐵道｜連動城市與鐵道的團結</p>
+
+          <div class="hero-actions">
+            <a class="hero-btn" href="#historySection">探索創社史 →</a>
+            <a class="hero-btn ghost" href="#supportSection">加入支持 →</a>
+          </div>
+        </div>
+
+        <div class="manifesto">
+          <div class="station-sign" aria-label="核心理念站牌">
+            <h2>核心理念</h2>
+          </div>
+
+          <div class="manifesto-grid single-col manifesto-justify">
+            <div class="manifesto-text">
+              <div id="missionContent" class="mission-content">
+                <div class="intro-copy">
+                  <p class="intro-welcome">哈囉大家好，歡迎來到団‧鐵道</p>
+                  <p class="intro-kicker">团‧鐵道｜連動城市與鐵道的團結</p>
+                  <p>歡迎來到「团‧鐵道」！</p>
+                  <p>我們是一群對公共運輸充滿熱忱的青少年，因為共同的愛好而相聚。</p>
+                  <p>關於「团‧鐵道」的含義，我們的名字拆解開來，代表了我們的靈魂與堅持：</p>
+                </div>
+
+                <p class="mission-lead">團結、鐵路與公路，不只是文字拆解，而是我們想把公共運輸文化，重新整理成一張可以看見方向的路網圖。</p>
+              </div>
+
+              <div class="mission-quote" aria-label="核心理念語錄">
+                <p class="mission-quote-text">每一條軌道，都是城市的脈絡；每一段公路，都是夢想的延伸。</p>
+                <div class="mission-quote-meta">
+                  <span>起點：城市脈絡</span>
+                  <span>終點：夢想延伸</span>
+                </div>
+              </div>
+
+              <div class="station-board" aria-label="車站資訊看板">
+                <div class="station-board-header">
+                  <div class="sb-title-group">
+                    <span class="sb-badge">DEPARTURES</span>
+                    <span class="sb-title-tc">出發班次</span>
+                  </div>
+                  <div id="stationClock" aria-live="polite" aria-label="目前時間"></div>
+                </div>
+                <div class="sb-track-rule" aria-hidden="true"></div>
+                <div id="nextTrainBoard" class="flip-board-rows" aria-live="polite"></div>
+              </div>
+
+              <div class="mission-pillars ticket-card" aria-label="团鐵道核心字義">
+                <p class="pillar-title">团・鐵・道</p>
+                <article class="pillar-item">
+                  <span class="pillar-badge" aria-hidden="true">团</span>
+                  <p>代表團結。在公共運輸的世界裡，沒有一個零件或一條路線能獨自運作。我們以團結為名，連結每一位同好。</p>
+                </article>
+                <article class="pillar-item">
+                  <span class="pillar-badge" aria-hidden="true">鐵</span>
+                  <p>象徵鐵路。從鋼軌的鏗鏘聲到複雜的調度，我們鑽研軌道運輸的工藝與美學。</p>
+                </article>
+                <article class="pillar-item">
+                  <span class="pillar-badge" aria-hidden="true">道</span>
+                  <p>涵蓋公路。無論是穿梭大街小巷的公車，還是跨城客運、捷運接駁與通勤轉乘，我們都重視每一段旅程背後的運輸價值。</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="mobile-compact-note">手機版已精簡長文顯示。請使用左側導覽閱讀「創社與關鍵字」、「Q&A」、「支持我們」。</p>
+
+        <article class="announcement-article">
+          <h3>▍創社介紹</h3>
+          <p class="announcement-greeting">嗨大家好，我是 団•鐵道社長 鄭熙！今天想和大家分享我們創社的過程與一路走來的血淚與熱情。</p>
+          <p class="announcement-note">（文長慎入，但如果你願意了解我們，我會非常感謝）</p>
+
+          <section class="announcement-section">
+            <h4>▍創社史</h4>
+            <p>団•鐵道成立於 2026 年，由「YT 新鐵道知識庫」重組而成。創社初衷很簡單：讓更多人能真正「走近」鐵道與公共運輸。</p>
+            <p class="symbols">🔸 「団」＝團結　　🔸 「鐵」＝鐵路文化　　🔸 「道」＝道路公共汽車與運輸</p>
+            <p>我們以「鐵」與「道」為主題，用知識帶來新視野，用活動帶大家走進鐵道的世界。歡迎加入団•鐵道！</p>
+          </section>
+
+          <section class="announcement-section announcement-cta">
+            <h4>▍非常重要</h4>
+            <p>如果你願意支持我們，請追蹤我們、按讚貼文、並分享給你的朋友！讓更多人認識 団•鐵道，也希望能在未來的活動中與你相見。</p>
+          </section>
+        </article>
+      </section>
+
+      <section class="card" id="orgSection" data-platform="2">
+        <h2>組織架構圖</h2>
+        <p class="org-caption">以下為目前社團組織運作架構。</p>
+        <img
+          class="org-chart-image"
+          src="{{ static_url('images/organization-chart.png') }}"
+          alt="团‧鐵道社團組織架構圖"
+          loading="lazy"
+        >
+
+        <div class="org-groups">
+          <h3>旗下團體</h3>
+
+          <article class="org-group-item">
+            <h4>Metro GO 捷運模擬器</h4>
+            <p class="org-link-line">傳送門：<a href="https://discord.gg/pFGhNQUhjn" target="_blank" rel="noreferrer">discord.gg/pFGhNQUhjn</a></p>
+            <p>是否想要體驗駕駛捷運？還是想成為捷運站務員？是否想要服務乘客？那 Metro Go 捷運模擬器就是您的選擇。目前遊戲還在開發階段，請等待日後公告。</p>
+          </article>
+
+          <article class="org-group-item">
+            <h4>団‧鐵道 網路傳播暨紀錄片製作多媒體科</h4>
+            <p>這裡記錄著団‧鐵道所有日常等等，當然也包含具有知識含量的影片。</p>
+            <p class="org-link-line">傳送門：<a href="https://www.youtube.com/@tw-d.o.i.c.a.p.d.m-r" target="_blank" rel="noreferrer">YouTube 頻道</a></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="card" id="historySection" data-platform="3">
+        <div class="route-map-head">
+          <div>
+            <p class="route-kicker">Route Map</p>
+            <h2 id="historyTitle">創社史</h2>
+          </div>
+          <div class="route-legend" aria-label="路線圖圖例">
+            <span class="legend-item"><span class="legend-dot"></span>發展節點</span>
+            <span class="legend-item"><span class="legend-line"></span>沿革路徑</span>
+          </div>
+        </div>
+
+        <div class="route-map-grid">
+          <div class="route-map-story">
+            <div id="historyBody"></div>
+            <div id="keywords" class="keyword-grid route-keywords"></div>
+          </div>
+
+          <aside class="route-map-rail" aria-label="沿革路線">
+            <div class="route-rail-head">
+              <p class="route-rail-title">沿革路線</p>
+              <p class="route-rail-note">把創社故事整理成一條可以閱讀的路徑。</p>
+            </div>
+            <div id="timeline" class="timeline route-timeline"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="card" id="meaningSection" data-platform="4">
+        <h2 id="meaningTitle">關於团‧鐵道的含義</h2>
+        <div id="meaningBody"></div>
+        <div id="principles" class="principle-grid"></div>
+      </section>
+
+      <section class="card" id="qaSection" data-platform="5">
+        <h2>大家的疑問 Q&A</h2>
+        <div id="qaList" class="qa-list"></div>
+      </section>
+
+      <section class="card cta" id="supportSection" data-platform="6">
+        <h2 id="ctaTitle">非常重要</h2>
+        <p id="ctaBody"></p>
+        <ul id="supportActions" class="support-action-list"></ul>
+        <div class="support-links">
+          <a id="fbLink" class="fb-link" target="_blank" rel="noreferrer">前往 FB 粉絲團</a>
+          <a id="complaintLink" class="ghost-link" target="_blank" rel="noreferrer" href="https://docs.google.com/forms/d/e/1FAIpQLSeGnXZ1IvkUsSnjG5oRvSrHJzH_lTWJq57Duk9-9eQCI-a7pw/viewform">投訴與建議表單</a>
+        </div>
+      </section>
+
+      <section class="card" id="membersSection" data-platform="7">
+        <h2>成員介紹</h2>
+        <p class="org-caption">核心幹部與分工摘要。</p>
+        <div id="membersList" class="member-grid"></div>
+      </section>
+
+      <section class="card" id="eventsSection" data-platform="8">
+        <h2>活動日期與時間表</h2>
+        <p class="org-caption">活動資訊即將公告，敬請持續關注我們的社群頁面以獲取最新消息。</p>
+        <div id="eventsList" class="event-grid"></div>
+        <div class="tiny-note-widget">
+          <p class="tiny-note-title">小東西</p>
+          <p id="tinyTip">公共運輸小提醒載入中...</p>
+        </div>
+        <div class="support-links">
+          <a class="fb-link" href="/activities">前往活動展廊</a>
+          <a class="ghost-link" href="/partners">前往合作夥伴</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p id="liveClock" class="live-clock" aria-live="polite">--:--:--</p>
+      <p>合作及服務信箱: <a href="mailto:a380.500er@gmail.com">a380.500er@gmail.com</a></p>
+      <p class="copyright-note">© 2026 網頁工程師 kbs0830. 保留所有權利。</p>
+    </footer>
+  </div>
+
+  <button id="backToTop" class="back-to-top" type="button" aria-label="返回頂部">回到頂部</button>
+{% endblock %}
+{% block scripts %}
+  <script type="module" src="{{ static_url('js/app.js') }}"></script>
+{% endblock %}

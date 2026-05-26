@@ -1,0 +1,113 @@
+/* 鐵道簡約風格導覽列 */
+.sidebar.rail-minimal {
+  background: linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(240,246,252,0.65) 100%);
+  border-right: 1px solid rgba(120, 130, 140, 0.11);
+  box-shadow: none;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  min-width: 180px;
+  max-width: 220px;
+  align-items: flex-start;
+}
+
+.sidebar-top.rail-minimal-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  margin-bottom: 18px;
+}
+
+.sidebar.rail-minimal .drawer-nav {
+  padding: 0;
+  gap: 2px;
+}
+
+.sidebar.rail-minimal .anchor-link {
+  display: block;
+  color: var(--archive-blue);
+  font-family: var(--font-mono, monospace);
+  font-size: 1.05rem;
+  letter-spacing: 0.07em;
+  border-radius: 9px;
+  padding: 10px 18px;
+  margin-bottom: 2px;
+  background: transparent;
+  border: none;
+  border-left: 3px solid transparent;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.sidebar.rail-minimal .anchor-link:hover,
+.sidebar.rail-minimal .anchor-link.active {
+  background: rgba(79, 111, 142, 0.09);
+  color: var(--accent-strong);
+  border-left: 3px solid var(--accent-strong);
+}
+
+/* manifesto text alignment */
+.manifesto-grid.single-col.manifesto-justify {
+  display: flex !important;
+  flex-direction: column;
+  align-items: stretch;
+}
+.manifesto-grid.single-col.manifesto-justify .manifesto-text {
+  text-align: justify;
+}
+
+.sidebar.rail-minimal .admin-sidebar-entry {
+  margin-top: 32px;
+  background: var(--archive-blue);
+  color: #fff;
+  border-radius: 9px;
+  font-size: 0.95rem;
+  padding: 10px 18px;
+  border: none;
+  box-shadow: 0 2px 10px rgba(31, 62, 84, 0.2);
+  transition: background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.sidebar.rail-minimal .admin-sidebar-entry:hover {
+  background: var(--accent-strong);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(31, 62, 84, 0.28);
+}
+
+/* 導覽列加寬 */
+.sidebar.rail-minimal,
+.rail-wide {
+  min-width: 260px !important;
+  max-width: 340px !important;
+}
+
+/* 団鐵道介紹區塊（票卡感） */
+.mission-pillars.ticket-card {
+  margin: 18px 0 8px !important;
+  padding: 18px 22px 12px !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(29, 36, 40, 0.09);
+  background: rgba(248, 251, 255, 0.8);
+}
+.mission-pillars.ticket-card .pillar-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  letter-spacing: 0.12em;
+}
+.mission-pillars.ticket-card .pillar-item {
+  margin-bottom: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(79, 111, 142, 0.08);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.mission-pillars.ticket-card .pillar-badge {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--archive-blue);
+  min-width: 2.2em;
+  display: inline-block;
+}

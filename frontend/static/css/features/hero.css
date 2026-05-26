@@ -1,0 +1,138 @@
+/* Hero section styles (kept for general use) */
+
+/* Support actions */
+.support-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.support-action-list {
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.support-action-list li {
+  border: 1px dashed rgba(29, 36, 40, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 9px 10px;
+  background: var(--surface-elevated-grad);
+}
+
+.support-action-list li::before {
+  content: "拾";
+  margin-right: 8px;
+  color: var(--accent);
+  font-weight: var(--font-weight-bold);
+}
+
+/* CTA card */
+.cta {
+  border-color: rgba(29, 36, 40, 0.18);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(244, 241, 235, 0.96) 55%, var(--accent-soft));
+}
+
+/* Announcements */
+.announcement-article {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.announcement-greeting {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  max-width: 68ch;
+}
+
+.announcement-note {
+  margin: 0 0 18px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.announcement-section {
+  margin-bottom: 24px;
+}
+
+.announcement-section h4 {
+  margin: 14px 0 10px;
+  font-size: 1rem;
+  color: var(--archive-blue);
+  font-weight: var(--font-weight-bold);
+}
+
+.announcement-section p {
+  margin: 0 0 10px;
+  color: var(--ink);
+  line-height: 1.7;
+  max-width: 68ch;
+}
+
+.announcement-section p:last-child {
+  margin-bottom: 0;
+}
+
+.announcement-section .qa-item {
+  border-left: 3px solid rgba(29, 36, 40, 0.3);
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.announcement-section .qa-item h5 {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  color: var(--rail);
+  font-weight: var(--font-weight-bold);
+}
+
+.announcement-section .qa-item p {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 0.9rem;
+}
+
+.announcement-cta p {
+  color: var(--seal-red);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.96rem;
+}
+
+.mobile-compact-note {
+  display: none;
+  margin: 12px 0 0;
+  border: 1px dashed rgba(29, 36, 40, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.mission-content p {
+  margin: 0 0 8px;
+  max-width: 68ch;
+}
+
+.mission-content p:last-child {
+  margin-bottom: 0;
+}
+
+.subpage-actions {
+  margin-top: 14px;
+}
+
+.subpage-footer {
+  margin-top: 12px;
+}
+

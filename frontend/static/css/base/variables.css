@@ -1,0 +1,134 @@
+/* 配色系統 — 暗夜鐵道 */
+:root {
+  /* 主色調 */
+  --bg: #0b0e16;
+  --paper: #131721;
+  --paper-elevated: #1a1e2d;
+  --ink: #e8ecf7;
+  --ink-soft: #8898ba;
+  --line: rgba(255, 255, 255, 0.07);
+  --bg-grad: linear-gradient(135deg, #0d1019 0%, #0b0f18 55%, #0e1220 100%);
+  --surface-grad: linear-gradient(135deg, rgba(26, 30, 45, 0.98) 0%, rgba(20, 24, 38, 0.96) 100%);
+  --surface-elevated-grad: linear-gradient(135deg, rgba(30, 34, 52, 0.98) 0%, rgba(22, 27, 44, 0.95) 100%);
+  --surface-glass: linear-gradient(135deg, rgba(26, 30, 45, 0.72) 0%, rgba(18, 22, 36, 0.55) 100%);
+
+  /* 強調色 — 電氣藍 */
+  --accent: #3d82ff;
+  --accent-strong: #2070ff;
+  --accent-soft: rgba(61, 130, 255, 0.12);
+  --accent-grad: linear-gradient(135deg, #5a96ff 0%, #3d82ff 45%, #2070ff 100%);
+  --accent-grad-soft: linear-gradient(135deg, rgba(61, 130, 255, 0.22) 0%, rgba(32, 112, 255, 0.1) 100%);
+
+  /* 特殊色 */
+  --paper-age: #1e2236;
+  --sepia-ink: #8898ba;
+  --archive-blue: #7fb3ff;
+  --seal-red: #ff4d6a;
+  --rail: #3d82ff;
+  --rail-grad: linear-gradient(135deg, #1a2a4a 0%, #0f1a30 100%);
+  --rail-soft: rgba(61, 130, 255, 0.1);
+  --track: rgba(255, 255, 255, 0.12);
+  --fog: rgba(255, 255, 255, 0.04);
+  --glow: rgba(61, 130, 255, 0.22);
+  --accent-glow: rgba(61, 130, 255, 0.3);
+  --neon-cyan: #00d4ff;
+  --neon-green: #00ff88;
+
+  /* 鐵道站板色系 */
+  --solari-bg: #060810;
+  --solari-panel: #0c0f18;
+  --solari-border: rgba(255, 255, 255, 0.06);
+  --amber: #f0a830;
+  --amber-dim: #c8882a;
+  --amber-glow: rgba(240, 168, 48, 0.4);
+  --signal-green: #00cc80;
+  --signal-red: #ff4d6a;
+  --platform-gold: #f0a830;
+
+  /* 台灣日本鐵道路線色（鮮豔版，適合暗色背景） */
+  --tra-blue: #1a8fff;
+  --thsr-orange: #ff7a2a;
+  --mrt-red: #ff3355;
+  --mrt-blue: #2890ff;
+  --mrt-green: #00cc80;
+  --mrt-orange: #ffaa2a;
+  --mrt-brown: #d4882a;
+  --jr-green: #00c870;
+  --jr-orange: #ff8c1f;
+  --jr-blue: #2090ff;
+}
+
+/* 字體堆棧 */
+:root {
+  --font-sans-tc: "Noto Serif TC", serif;
+  --font-serif-tc: "Noto Serif TC", serif;
+  --font-garamond: "Cormorant Garamond", "Noto Serif TC", serif;
+  --font-display: "Cormorant Garamond", "Noto Serif TC", serif;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* 間距系統 */
+:root {
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --spacing-3xl: 28px;
+  --spacing-4xl: 36px;
+  --spacing-5xl: 56px;
+}
+
+/* 圓角系統 */
+:root {
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-2xl: 14px;
+  --radius-3xl: 18px;
+  --radius-full: 999px;
+}
+
+/* 陰影系統 */
+:root {
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 18px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.35), 0 12px 36px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.4), 0 24px 60px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.45), 0 48px 96px rgba(0, 0, 0, 0.35);
+  --shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Z-index 層級 */
+:root {
+  --z-base: 1;
+  --z-fixed: 100;
+  --z-drawer: 110;
+  --z-drawer-overlay: 110;
+  --z-sidebar: 120;
+  --z-drawer-toggle: 130;
+  --z-back-to-top: 140;
+  --z-admin-entry: 141;
+  --z-loader: 200;
+}
+
+/* 動畫時間 */
+:root {
+  --transition-fast: 0.2s;
+  --transition-normal: 0.25s;
+  --transition-slow: 0.4s;
+  --ease-smooth: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --tap-min: 44px;
+}
+
+/* 斷點 */
+:root {
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1200px;
+}
